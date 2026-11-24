@@ -1879,8 +1879,10 @@
       img.classList.add('opacity-30', 'p-8');
     }
 
-    // [61,244개 전 테마 동적 온디맨드 & 백그라운드 프리로드 엔진]
+    // [61,244개 전 테마 동적 온디맨드 & 백그라운드 프리로드 & 초고속 캐시 엔진]
     const loadedThemes = new Set();
+    const themeCache = new Map();
+    const itemsIdSet = new Set();
     let isAllThemesLoaded = false;
     let preloadPromise = null;
     const ALL_THEME_NAMES = [
@@ -1895,11 +1897,16 @@
         const res = await fetch(`sheets/manifest_theme_${theme}.json`);
         if (res.ok) {
           const themeItems = await res.json();
-          themeItems.forEach(formatItemImageSrc);
-          const existingIds = new Set(items.map(it => it.id));
-          const newItems = themeItems.filter(it => !existingIds.has(it.id));
-          items = items.concat(newItems);
+          for (let i = 0; i < themeItems.length; i++) {
+            const it = themeItems[i];
+            if (!itemsIdSet.has(it.id)) {
+              itemsIdSet.add(it.id);
+              formatItemImageSrc(it);
+              items.push(it);
+            }
+          }
           loadedThemes.add(theme);
+          themeCache.clear(); // 새 데이터 병합 시 캐시 안전 초기화
         }
       } catch (e) {
         console.warn(`[ColorBob] Failed to load theme: ${theme}`, e);
@@ -1910,7 +1917,11 @@
       if (isAllThemesLoaded || preloadPromise) return preloadPromise;
       preloadPromise = (async () => {
         const remaining = ALL_THEME_NAMES.filter(t => !loadedThemes.has(t));
-        await Promise.all(remaining.map(t => loadThemeManifest(t)));
+        for (const t of remaining) {
+          await loadThemeManifest(t);
+          // 브라우저 렌더링 프레임 양보 (아이패드/모바일 메인 스레드 프리징 100% 방지)
+          await new Promise(r => setTimeout(r, 40));
+        }
         isAllThemesLoaded = true;
         window.TOTAL_LIBRARY_COUNT = items.length;
         if (currentTheme === 'all' && !currentSearch) {
@@ -1954,7 +1965,10 @@
     async function init() {
       const preloaded = (typeof window !== 'undefined' && (window.LIBRARY_MANIFEST || window.COLORING_LIBRARY)) || null;
       if (preloaded && preloaded.length > 0) {
-        preloaded.forEach(formatItemImageSrc);
+        preloaded.forEach(it => {
+          itemsIdSet.add(it.id);
+          formatItemImageSrc(it);
+        });
         items = preloaded.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
         window.COLORING_LIBRARY = preloaded;
         window.LIBRARY_MANIFEST = preloaded;
@@ -1966,7 +1980,10 @@
           }
           if (res.ok) {
             const raw = await res.json();
-            raw.forEach(formatItemImageSrc);
+            raw.forEach(it => {
+              itemsIdSet.add(it.id);
+              formatItemImageSrc(it);
+            });
             items = raw.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
             window.COLORING_LIBRARY = raw;
             window.LIBRARY_MANIFEST = raw;
@@ -2040,6 +2057,9 @@
     function changeLanguage(lang, persist = true) {
       if (!i18n[lang]) lang = 'ko';
       currentLang = lang;
+      if (typeof themeCache !== 'undefined') {
+        themeCache.clear();
+      }
       if (persist) {
         try {
           localStorage.setItem('colorbob_preferred_lang', lang);
@@ -2686,7 +2706,7 @@
         return `
           <div onclick="openModalById('${it.id}')" class="group shrink-0 w-24 sm:w-28 cursor-pointer flex flex-col p-1.5 rounded-lg border border-zinc-200 hover:border-zinc-950 transition-all bg-zinc-50 hover:bg-white hover:shadow-xs">
             <div class="aspect-[3/4] bg-white rounded flex items-center justify-center overflow-hidden border border-zinc-100 p-0.5">
-              <img src="${it.imageSrc}" data-rawsrc="${it.imageSrc}" onerror="handleImgError(this)" alt="${displayTitle}" loading="lazy" class="w-full h-full object-contain filter contrast-125 transition-transform duration-200 group-hover:scale-105" />
+              <img src="${it.imageSrc}" data-rawsrc="${it.imageSrc}" onerror="handleImgError(this)" alt="${displayTitle}" loading="lazy" decoding="async" class="w-full h-full object-contain filter contrast-125 transition-transform duration-200 group-hover:scale-105" />
             </div>
             <p class="mt-1 text-[11px] font-bold text-zinc-800 group-hover:text-zinc-950 truncate leading-tight" title="${displayTitle}">
               ${displayTitle}
@@ -2776,87 +2796,101 @@
       const dict = i18n[currentLang];
       const grid = document.getElementById('cardGrid');
 
-      let filtered = items.filter(item => {
-        if (item.reviewStatus === 'pending') return false;
-        if (currentTheme !== 'all') {
-          if (currentTheme === 'dots') {
-            const isDots = (item.tags || []).includes('dots') || ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('점잇기')) || ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('dot'));
-            if (!isDots) return false;
-          } else if (currentTheme === 'colornumber') {
-            const isColorNum = (item.theme === 'colornumber') ||
-                               ((item.tags || []).includes('colornumber')) ||
-                               ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('번호')) ||
-                               ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('숫자')) ||
-                               ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('number'));
-            if (!isColorNum) return false;
-          } else if (item.theme !== currentTheme) {
-            return false;
-          }
-        }
-        if (currentSearch) {
-          const tKo = (item.title && typeof item.title === 'object' ? (item.title.ko || '') : (item.title || '')).toLowerCase();
-          const tEn = (item.title && typeof item.title === 'object' ? (item.title.en || '') : '').toLowerCase();
-          const tJa = (item.title && typeof item.title === 'object' ? (item.title.ja || '') : '').toLowerCase();
-          const tZh = (item.title && typeof item.title === 'object' ? (item.title.zh || '') : '').toLowerCase();
-          const tagsText = (item.tags || []).join(' ').toLowerCase();
-          const idText = (item.id || '').toLowerCase();
-          
-          // 4개 국어 전체 타이틀 + 태그 + ID를 결합한 전역 검색 풀
-          const fullSearchScope = `${tKo} ${tEn} ${tJa} ${tZh} ${tagsText} ${idText} 도안 색칠공부 coloring 塗り絵 涂色`;
-          const normalizedScope = fullSearchScope.replace(/\s+/g, '');
+      let filtered = null;
 
-          const { coreTokens, rawTokens } = extractSearchCore(currentSearch);
-
-          function checkTokenMatch(scope, normScope, token) {
-            const clean = token.replace(/\s+/g, '');
-            // 1글자 한글(차, 개, 새 등)은 독립 단어나 공백/특수문자 경계에서만 매칭 (차저스, 개나리 등 오매칭 방지)
-            if (token.length === 1 && /[가-힣]/.test(token)) {
-              const re = new RegExp('(^|[^가-힣])' + token + '([^가-힣]|$)');
-              return re.test(scope);
-            }
-            // 영문 단어는 단어 경계(\b) 매칭 (car가 carnell, career, cartoon 등에 오매칭 방지)
-            if (/^[a-z0-9]+$/i.test(token)) {
-              const re = new RegExp('\\b' + token + '\\b', 'i');
-              return re.test(scope);
-            }
-            // 2글자 이상 한글/CJK는 부분일치 및 공백제거 일치
-            return scope.includes(token) || normScope.includes(clean);
-          }
-
-          let isMatch = false;
-          const tokensToMatch = coreTokens.length > 0 ? coreTokens : rawTokens;
-          isMatch = tokensToMatch.every(tok => {
-            if (checkTokenMatch(fullSearchScope, normalizedScope, tok)) return true;
-            // 상위어 및 동의어 확장 검사
-            const cleanTok = tok.replace(/\s+/g, '');
-            const expansions = SEARCH_TAXONOMY[tok] || SEARCH_TAXONOMY[cleanTok];
-            if (expansions && Array.isArray(expansions)) {
-              return expansions.some(exp => checkTokenMatch(fullSearchScope, normalizedScope, exp));
-            }
-            return false;
-          });
-          if (!isMatch) return false;
-        }
-        return true;
-      });
-
-      if (currentSearch) {
-        filtered.sort((a, b) => {
-          const scoreA = computeSearchRelevance(a, currentSearch, currentLang);
-          const scoreB = computeSearchRelevance(b, currentSearch, currentLang);
-          if (scoreA !== scoreB) return scoreB - scoreA;
-          return (b.downloads || 0) - (a.downloads || 0);
-        });
+      // [0.00ms 인스턴트 캐시] 검색어가 없을 때 이전에 계산된 테마 목록 즉시 반환
+      if (!currentSearch && themeCache.has(currentTheme)) {
+        filtered = themeCache.get(currentTheme);
       } else {
-        filtered.sort((a, b) => {
-          const scoreA = computeCurationScore(a, currentLang);
-          const scoreB = computeCurationScore(b, currentLang);
-          if (scoreA !== scoreB) return scoreB - scoreA;
-          const dateA = a.batchDate || a.createdAt || '2000-01-01';
-          const dateB = b.batchDate || b.createdAt || '2000-01-01';
-          if (dateA !== dateB) return dateB.localeCompare(dateA);
-          return (b.id || '').localeCompare(a.id || '');
+        // 검색용 정규식 및 토큰 사전 컴파일 (루프 외부 1회 실행)
+        let searchTokens = null;
+        let checkTokenMatch = null;
+        if (currentSearch) {
+          const { coreTokens, rawTokens } = extractSearchCore(currentSearch);
+          searchTokens = coreTokens.length > 0 ? coreTokens : rawTokens;
+          checkTokenMatch = (scope, normScope, token) => {
+            const clean = token.replace(/\s+/g, '');
+            if (token.length === 1 && /[가-힣]/.test(token)) {
+              return new RegExp('(^|[^가-힣])' + token + '([^가-힣]|$)').test(scope);
+            }
+            if (/^[a-z0-9]+$/i.test(token)) {
+              return new RegExp('\\b' + token + '\\b', 'i').test(scope);
+            }
+            return scope.includes(token) || normScope.includes(clean);
+          };
+        }
+
+        filtered = items.filter(item => {
+          if (item.reviewStatus === 'pending') return false;
+          if (currentTheme !== 'all') {
+            if (currentTheme === 'dots') {
+              const isDots = (item.tags || []).includes('dots') || ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('점잇기')) || ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('dot'));
+              if (!isDots) return false;
+            } else if (currentTheme === 'colornumber') {
+              const isColorNum = (item.theme === 'colornumber') ||
+                                 ((item.tags || []).includes('colornumber')) ||
+                                 ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('번호')) ||
+                                 ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('숫자')) ||
+                                 ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('number'));
+              if (!isColorNum) return false;
+            } else if (item.theme !== currentTheme) {
+              return false;
+            }
+          }
+
+          if (currentSearch && searchTokens && checkTokenMatch) {
+            const tKo = (item.title && typeof item.title === 'object' ? (item.title.ko || '') : (item.title || '')).toLowerCase();
+            const tEn = (item.title && typeof item.title === 'object' ? (item.title.en || '') : '').toLowerCase();
+            const tJa = (item.title && typeof item.title === 'object' ? (item.title.ja || '') : '').toLowerCase();
+            const tZh = (item.title && typeof item.title === 'object' ? (item.title.zh || '') : '').toLowerCase();
+            const tagsText = (item.tags || []).join(' ').toLowerCase();
+            const idText = (item.id || '').toLowerCase();
+            
+            const fullSearchScope = `${tKo} ${tEn} ${tJa} ${tZh} ${tagsText} ${idText} 도안 색칠공부 coloring 塗り絵 涂色`;
+            const normalizedScope = fullSearchScope.replace(/\s+/g, '');
+
+            const isMatch = searchTokens.every(tok => {
+              if (checkTokenMatch(fullSearchScope, normalizedScope, tok)) return true;
+              const cleanTok = tok.replace(/\s+/g, '');
+              const expansions = SEARCH_TAXONOMY[tok] || SEARCH_TAXONOMY[cleanTok];
+              if (expansions && Array.isArray(expansions)) {
+                return expansions.some(exp => checkTokenMatch(fullSearchScope, normalizedScope, exp));
+              }
+              return false;
+            });
+            if (!isMatch) return false;
+          }
+          return true;
         });
+
+        if (currentSearch) {
+          filtered.sort((a, b) => {
+            const scoreA = computeSearchRelevance(a, currentSearch, currentLang);
+            const scoreB = computeSearchRelevance(b, currentSearch, currentLang);
+            if (scoreA !== scoreB) return scoreB - scoreA;
+            return (b.downloads || 0) - (a.downloads || 0);
+          });
+        } else {
+          // [초고속 5ms 큐레이션 정렬] 각 아이템의 점수를 1회만 계산 및 캐싱 (O(N) 1회 계산 후 즉시 정렬)
+          for (let i = 0; i < filtered.length; i++) {
+            const it = filtered[i];
+            if (it._cs === undefined || it._cslang !== currentLang) {
+              it._cs = computeCurationScore(it, currentLang);
+              it._cslang = currentLang;
+            }
+          }
+          filtered.sort((a, b) => {
+            const diff = b._cs - a._cs;
+            if (diff !== 0) return diff;
+            const dateA = a.batchDate || a.createdAt || '2000-01-01';
+            const dateB = b.batchDate || b.createdAt || '2000-01-01';
+            if (dateA !== dateB) return dateB.localeCompare(dateA);
+            return (b.id || '').localeCompare(a.id || '');
+          });
+
+          // 정렬된 결과 즉시 캐싱 (다음 번 '전체' 또는 카테고리 클릭 시 0.00ms 즉시 반환)
+          themeCache.set(currentTheme, filtered);
+        }
       }
 
       const totalItems = filtered.length;
@@ -2900,6 +2934,7 @@
               onerror="handleImgError(this)"
               alt="${itemTitle}" 
               loading="lazy" 
+              decoding="async"
               class="w-full h-full object-contain p-1 filter contrast-125 transition-transform duration-300 group-hover:scale-104" 
             />
             <!-- 호버 오버레이 (Pinterest 스타일 미니멀 바로가기) -->
