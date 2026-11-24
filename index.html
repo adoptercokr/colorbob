@@ -37,6 +37,9 @@
   <meta name="twitter:description" content="100% free coloring sheets for kids, parents, and adults. Print full-page A4 or color directly in your browser without sign-up.">
   <meta name="twitter:image" content="https://colorbob.com/og-image.png">
 
+  <!-- Search Engine Verification Tags (Naver Search Advisor & Google Search Console) -->
+  <meta name="naver-site-verification" content="6c9f675e34375f13cbc50b3be1b688445803879c" />
+
   <!-- WebSite & Organization Structured Data (GEO: Google & AI Search Knowledge Graph) -->
   <script type="application/ld+json">
   {
@@ -734,11 +737,11 @@
             <button onclick="document.getElementById('cbnGuideBanner').classList.add('hidden')" class="w-5 h-5 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center shrink-0 cursor-pointer text-xs ml-1" title="가이드 닫기">✕</button>
           </div>
 
-          <div id="canvasContainer" class="relative inline-flex items-center justify-center max-w-full max-h-full rounded-xl overflow-hidden bg-white border border-zinc-300" style="touch-action: none; contain: layout paint;">
+          <div id="canvasContainer" class="relative inline-flex items-center justify-center rounded-xl overflow-hidden bg-white border border-zinc-300 shadow-md" style="touch-action: none; contain: layout paint;">
             <!-- 1. 채색 레이어 (0.00ms 하드웨어 가속 직결) -->
-            <canvas id="paintCanvas" class="block max-h-[calc(100vh-142px)] sm:max-h-[84vh] max-w-full lg:max-w-[65vw] xl:max-w-[70vw] w-auto h-auto touch-none" style="touch-action: none; -webkit-touch-callout: none;"></canvas>
+            <canvas id="paintCanvas" class="block touch-none" style="touch-action: none; -webkit-touch-callout: none;"></canvas>
             <!-- 2. 도안 외곽선 오버레이 (투명 PNG 모드로 GPU 렉 0% & 선화 최상단 완벽 보존) -->
-            <canvas id="overlayCanvas" class="pointer-events-none absolute inset-0 w-full h-full touch-none" style="touch-action: none;"></canvas>
+            <canvas id="overlayCanvas" class="pointer-events-none absolute inset-0 touch-none" style="touch-action: none;"></canvas>
           </div>
 
           <!-- 무지개 추가 색상 선택 팝업 (화이트 모드) -->
@@ -777,18 +780,26 @@
 
       </div>
 
-      <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립 (모바일은 캔버스 집중을 위해 숨김, 데스크톱/태블릿 노출)] -->
-      <div id="modalRelatedSection" class="hidden md:block px-3 sm:px-5 py-2.5 bg-white border-t border-zinc-200 shrink-0">
-        <div class="flex items-center justify-between mb-1.5">
+      <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립 (숨기기/펼치기 지원 & 숨김 시 캔버스 최대 확장)] -->
+      <div id="modalRelatedSection" class="hidden md:block px-3 sm:px-5 py-2 bg-white border-t border-zinc-200 shrink-0 transition-all duration-200">
+        <div class="flex items-center justify-between mb-1">
           <div class="flex items-center gap-1.5">
             <span id="modalRelatedTitle" class="text-xs sm:text-sm font-bold text-zinc-950">추천 도안</span>
             <span id="modalRelatedSub" class="text-[11px] text-zinc-400">· 클릭 시 바로 색칠하기</span>
           </div>
-          <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5">
-            <span id="modalRelatedRefresh">다른 도안 보기 ↻</span>
-          </button>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5">
+              <span id="modalRelatedRefresh">다른 도안 보기 ↻</span>
+            </button>
+            <button type="button" id="btnToggleRelated" onclick="toggleModalRecommendations()" class="px-2 py-0.5 rounded text-[11px] font-semibold text-zinc-600 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 transition-colors flex items-center gap-1 cursor-pointer" title="추천 도안 접기/펼치기">
+              <span id="toggleRelatedText">추천 도안 숨기기</span>
+              <svg id="toggleRelatedIcon" class="w-3.5 h-3.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div id="modalRelatedGrid" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1">
+        <div id="modalRelatedGrid" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1 transition-all duration-200">
           <!-- JS로 동적 렌더링 -->
         </div>
       </div>
@@ -1839,8 +1850,10 @@
 
     const R2_CDN_BASE = 'https://pub-e5864db5cb104b7588b15eea1db1a202.r2.dev/colorbob/';
     function formatItemImageSrc(it) {
-      if (it && it.imageSrc && it.imageSrc.startsWith('sheets/library/')) {
-        it.imageSrc = R2_CDN_BASE + it.imageSrc;
+      if (!it || !it.imageSrc) return it;
+      const clean = it.imageSrc.replace(/^\/+/, '');
+      if (clean.startsWith('sheets/library/') || clean.startsWith('sheets/images/')) {
+        it.imageSrc = R2_CDN_BASE + clean;
       }
       return it;
     }
@@ -2659,6 +2672,76 @@
       }
     }
 
+    let isRelatedCollapsed = false;
+    function toggleModalRecommendations() {
+      const grid = document.getElementById('modalRelatedGrid');
+      const text = document.getElementById('toggleRelatedText');
+      const icon = document.getElementById('toggleRelatedIcon');
+      if (!grid) return;
+      isRelatedCollapsed = !isRelatedCollapsed;
+      if (isRelatedCollapsed) {
+        grid.style.display = 'none';
+        if (text) text.textContent = '추천 도안 보기';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        grid.style.display = 'flex';
+        if (text) text.textContent = '추천 도안 숨기기';
+        if (icon) icon.style.transform = 'rotate(0deg)';
+      }
+      setTimeout(() => {
+        resizeDrawingCanvas();
+      }, 50);
+    }
+
+    // [PC 및 모바일 캔버스 종횡비(Aspect Ratio) 100% 완전 불변 최대 피팅 엔진]
+    function resizeDrawingCanvas() {
+      if (!originalImageObj) return;
+      const paintCanvas = document.getElementById('paintCanvas');
+      const overlayCanvas = document.getElementById('overlayCanvas');
+      const container = document.getElementById('canvasContainer');
+      const viewer = document.getElementById('viewerContainer');
+      if (!paintCanvas || !viewer) return;
+
+      const rawW = originalImageObj.naturalWidth || 800;
+      const rawH = originalImageObj.naturalHeight || 1130;
+
+      const isMobile = (window.innerWidth < 768);
+      const padX = isMobile ? 12 : 24;
+      const padY = isMobile ? 12 : 24;
+
+      const vW = viewer.clientWidth || (window.innerWidth - 32);
+      const vH = viewer.clientHeight || (window.innerHeight - 150);
+
+      const availW = Math.max(160, vW - padX);
+      const availH = Math.max(180, vH - padY);
+
+      // 종횡비(rawW / rawH) 100% 수학적 불변 스케일링
+      const fitRatio = Math.min(availW / rawW, availH / rawH);
+      const finalW = Math.max(120, Math.floor(rawW * fitRatio));
+      const finalH = Math.max(160, Math.floor(rawH * fitRatio));
+
+      if (container) {
+        container.style.width = `${finalW}px`;
+        container.style.height = `${finalH}px`;
+        container.style.minWidth = `${finalW}px`;
+        container.style.minHeight = `${finalH}px`;
+        container.style.maxWidth = `${finalW}px`;
+        container.style.maxHeight = `${finalH}px`;
+      }
+
+      paintCanvas.style.width = `${finalW}px`;
+      paintCanvas.style.height = `${finalH}px`;
+      paintCanvas.style.aspectRatio = `${rawW} / ${rawH}`;
+
+      if (overlayCanvas) {
+        overlayCanvas.style.width = `${finalW}px`;
+        overlayCanvas.style.height = `${finalH}px`;
+        overlayCanvas.style.aspectRatio = `${rawW} / ${rawH}`;
+      }
+
+      if (window._syncCanvasRect) window._syncCanvasRect();
+    }
+
     function renderCards() {
       const dict = i18n[currentLang];
       const grid = document.getElementById('cardGrid');
@@ -3376,9 +3459,10 @@
         candidateSources.push({ url: 'http://127.0.0.1:18765/' + cleanRel, cors: false });
       }
 
-      // 2순위: Same-Origin 상대 경로 (/sheets/library/... 는 Vercel Rewrite 프록시로 CORS 허용)
-      if (selectedItem.imageSrc && selectedItem.imageSrc.includes('sheets/library/')) {
-        const sameOriginRel = 'sheets/library/' + selectedItem.imageSrc.split('sheets/library/')[1];
+      // 2순위: Same-Origin 상대 경로 (/sheets/library/... 및 /sheets/images/... 는 Vercel Rewrite 프록시로 CORS 허용)
+      if (selectedItem.imageSrc && (selectedItem.imageSrc.includes('sheets/library/') || selectedItem.imageSrc.includes('sheets/images/'))) {
+        const prefix = selectedItem.imageSrc.includes('sheets/library/') ? 'sheets/library/' : 'sheets/images/';
+        const sameOriginRel = prefix + selectedItem.imageSrc.split(prefix)[1];
         candidateSources.push({ url: sameOriginRel, cors: true });
         candidateSources.push({ url: sameOriginRel, cors: false });
       }
@@ -3434,57 +3518,27 @@
 
         const rawW = img.naturalWidth || 800;
         const rawH = img.naturalHeight || 1130;
-        // 채색 버퍼는 680px로 유지하여 0.00ms 마우스 직결 속도를 100% 보존하고,
-        // PC 화면 표시 크기는 대화면(83vh)으로 시원하게 확대 표시
-        const maxDim = 680;
+
+        // 선명한 고품질 렌더링 버퍼 (960px)
+        const maxDim = 960;
         const scale = Math.min(1, maxDim / Math.max(rawW, rawH));
         const w = Math.round(rawW * scale);
         const h = Math.round(rawH * scale);
 
         paintCanvas.width = w;
         paintCanvas.height = h;
-        
-        // [모바일 & PC 캔버스 종횡비 100% 완전 보존 엔진: 1픽셀도 찌그러짐 원천 차단]
-        paintCanvas.style.aspectRatio = `${rawW} / ${rawH}`;
-        paintCanvas.style.maxWidth = '100%';
-        paintCanvas.style.maxHeight = '100%';
-        paintCanvas.style.objectFit = 'contain';
 
-        const isMobileScreen = (window.innerWidth < 768);
-        if (isMobileScreen) {
-          // 모바일: 뷰포트 내 가용 영역에 100% 맞춤 피팅 (상단바+채색툴바 약 130px 제외 완벽 계산)
-          const availW = Math.max(180, window.innerWidth - 16);
-          const availH = Math.max(200, window.innerHeight - 135);
-          const fitRatio = Math.min(availW / rawW, availH / rawH, 1);
-          const finalW = Math.round(rawW * fitRatio);
-          const finalH = Math.round(rawH * fitRatio);
-
-          paintCanvas.style.width = `${finalW}px`;
-          paintCanvas.style.height = `${finalH}px`;
-          paintCanvas.style.maxWidth = `${availW}px`;
-          paintCanvas.style.maxHeight = `${availH}px`;
-          paintCanvas.style.objectFit = 'contain';
-        } else {
-          // 데스크톱: 대화면 시원한 뷰
-          if (rawH >= rawW) {
-            paintCanvas.style.height = 'min(82vh, calc(100vh - 136px))';
-            paintCanvas.style.width = 'auto';
-            paintCanvas.style.maxWidth = 'min(70vw, 1080px)';
-          } else {
-            paintCanvas.style.width = 'min(68vw, 1080px)';
-            paintCanvas.style.height = 'auto';
-            paintCanvas.style.maxHeight = 'min(82vh, calc(100vh - 136px))';
-          }
-        }
-
-        setTimeout(() => {
-          if (window._syncCanvasRect) window._syncCanvasRect();
-        }, 50);
+        const overScale = Math.min(1, 960 / Math.max(rawW, rawH));
+        const ow = Math.round(rawW * overScale);
+        const oh = Math.round(rawH * overScale);
 
         if (overlayCanvas) {
-          const overScale = Math.min(1, 960 / Math.max(rawW, rawH));
-          const ow = Math.round(rawW * overScale);
-          const oh = Math.round(rawH * overScale);
+          overlayCanvas.width = ow;
+          overlayCanvas.height = oh;
+        }
+
+        // 반응형 종횡비 완전 불변 최대 피팅 실행
+        resizeDrawingCanvas();
           overlayCanvas.width = ow;
           overlayCanvas.height = oh;
           const overlayCtx = overlayCanvas.getContext('2d');
@@ -3801,6 +3855,7 @@
       }, { passive: true });
 
       window.addEventListener('resize', () => {
+        resizeDrawingCanvas();
         updateCachedRects();
         updateBrushCursor();
       }, { passive: true });

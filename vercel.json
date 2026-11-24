@@ -4,11 +4,15 @@
     {
       "source": "/sheets/library/:path*",
       "destination": "https://pub-e5864db5cb104b7588b15eea1db1a202.r2.dev/colorbob/sheets/library/:path*"
+    },
+    {
+      "source": "/sheets/images/:path*",
+      "destination": "https://pub-e5864db5cb104b7588b15eea1db1a202.r2.dev/colorbob/sheets/images/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/sheets/library/:path*",
+      "source": "/sheets/:folder/:path*",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, HEAD, OPTIONS" },
