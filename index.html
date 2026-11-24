@@ -291,8 +291,8 @@
               <span id="brandName" class="font-black text-xl sm:text-2xl tracking-tight text-zinc-950">
                 ColorBob
               </span>
-              <span class="text-[11px] font-bold text-zinc-500 bg-zinc-100 border border-zinc-200/80 px-1.5 py-0.5 rounded-md">
-                .com
+              <span class="text-[10px] sm:text-[11px] font-black text-white bg-zinc-950 px-2 py-0.5 rounded-md tracking-wider shadow-2xs">
+                FREE
               </span>
             </div>
             <p id="brandTagline" class="text-xs sm:text-sm text-zinc-500 hidden sm:block tracking-normal font-medium">
@@ -413,7 +413,7 @@
   </section>
 
   <!-- [메인 페이지 좌측 고정 날개 배너 (160x600)] -->
-  <aside class="hidden min-[1520px]:block fixed top-44 left-3 2xl:left-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" aria-label="좌측 광고 배너">
+  <aside class="hidden min-[1520px]:block fixed top-44 left-3 2xl:left-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" style="display: none !important;" aria-label="좌측 광고 배너">
     <div class="w-full h-full bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs flex flex-col justify-between hover:border-zinc-400 transition">
       <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
       <div class="my-auto py-8 text-zinc-400">
@@ -431,7 +431,7 @@
   </aside>
 
   <!-- [메인 페이지 우측 고정 날개 배너 (160x600)] -->
-  <aside class="hidden min-[1520px]:block fixed top-44 right-3 2xl:right-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" aria-label="우측 광고 배너">
+  <aside class="hidden min-[1520px]:block fixed top-44 right-3 2xl:right-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" style="display: none !important;" aria-label="우측 광고 배너">
     <div class="w-full h-full bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs flex flex-col justify-between hover:border-zinc-400 transition">
       <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
       <div class="my-auto py-8 text-zinc-400">
@@ -478,7 +478,7 @@
     </div>
 
     <!-- [메인 페이지 스폰서 광고 배너 영역 (반응형 728x90, 300x250)] -->
-    <section class="mt-12 mb-2 no-print" aria-label="스폰서 광고">
+    <section style="display: none !important;" class="mt-12 mb-2 no-print" aria-label="스폰서 광고">
       <div class="w-full bg-white border border-dashed border-zinc-300 rounded-3xl p-5 sm:p-6 text-center shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4 min-h-[105px] sm:min-h-[125px] hover:border-zinc-400 transition">
         <div class="flex flex-col sm:flex-row items-center gap-3 text-left">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
@@ -590,7 +590,7 @@
       <div id="modalBody" class="flex-1 overflow-hidden p-1 sm:p-3 bg-zinc-100 flex items-center justify-center gap-3 xl:gap-5 relative select-none">
         
         <!-- 좌측 광고 배너 (160×600 스폰서 슬롯, 대화면 노출) -->
-        <aside id="modalLeftBanner" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
+        <aside id="modalLeftBanner" style="display: none !important;" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
           <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">SPONSOR</span>
           <div class="flex flex-col items-center gap-2 my-auto text-zinc-500">
             <svg class="w-6 h-6 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -637,7 +637,7 @@
         </div>
 
         <!-- 우측 광고 배너 (160×600 스폰서 슬롯, 대화면 노출) -->
-        <aside id="modalRightBanner" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
+        <aside id="modalRightBanner" style="display: none !important;" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
           <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
           <div class="flex flex-col items-center gap-2 my-auto text-zinc-500">
             <svg class="w-6 h-6 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1664,11 +1664,9 @@
     ];
 
     function handleImgError(img) {
-      const raw = img.getAttribute('data-rawsrc') || img.src;
-      if (!img.src.includes('public/') && !img.dataset.triedPublic) {
-        img.dataset.triedPublic = 'true';
-        img.src = 'public/' + raw;
-      }
+      img.onerror = null;
+      img.src = 'favicon.svg';
+      img.classList.add('opacity-30', 'p-8');
     }
 
     async function init() {
@@ -1679,7 +1677,10 @@
         window.LIBRARY_MANIFEST = preloaded;
       } else {
         try {
-          const res = await fetch('sheets/library_manifest.json');
+          let res = await fetch('sheets/manifest_init.json');
+          if (!res.ok) {
+            res = await fetch('sheets/library_manifest.json');
+          }
           if (res.ok) {
             const raw = await res.json();
             items = raw.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
@@ -1690,6 +1691,19 @@
           console.log('[INFO] Using fallback dataset');
         }
       }
+
+      // Fetch metadata in background for exact global count (62,000+)
+      try {
+        const metaRes = await fetch('sheets/manifest_meta.json');
+        if (metaRes.ok) {
+          const metaData = await metaRes.json();
+          window.TOTAL_LIBRARY_COUNT = metaData.total || 62244;
+          if (currentTheme === 'all' && !currentSearch) {
+            const countEl = document.getElementById('itemCount');
+            if (countEl) countEl.textContent = window.TOTAL_LIBRARY_COUNT.toLocaleString();
+          }
+        }
+      } catch (e) {}
 
       changeLanguage(currentLang, false);
       renderPalette();
@@ -2292,7 +2306,10 @@
       }
 
       const totalItems = filtered.length;
-      document.getElementById('itemCount').textContent = totalItems.toLocaleString();
+      const countDisplay = (currentTheme === 'all' && !currentSearch && window.TOTAL_LIBRARY_COUNT)
+        ? window.TOTAL_LIBRARY_COUNT
+        : totalItems;
+      document.getElementById('itemCount').textContent = countDisplay.toLocaleString();
 
       const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
       if (currentPage > totalPages) currentPage = totalPages;
