@@ -448,7 +448,7 @@
     function setLang(lang) {
       currentLang = lang;
       try {
-        localStorage.setItem('colorworld_preferred_lang', lang);
+        localStorage.setItem('colorbob_preferred_lang', lang);
       } catch (_) {}
       const d = I18N[lang] || I18N.ko;
       Object.keys(d).forEach(k => {
@@ -938,7 +938,7 @@
           if (!blob) return;
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
-          a.download = 'colorworld-photo-coloring-page.png';
+          a.download = 'colorbob-photo-coloring-page.png';
           a.href = url;
           document.body.appendChild(a);
           a.click();
@@ -947,7 +947,7 @@
         }, 'image/png');
       } else {
         const a = document.createElement('a');
-        a.download = 'colorworld-photo-coloring-page.png';
+        a.download = 'colorbob-photo-coloring-page.png';
         a.href = outC.toDataURL('image/png');
         document.body.appendChild(a);
         a.click();
@@ -957,7 +957,7 @@
 
     try {
       const p = new URLSearchParams(window.location.search).get('lang');
-      const savedLang = localStorage.getItem('colorworld_preferred_lang');
+      const savedLang = localStorage.getItem('colorbob_preferred_lang');
       const initialLang = (p && I18N[p]) ? p : ((savedLang && I18N[savedLang]) ? savedLang : 'ko');
       setLang(initialLang);
     } catch (e) { setLang('ko'); }
