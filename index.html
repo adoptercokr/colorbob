@@ -646,6 +646,22 @@
         </aside>
 
       </div>
+
+      <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립] -->
+      <div id="modalRelatedSection" class="px-3 sm:px-5 py-2.5 bg-white border-t border-zinc-200 shrink-0">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-1.5">
+            <span id="modalRelatedTitle" class="text-xs sm:text-sm font-bold text-zinc-950">추천 도안</span>
+            <span id="modalRelatedSub" class="text-[11px] text-zinc-400">· 클릭 시 바로 색칠하기</span>
+          </div>
+          <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5">
+            <span id="modalRelatedRefresh">다른 도안 보기 ↻</span>
+          </button>
+        </div>
+        <div id="modalRelatedGrid" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1">
+          <!-- JS로 동적 렌더링 -->
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1027,6 +1043,9 @@
         footerBtnAd: '문의하기',
         modalAdTitle: '스폰서 광고',
         modalAdPopupDesc: '(구글 애드센스 300×250 / 카카오 애드핏 연동)',
+        modalRelatedTitle: '추천 도안',
+        modalRelatedSub: '· 클릭 시 바로 색칠하기',
+        modalRelatedRefresh: '다른 도안 보기 ↻',
         brandName: 'ColorBob',
         brandTagline: '무료 색칠공부 & 교육 도안 라이브러리',
         searchPlaceholder: '도안 검색 (공룡, 강아지, 자동차, 공주, 호랑이, 만다라 등)...',
@@ -1061,7 +1080,7 @@
         animals: '동물 & 공룡',
         objects: '사물 & 탈것 & 건축',
         korea: 'K-POP & 한국 문화',
-        holidays: '기념일 & 할로윈',
+        holidays: '기념일 & 크리스마스',
         sports: '운동 & 스포츠',
         words: '단어 & 글자 학습',
         mandala: '만다라 & 힐링 아트',
@@ -1114,6 +1133,9 @@
         footerBtnAd: 'Contact Us',
         modalAdTitle: 'Sponsored Ad',
         modalAdPopupDesc: '(Google AdSense 300×250 / Sponsor Ads)',
+        modalRelatedTitle: 'Recommended Sheets',
+        modalRelatedSub: '· Click to color now',
+        modalRelatedRefresh: 'More sheets ↻',
         brandName: 'ColorBob',
         brandTagline: 'Free Printable Coloring & Worksheets',
         searchPlaceholder: 'Search sheets (dinosaur, puppy, cars, princess, mandala)...',
@@ -1148,7 +1170,7 @@
         animals: 'Animals & Dinosaurs',
         objects: 'Objects & Transport',
         korea: 'K-POP & Korea',
-        holidays: 'Holidays & Halloween',
+        holidays: 'Holidays & Christmas',
         sports: 'Sports & Games',
         words: 'Words & Phonics',
         mandala: 'Mandala Patterns',
@@ -1201,6 +1223,9 @@
         footerBtnAd: '広告掲載・ビジネス提携',
         modalAdTitle: 'スポンサー広告',
         modalAdPopupDesc: '(Google AdSense 300×250 / スポンサー枠)',
+        modalRelatedTitle: 'おすすめの塗り絵',
+        modalRelatedSub: '· クリックして今すぐ塗る',
+        modalRelatedRefresh: '他の図案 ↻',
         brandName: 'ColorBob',
         brandTagline: '無料の塗り絵・学習プリントライブラリ',
         searchPlaceholder: 'ぬりえ検索 (恐竜、子犬、車、プリンセス、マンダラなど)...',
@@ -1235,7 +1260,7 @@
         animals: '動物 & 恐竜',
         objects: '乗り物・建物・物',
         korea: 'K-POP・韓国文化',
-        holidays: '記念日 & ハロウィン',
+        holidays: '祝日・クリスマス',
         sports: 'スポーツ・運動',
         words: '文字・単語・漢字',
         mandala: 'マンダラ模様',
@@ -1288,6 +1313,9 @@
         footerBtnAd: '广告与商务合作',
         modalAdTitle: '赞助商广告',
         modalAdPopupDesc: '(Google AdSense 300×250 / 赞助商广告)',
+        modalRelatedTitle: '为您推荐',
+        modalRelatedSub: '· 点击即可在线涂色',
+        modalRelatedRefresh: '换一批 ↻',
         brandName: 'ColorBob',
         brandTagline: '免费填色画与益智工作纸库',
         searchPlaceholder: '搜索涂色卡 (恐龙、小狗、汽车、公主、曼陀罗等)...',
@@ -1322,7 +1350,7 @@
         animals: '动物与恐龙',
         objects: '物体·交通·建筑',
         korea: 'K-POP 与韩国文化',
-        holidays: '节日与万圣节',
+        holidays: '节日与圣诞',
         sports: '运动与体育',
         words: '文字·汉字·拼音',
         mandala: '曼陀罗花纹',
@@ -1893,6 +1921,14 @@
       const mrDesc = document.getElementById('modalRightAdDesc');
       if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
 
+      // Modal Related Recommendations Translation
+      const elRelTitle = document.getElementById('modalRelatedTitle');
+      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
+      const elRelSub = document.getElementById('modalRelatedSub');
+      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
+      const elRelRef = document.getElementById('modalRelatedRefresh');
+      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
+
       // Bottom GeoGuide Themes & FAQs Dynamic Update
       renderPopularSearches(lang);
       renderGeoGuide(lang);
@@ -1932,26 +1968,36 @@
       }
     });
 
+    const REGION_TAB_ORDER = {
+      en: ['all', 'animals', 'holidays', 'mandala', 'characters', 'objects', 'learning', 'people', 'sports', 'colornumber', 'dots', 'maze', 'sudoku', 'korea'],
+      ja: ['all', 'characters', 'animals', 'dots', 'colornumber', 'mandala', 'learning', 'objects', 'holidays', 'people', 'sports', 'maze', 'sudoku', 'korea'],
+      zh: ['all', 'learning', 'objects', 'animals', 'mandala', 'characters', 'colornumber', 'people', 'holidays', 'sports', 'dots', 'maze', 'sudoku', 'korea'],
+      ko: ['all', 'animals', 'objects', 'characters', 'learning', 'korea', 'mandala', 'holidays', 'people', 'sports', 'colornumber', 'dots', 'maze', 'sudoku'],
+    };
+
     function renderNav() {
       const dict = i18n[currentLang];
       const themeBar = document.getElementById('themeFilterBar');
 
-      const themeList = [
-        { id: 'all', label: dict.all },
-        { id: 'characters', label: dict.characters },
-        { id: 'learning', label: dict.learning },
-        { id: 'people', label: dict.people },
-        { id: 'animals', label: dict.animals },
-        { id: 'objects', label: dict.objects },
-        { id: 'holidays', label: dict.holidays },
-        { id: 'sports', label: dict.sports },
-        { id: 'korea', label: dict.korea },
-        { id: 'mandala', label: dict.mandala },
-        { id: 'maze', label: dict.maze },
-        { id: 'colornumber', label: dict.colornumber || '번호 색칠놀이' },
-        { id: 'dots', label: dict.dots || '점잇기 선긋기' },
-        { id: 'sudoku', label: dict.sudoku }
-      ];
+      const allThemesMap = {
+        all: dict.all,
+        characters: dict.characters,
+        learning: dict.learning,
+        people: dict.people,
+        animals: dict.animals,
+        objects: dict.objects,
+        holidays: dict.holidays,
+        sports: dict.sports,
+        korea: dict.korea,
+        mandala: dict.mandala,
+        maze: dict.maze,
+        colornumber: dict.colornumber || '번호 색칠놀이',
+        dots: dict.dots || '점잇기 선긋기',
+        sudoku: dict.sudoku
+      };
+
+      const order = REGION_TAB_ORDER[currentLang] || REGION_TAB_ORDER.ko;
+      const themeList = order.map(id => ({ id, label: allThemesMap[id] || id }));
 
       themeBar.innerHTML = themeList.map(t => {
         const isSelected = currentTheme === t.id;
@@ -2002,6 +2048,14 @@
       const mrDesc = document.getElementById('modalRightAdDesc');
       if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
 
+      // Modal Related Recommendations Translation
+      const elRelTitle = document.getElementById('modalRelatedTitle');
+      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
+      const elRelSub = document.getElementById('modalRelatedSub');
+      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
+      const elRelRef = document.getElementById('modalRelatedRefresh');
+      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
+
       // Bottom GeoGuide Themes & FAQs Dynamic Update
       renderPopularSearches(lang);
       renderGeoGuide(lang);
@@ -2050,6 +2104,14 @@
       const mrDesc = document.getElementById('modalRightAdDesc');
       if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
 
+      // Modal Related Recommendations Translation
+      const elRelTitle = document.getElementById('modalRelatedTitle');
+      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
+      const elRelSub = document.getElementById('modalRelatedSub');
+      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
+      const elRelRef = document.getElementById('modalRelatedRefresh');
+      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
+
       // Bottom GeoGuide Themes & FAQs Dynamic Update
       renderPopularSearches(lang);
       renderGeoGuide(lang);
@@ -2079,6 +2141,14 @@
       if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
       const mrDesc = document.getElementById('modalRightAdDesc');
       if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
+
+      // Modal Related Recommendations Translation
+      const elRelTitle = document.getElementById('modalRelatedTitle');
+      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
+      const elRelSub = document.getElementById('modalRelatedSub');
+      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
+      const elRelRef = document.getElementById('modalRelatedRefresh');
+      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
 
       // Bottom GeoGuide Themes & FAQs Dynamic Update
       renderPopularSearches(lang);
@@ -2230,6 +2300,107 @@
       return score;
     }
 
+    // [글로벌 맞춤형 큐레이션 엔진]
+    // 1. 국가/권역별 테마 선호도 가중치
+    const REGION_THEME_WEIGHTS = {
+      en: { holidays: 45, animals: 35, mandala: 30, characters: 25, objects: 20, learning: 15, people: 15, sports: 10, colornumber: 10, dots: 10, maze: 8, sudoku: 5, korea: 5 },
+      ja: { characters: 40, animals: 35, dots: 30, colornumber: 30, mandala: 25, learning: 20, objects: 15, holidays: 15, people: 10, sports: 10, maze: 10, sudoku: 8, korea: 5 },
+      zh: { learning: 40, objects: 35, animals: 35, mandala: 25, characters: 20, colornumber: 20, people: 15, holidays: 15, sports: 10, dots: 10, maze: 8, sudoku: 8, korea: 5 },
+      ko: { animals: 40, objects: 35, characters: 30, learning: 25, korea: 25, mandala: 20, holidays: 20, people: 15, sports: 15, colornumber: 15, dots: 15, maze: 10, sudoku: 10 }
+    };
+
+    // 오늘 날짜 기반의 결정론적 시드 (자정마다 자연스럽게 셔플되어 매일 새로운 느낌 제공)
+    function getDailySeed() {
+      const today = new Date();
+      return today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    }
+
+    // 아이템별 큐레이션 종합 점수 산출 (시즌 + 국가별 선호 + 최신 등록일 + 일일 지터)
+    function computeCurationScore(item, lang) {
+      const weights = REGION_THEME_WEIGHTS[lang] || REGION_THEME_WEIGHTS.ko;
+      let score = weights[item.theme] || 10;
+
+      // 1. 겨울/크리스마스/신년 시즌 키워드 가산점 (특히 영어권 11~12월 시즌 폭발)
+      const t = (typeof item.title === 'object' ? `${item.title.ko || ''} ${item.title.en || ''}` : (item.title || '')).toLowerCase();
+      const tags = (item.tags || []).join(' ').toLowerCase();
+      const seasonKeywords = ['크리스마스', 'christmas', '산타', 'santa', '겨울', 'winter', '눈사람', 'snowman', 'holiday', '성탄', '트리', 'xmas', '연말'];
+      if (seasonKeywords.some(kw => t.includes(kw) || tags.includes(kw))) {
+        score += (lang === 'en' ? 45 : 25);
+      }
+
+      // 2. 최신 등록 배치(Freshness) 가산 (새로 추가된 도안 우선 노출)
+      if (item.batchDate) {
+        const num = parseInt(item.batchDate.replace(/-/g, ''), 10);
+        if (!isNaN(num)) {
+          score += (num % 100) * 0.8;
+        }
+      }
+
+      // 3. 일일 유사 난수(Daily Jitter) 가산 (0 ~ 15점: 자정마다 신선하게 재배치)
+      const seed = getDailySeed();
+      let hash = 0;
+      const str = (item.id || '') + seed;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      score += Math.abs(hash % 16);
+
+      return score;
+    }
+
+    // [모달 하단: 국가별 맞춤 추천 도안 렌더링 엔진]
+    function renderModalRecommendations(currentItem) {
+      const container = document.getElementById('modalRelatedGrid');
+      if (!container || !items || items.length === 0) return;
+
+      const candidates = items.filter(it => it.id !== currentItem.id && it.reviewStatus !== 'pending');
+      
+      const scored = candidates.map(it => {
+        let sc = 0;
+        // 1. 현재 도안과 같은 테마면 높은 연관도
+        if (it.theme === currentItem.theme) sc += 35;
+
+        // 2. 접속 국가별 선호 가중치
+        const weights = REGION_THEME_WEIGHTS[currentLang] || REGION_THEME_WEIGHTS.ko;
+        sc += (weights[it.theme] || 10);
+
+        // 3. 시즌(크리스마스/겨울) 키워드 보너스
+        const t = (typeof it.title === 'object' ? `${it.title.ko || ''} ${it.title.en || ''}` : (it.title || '')).toLowerCase();
+        if (['christmas', '크리스마스', 'santa', 'winter', 'holiday'].some(k => t.includes(k))) {
+          sc += (currentLang === 'en' ? 30 : 15);
+        }
+
+        // 4. 즉시 새로고침 시 다양성을 주는 랜덤 지터
+        sc += Math.random() * 20;
+        return { item: it, score: sc };
+      });
+
+      scored.sort((a, b) => b.score - a.score);
+      const topPicks = scored.slice(0, 8).map(s => s.item);
+
+      container.innerHTML = topPicks.map(it => {
+        const rawTitle = typeof it.title === 'object' ? (it.title[currentLang] || it.title.en) : it.title;
+        const displayTitle = formatExposedTitle(rawTitle, currentLang);
+        return `
+          <div onclick="openModalById('${it.id}')" class="group shrink-0 w-24 sm:w-28 cursor-pointer flex flex-col p-1.5 rounded-lg border border-zinc-200 hover:border-zinc-950 transition-all bg-zinc-50 hover:bg-white hover:shadow-xs">
+            <div class="aspect-[3/4] bg-white rounded flex items-center justify-center overflow-hidden border border-zinc-100 p-0.5">
+              <img src="${it.imageSrc}" data-rawsrc="${it.imageSrc}" onerror="handleImgError(this)" alt="${displayTitle}" loading="lazy" class="w-full h-full object-contain filter contrast-125 transition-transform duration-200 group-hover:scale-105" />
+            </div>
+            <p class="mt-1 text-[11px] font-bold text-zinc-800 group-hover:text-zinc-950 truncate leading-tight" title="${displayTitle}">
+              ${displayTitle}
+            </p>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function refreshModalRecommendations() {
+      if (selectedItem) {
+        renderModalRecommendations(selectedItem);
+      }
+    }
+
     function renderCards() {
       const dict = i18n[currentLang];
       const grid = document.getElementById('cardGrid');
@@ -2294,6 +2465,9 @@
         });
       } else {
         filtered.sort((a, b) => {
+          const scoreA = computeCurationScore(a, currentLang);
+          const scoreB = computeCurationScore(b, currentLang);
+          if (scoreA !== scoreB) return scoreB - scoreA;
           const dateA = a.batchDate || a.createdAt || '2000-01-01';
           const dateB = b.batchDate || b.createdAt || '2000-01-01';
           if (dateA !== dateB) return dateB.localeCompare(dateA);
@@ -2511,6 +2685,7 @@
       isColoringMode = true;
       loadImgToCanvas();
       updateBrushCursor();
+      renderModalRecommendations(item);
     }
 
     function closeModal() {
@@ -2538,6 +2713,9 @@
         footerBtnAd: '문의하기',
         modalAdTitle: '스폰서 광고',
         modalAdPopupDesc: '(구글 애드센스 300×250 / 카카오 애드핏 연동)',
+        modalRelatedTitle: '추천 도안',
+        modalRelatedSub: '· 클릭 시 바로 색칠하기',
+        modalRelatedRefresh: '다른 도안 보기 ↻',
         partnership: {
           title: "제휴 및 교육 단체 지원 문의",
           body: `
@@ -2613,6 +2791,9 @@
         footerBtnAd: 'Contact Us',
         modalAdTitle: 'Sponsored Ad',
         modalAdPopupDesc: '(Google AdSense 300×250 / Sponsor Ads)',
+        modalRelatedTitle: 'Recommended Sheets',
+        modalRelatedSub: '· Click to color now',
+        modalRelatedRefresh: 'More sheets ↻',
         partnership: {
           title: "Partnership & Education Support",
           body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">Schools & Non-Profit Education</p><p>ColorBob provides 20,000+ high-resolution A4 coloring sheets freely for schools, teachers, and educational non-profits worldwide.</p><p class="text-xs text-zinc-500">Official Contact: partner@colorbob.com</p></div>`
@@ -2644,6 +2825,9 @@
         footerBtnAd: '広告掲載・ビジネス提携',
         modalAdTitle: 'スポンサー広告',
         modalAdPopupDesc: '(Google AdSense 300×250 / スポンサー枠)',
+        modalRelatedTitle: 'おすすめの塗り絵',
+        modalRelatedSub: '· クリックして今すぐ塗る',
+        modalRelatedRefresh: '他の図案 ↻',
         partnership: {
           title: "教育支援・お問い合わせ",
           body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">教育機関・非営利団体支援</p><p>教育機関、幼稚園、学校、非営利団体向けに20,000点以上の高解像度A4塗り絵を完全無料で提供しています。<br>お問い合わせ: partner@colorbob.com</p></div>`
@@ -2675,6 +2859,9 @@
         footerBtnAd: '广告与商务合作',
         modalAdTitle: '赞助商广告',
         modalAdPopupDesc: '(Google AdSense 300×250 / 赞助商广告)',
+        modalRelatedTitle: '为您推荐',
+        modalRelatedSub: '· 点击即可在线涂色',
+        modalRelatedRefresh: '换一批 ↻',
         partnership: {
           title: "教育机构与公益合作",
           body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">学校与非营利机构支持</p><p>ColorBob为全球学校、幼儿园及公益机构免费提供超过20,000款高清A4涂色画。<br>联系邮箱: partner@colorbob.com</p></div>`
