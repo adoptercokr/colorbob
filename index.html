@@ -87,12 +87,12 @@
   <style>
     @page {
       size: A4 portrait;
-      margin: 0 !important; /* 브라우저 기본 머리글(날짜, 제목) 및 바닥글(URL, 페이지번호) 완전 제거 */
+      margin: 6mm;
     }
     @media print {
       @page {
         size: A4 portrait;
-        margin: 0 !important;
+        margin: 6mm;
       }
       *, *:before, *:after {
         -webkit-print-color-adjust: exact !important;
@@ -104,36 +104,40 @@
         margin: 0 !important;
         padding: 0 !important;
         width: 100% !important;
-        height: 100% !important;
-        overflow: hidden !important;
+        height: auto !important;
+        min-height: 0 !important;
+        display: block !important;
+        overflow: visible !important;
       }
-      nav, header, footer, aside, .no-print, button, input, .modal-backdrop, .controls-panel, .floating-toolbar, #modalBackdrop, #policyModalBackdrop {
+      body > *:not(#printContainer) {
         display: none !important;
       }
+      #printContainer,
       .printable-paper-container {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        margin: 0 !important;
-        padding: 6mm !important; /* 용지 여백 최소화 & 도안 최대 확장 */
+        position: static !important;
+        width: 100% !important;
+        height: 96vh !important;
+        max-width: 100% !important;
+        max-height: 96vh !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
         background: #ffffff !important;
-        z-index: 999999 !important;
       }
+      #printContainer img,
       .printable-paper-container img,
       .printable-paper-container canvas {
         display: block !important;
         max-width: 100% !important;
-        max-height: 100% !important;
-        width: 100% !important;
-        height: 100% !important;
+        max-height: 96vh !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 auto !important;
         object-fit: contain !important;
         filter: none !important;
       }
@@ -3584,10 +3588,12 @@
         const rawW = img.naturalWidth || 800;
         const rawH = img.naturalHeight || 1130;
 
-        // [아이패드 & 고해상도 Retina 디스플레이 지원] 원본 고화질 선화 버퍼 보존 (최대 2400px)
-        const dpr = Math.min(2.5, window.devicePixelRatio || 1);
-        const maxDim = Math.max(1600, Math.min(2400, Math.round(Math.max(rawW, rawH) * 1.0)));
-        const scale = Math.min(1, maxDim / Math.max(rawW, rawH));
+        // [아이패드 & 고해상도 Retina 디스플레이 지원]
+        // 저해상도 원본도 Retina 픽셀에 맞춰 최소 1500px로 고품질 업스케일 (최대 2200px)
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        const origMax = Math.max(rawW, rawH);
+        const targetDim = Math.max(Math.min(1600, Math.round(origMax * dpr)), Math.min(2200, origMax));
+        const scale = targetDim / origMax;
         const w = Math.round(rawW * scale);
         const h = Math.round(rawH * scale);
 
@@ -3612,17 +3618,25 @@
             off.width = ow;
             off.height = oh;
             const offCtx = off.getContext('2d');
+            offCtx.imageSmoothingEnabled = true;
+            offCtx.imageSmoothingQuality = 'high';
             offCtx.drawImage(img, 0, 0, ow, oh);
             const imgData = offCtx.getImageData(0, 0, ow, oh);
             const d = imgData.data;
             for (let i = 0; i < d.length; i += 4) {
               const r = d[i], g = d[i+1], b = d[i+2];
-              // 휘도 계산: 255(흰색) -> alpha 0(완전투명), 0(검은색) -> alpha 255(불투명)
+              // 휘도 기반 외곽선 대비 선명화(Contrast Boost): 회색 번짐을 억제해 Retina에서 또렷한 선화 구현
               const lum = (r * 299 + g * 587 + b * 114) / 1000;
               d[i] = 16;
               d[i+1] = 16;
               d[i+2] = 20;
-              d[i+3] = lum > 245 ? 0 : (255 - lum);
+              if (lum > 235) {
+                d[i+3] = 0;
+              } else if (lum < 135) {
+                d[i+3] = 255;
+              } else {
+                d[i+3] = Math.min(255, Math.round((235 - lum) * 2.55));
+              }
             }
             overlayCtx.putImageData(imgData, 0, 0);
             overlayCanvas.style.mixBlendMode = 'normal';
@@ -4044,12 +4058,13 @@
         }
 
         if (mergedDataUrl) {
-          printBox.innerHTML = `
-            <div style="width:190mm; height:277mm; display:flex; align-items:center; justify-content:center; margin:0 auto; background:#ffffff;">
-              <img src="${mergedDataUrl}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-            </div>
-          `;
-          setTimeout(() => { window.print(); }, 80);
+          printBox.innerHTML = `<img id="printTargetImg" src="${mergedDataUrl}" style="max-width:100%; max-height:96vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain;" />`;
+          const pImg = document.getElementById('printTargetImg');
+          if (pImg && pImg.decode) {
+            pImg.decode().then(() => window.print()).catch(() => setTimeout(() => window.print(), 80));
+          } else {
+            setTimeout(() => { window.print(); }, 100);
+          }
           return;
         }
 
@@ -4058,20 +4073,25 @@
         try {
           const paintOnlyUrl = paintCanvas.toDataURL('image/png');
           printBox.innerHTML = `
-            <div style="position:relative; width:190mm; height:277mm; margin:0 auto; background:#ffffff;">
-              <img src="${paintOnlyUrl}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;" />
-              <img src="${lineSrc}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply;" />
+            <div style="position:relative; width:100%; height:96vh; max-width:100%; max-height:96vh; margin:0 auto; display:flex; align-items:center; justify-content:center; background:#ffffff;">
+              <img src="${paintOnlyUrl}" style="position:absolute; inset:0; margin:auto; max-width:100%; max-height:100%; object-fit:contain;" />
+              <img src="${lineSrc}" style="position:absolute; inset:0; margin:auto; max-width:100%; max-height:100%; object-fit:contain; mix-blend-mode:multiply;" />
             </div>
           `;
-          setTimeout(() => { window.print(); }, 100);
+          setTimeout(() => { window.print(); }, 120);
           return;
         } catch (err) {
           console.warn('Print stacked fallback error:', err);
         }
       }
 
-      printBox.innerHTML = `<img src="${lineSrc}" />`;
-      setTimeout(() => { window.print(); }, 80);
+      printBox.innerHTML = `<img id="printTargetImg" src="${lineSrc}" style="max-width:100%; max-height:96vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain;" />`;
+      const pImgLine = document.getElementById('printTargetImg');
+      if (pImgLine && pImgLine.decode) {
+        pImgLine.decode().then(() => window.print()).catch(() => setTimeout(() => window.print(), 80));
+      } else {
+        setTimeout(() => { window.print(); }, 100);
+      }
     }
 
     async function quickPdfById(id) {
