@@ -3532,13 +3532,10 @@
         const ow = Math.round(rawW * overScale);
         const oh = Math.round(rawH * overScale);
 
-        if (overlayCanvas) {
-          overlayCanvas.width = ow;
-          overlayCanvas.height = oh;
-        }
-
         // 반응형 종횡비 완전 불변 최대 피팅 실행
         resizeDrawingCanvas();
+
+        if (overlayCanvas) {
           overlayCanvas.width = ow;
           overlayCanvas.height = oh;
           const overlayCtx = overlayCanvas.getContext('2d');
