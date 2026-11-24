@@ -1,6 +1,4 @@
-# ColorBob (colorbob.com) - AI 검색·추천 엔진 전면 허용
-Sitemap: https://colorbob.com/sitemap.xml
-
+# ColorWorld - AI 검색·추천 엔진 전면 허용
 
 User-agent: GPTBot
 Allow: /

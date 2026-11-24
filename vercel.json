@@ -1,0 +1,20 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/sheets/library/:path*",
+      "destination": "https://pub-e5864db5cb104b7588b15eea1db1a202.r2.dev/colorbob/sheets/library/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/sheets/library/:path*",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, HEAD, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}
