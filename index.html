@@ -788,20 +788,29 @@
 
       <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립 (숨기기/펼치기 지원 & 숨김 시 캔버스 최대 확장)] -->
       <div id="modalRelatedSection" class="hidden md:block px-3 sm:px-5 py-2 bg-white border-t border-zinc-200 shrink-0 transition-all duration-200">
-        <div class="flex items-center justify-between mb-1">
-          <div class="flex items-center gap-1.5">
+        <div class="relative flex items-center justify-between mb-2">
+          <!-- 좌측 타이틀 -->
+          <div class="flex items-center gap-1.5 shrink-0">
             <span id="modalRelatedTitle" class="text-xs sm:text-sm font-bold text-zinc-950">추천 도안</span>
-            <span id="modalRelatedSub" class="text-[11px] text-zinc-400">· 클릭 시 바로 색칠하기</span>
+            <span id="modalRelatedSub" class="text-[11px] text-zinc-400 hidden lg:inline">· 클릭 시 바로 색칠하기</span>
           </div>
-          <div class="flex items-center gap-2">
+
+          <!-- 중앙: 가로로 넉넉하게 긴 와이드 토글 버튼 (화살표시 중앙 위치, 가로로 긴 v) -->
+          <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <button type="button" id="btnToggleRelated" onclick="toggleModalRecommendations()" 
+                    class="inline-flex items-center justify-center gap-3 px-7 py-1.5 rounded-full text-xs font-bold text-zinc-700 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200/90 border border-zinc-300/80 shadow-xs transition-all cursor-pointer min-w-[200px]" 
+                    title="추천 도안 접기/펼치기">
+              <span id="toggleRelatedText">추천 도안 숨기기</span>
+              <svg id="toggleRelatedIcon" class="w-7 h-2 transition-transform duration-200 text-zinc-600 shrink-0" viewBox="0 0 28 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 1.5 L14 6.5 L26 1.5" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- 우측 다른 도안 새로고침 -->
+          <div class="flex items-center shrink-0">
             <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5">
               <span id="modalRelatedRefresh">다른 도안 보기 ↻</span>
-            </button>
-            <button type="button" id="btnToggleRelated" onclick="toggleModalRecommendations()" class="px-2 py-0.5 rounded text-[11px] font-semibold text-zinc-600 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 transition-colors flex items-center gap-1 cursor-pointer" title="추천 도안 접기/펼치기">
-              <span id="toggleRelatedText">추천 도안 숨기기</span>
-              <svg id="toggleRelatedIcon" class="w-3.5 h-3.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
             </button>
           </div>
         </div>
