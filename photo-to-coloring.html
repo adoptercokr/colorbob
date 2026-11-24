@@ -66,7 +66,7 @@
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20 gap-3">
-        <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <a href="/" class="flex items-center gap-3 shrink-0" title="ColorBob 홈으로 이동">
           <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-zinc-950 text-white flex items-center justify-center font-black text-sm tracking-widest">CB</div>
           <div>
             <div class="flex items-center gap-2">
@@ -78,7 +78,7 @@
         </a>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <a href="index.html" id="navHome" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition">도안 홈</a>
+          <a href="/" id="navHome" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition">도안 홈</a>
           <a href="contact.html" id="navContact" class="hidden sm:inline-block px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition">문의하기</a>
           <div id="langSwitcher" class="relative">
             <button type="button" id="langDropdownBtn" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language selection"
@@ -259,8 +259,17 @@
             <span id="lblResult" class="text-xs sm:text-sm font-bold text-zinc-950">색칠공부 도안 결과</span>
             <span id="statusBadge" class="text-[11px] font-medium text-zinc-400">실시간 변환 완료</span>
           </div>
-          <div class="bg-white rounded-2xl overflow-hidden flex items-center justify-center border border-zinc-200 p-1.5 sm:p-3">
-            <canvas id="outCanvas" class="w-full h-auto max-h-[82vh] object-contain touch-none"></canvas>
+          <div id="outCanvasContainer" class="relative bg-white rounded-2xl overflow-hidden flex items-center justify-center border border-zinc-200 p-1.5 sm:p-3 select-none">
+            <div id="outCanvasViewport" class="w-full flex items-center justify-center overflow-hidden">
+              <canvas id="outCanvas" class="w-full h-auto max-h-[82vh] object-contain origin-center cursor-default transition-transform duration-75" style="touch-action: pan-y;"></canvas>
+            </div>
+            <!-- 모바일/태블릿 원터치 줌 컨트롤러 -->
+            <div id="photoZoomBar" class="absolute bottom-3 right-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-md border border-zinc-200 rounded-full px-2.5 py-1 shadow-sm text-xs font-bold text-zinc-700 z-10 select-none">
+              <button type="button" onclick="zoomOutPhoto()" class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-zinc-100 active:scale-95 text-zinc-700 font-bold" title="축소">−</button>
+              <span id="photoZoomLabel" class="text-[11px] font-semibold text-zinc-600 min-w-[38px] text-center">100%</span>
+              <button type="button" onclick="zoomInPhoto()" class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-zinc-100 active:scale-95 text-zinc-700 font-bold" title="확대">+</button>
+              <button type="button" onclick="resetPhotoZoom()" class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 font-medium ml-0.5">초기화</button>
+            </div>
           </div>
         </div>
 
@@ -307,7 +316,7 @@
   <footer class="bg-white border-t border-zinc-200 py-8 text-center text-xs text-zinc-500 mt-10">
     <div class="max-w-7xl mx-auto px-4 space-y-2">
       <div class="flex items-center justify-center gap-4 font-medium">
-        <a href="index.html" id="footerHomeLink" class="hover:text-zinc-950 transition">ColorBob 홈</a>
+        <a href="/" id="footerHomeLink" class="hover:text-zinc-950 transition">ColorBob 홈</a>
         <span class="text-zinc-300">|</span>
         <a href="contact.html" id="footerContactLink" class="hover:text-zinc-950 transition">문의하기</a>
       </div>
@@ -486,6 +495,7 @@
       img.crossOrigin = 'anonymous';
       img.onload = () => {
         origImg = img;
+        resetPhotoZoom();
         document.getElementById('workspace').classList.remove('hidden');
         dropZone.classList.add('hidden');
         renderColoring();
@@ -536,6 +546,44 @@
       cur.style.height = (rScreen * 2) + 'px';
     }
 
+    // [모바일 & 태블릿 사진 도안 핀치 줌 & 팬 & 터치 스크롤 컨트롤러]
+    let photoZoomScale = 1.0;
+    let photoPanX = 0;
+    let photoPanY = 0;
+
+    function applyPhotoTransform() {
+      const c = document.getElementById('outCanvas');
+      const lbl = document.getElementById('photoZoomLabel');
+      if (!c) return;
+      c.style.transform = `translate3d(${photoPanX}px, ${photoPanY}px, 0px) scale(${photoZoomScale})`;
+      if (lbl) lbl.textContent = `${Math.round(photoZoomScale * 100)}%`;
+      if (eraserOn) {
+        c.style.touchAction = 'none';
+      } else if (photoZoomScale > 1.05) {
+        c.style.touchAction = 'none';
+      } else {
+        c.style.touchAction = 'pan-y';
+      }
+    }
+
+    function setPhotoZoom(s) {
+      photoZoomScale = Math.min(3.5, Math.max(1.0, Math.round(s * 100) / 100));
+      if (photoZoomScale <= 1.02) {
+        photoZoomScale = 1.0;
+        photoPanX = 0;
+        photoPanY = 0;
+      }
+      applyPhotoTransform();
+    }
+    function zoomInPhoto() { setPhotoZoom(photoZoomScale + 0.25); }
+    function zoomOutPhoto() { setPhotoZoom(photoZoomScale - 0.25); }
+    function resetPhotoZoom() {
+      photoZoomScale = 1.0;
+      photoPanX = 0;
+      photoPanY = 0;
+      applyPhotoTransform();
+    }
+
     function toggleEraserMode() {
       eraserOn = !eraserOn;
       const d = I18N[currentLang] || I18N.ko;
@@ -548,27 +596,26 @@
         btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white border border-zinc-950 transition';
         tip.classList.remove('hidden');
         outC.style.cursor = 'none';
+        outC.style.touchAction = 'none';
         updateCursorSize();
       } else {
         btn.textContent = d.eraserOff;
         btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-300 transition';
         tip.classList.add('hidden');
         outC.style.cursor = 'default';
+        outC.style.touchAction = photoZoomScale > 1.05 ? 'none' : 'pan-y';
         cur.style.display = 'none';
       }
     }
 
-    // Exact 1:1 Dynamic Circular Eraser Cursor & Stroke
+    // Exact 1:1 Dynamic Circular Eraser Cursor & Stroke + Touch Zoom / Pan / Scroll
     (function bindEraserCanvas() {
       const c = document.getElementById('outCanvas');
       const cur = document.getElementById('eraserCursor');
 
-      const eraseAt = (e) => {
+      const eraseAt = (clientX, clientY) => {
         if (!eraserOn || !isErasing) return;
-        e.preventDefault();
         const rect = c.getBoundingClientRect();
-        const clientX = e.clientX;
-        const clientY = e.clientY;
         const scaleX = c.width / rect.width;
         const scaleY = c.height / rect.height;
         const x = (clientX - rect.left) * scaleX;
@@ -585,29 +632,122 @@
         ctx.restore();
       };
 
-      c.addEventListener('pointerenter', () => {
+      // 마우스 / 데스크톱 이벤트
+      c.addEventListener('mouseenter', () => {
         if (eraserOn) {
           updateCursorSize();
           cur.style.display = 'block';
         }
       });
-      c.addEventListener('pointerleave', () => {
+      c.addEventListener('mouseleave', () => {
         cur.style.display = 'none';
       });
-      c.addEventListener('pointerdown', (e) => {
-        if (!eraserOn) return;
-        isErasing = true;
-        c.setPointerCapture(e.pointerId);
-        eraseAt(e);
+      c.addEventListener('mousedown', (e) => {
+        if (eraserOn) {
+          isErasing = true;
+          eraseAt(e.clientX, e.clientY);
+        }
       });
-      window.addEventListener('pointerup', () => { isErasing = false; });
-      c.addEventListener('pointermove', (e) => {
+      window.addEventListener('mouseup', () => { isErasing = false; });
+      c.addEventListener('mousemove', (e) => {
         if (eraserOn) {
           cur.style.display = 'block';
           cur.style.left = e.clientX + 'px';
           cur.style.top = e.clientY + 'px';
+          if (isErasing) eraseAt(e.clientX, e.clientY);
         }
-        eraseAt(e);
+      });
+
+      // [모바일 & 아이패드 전용 터치 스크롤 & 2손가락 핀치 줌 & 팬 핸들러]
+      let lastTapTime = 0;
+      let initialPinchDist = 0;
+      let initialPinchScale = 1.0;
+      let startTouchX = 0;
+      let startTouchY = 0;
+      let startPanX = 0;
+      let startPanY = 0;
+      let isPanning = false;
+
+      c.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+          // 2손가락 핀치 줌 제스처 감지
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          initialPinchDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+          initialPinchScale = photoZoomScale;
+          startPanX = photoPanX;
+          startPanY = photoPanY;
+          startTouchX = (t1.clientX + t2.clientX) / 2;
+          startTouchY = (t1.clientY + t2.clientY) / 2;
+          isPanning = true;
+          isErasing = false;
+          if (cur) cur.style.display = 'none';
+          e.preventDefault();
+        } else if (e.touches.length === 1) {
+          if (eraserOn) {
+            isErasing = true;
+            eraseAt(e.touches[0].clientX, e.touches[0].clientY);
+            e.preventDefault();
+          } else if (photoZoomScale > 1.05) {
+            isPanning = true;
+            startTouchX = e.touches[0].clientX;
+            startTouchY = e.touches[0].clientY;
+            startPanX = photoPanX;
+            startPanY = photoPanY;
+            e.preventDefault();
+          } else {
+            // 배율 100%일 때: 1손가락 일반 터치 스크롤 허용 (e.preventDefault() 절대 호출 안 함!)
+            const now = Date.now();
+            if (now - lastTapTime < 300) {
+              setPhotoZoom(photoZoomScale > 1.05 ? 1.0 : 2.0);
+              e.preventDefault();
+            }
+            lastTapTime = now;
+          }
+        }
+      }, { passive: false });
+
+      c.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+          const t1 = e.touches[0];
+          const t2 = e.touches[1];
+          const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+          if (initialPinchDist > 0) {
+            const factor = dist / initialPinchDist;
+            photoZoomScale = Math.min(3.5, Math.max(1.0, initialPinchScale * factor));
+            const midX = (t1.clientX + t2.clientX) / 2;
+            const midY = (t1.clientY + t2.clientY) / 2;
+            photoPanX = startPanX + (midX - startTouchX);
+            photoPanY = startPanY + (midY - startTouchY);
+            applyPhotoTransform();
+          }
+          e.preventDefault();
+        } else if (e.touches.length === 1) {
+          if (eraserOn && isErasing) {
+            eraseAt(e.touches[0].clientX, e.touches[0].clientY);
+            e.preventDefault();
+          } else if (isPanning && photoZoomScale > 1.05) {
+            photoPanX = startPanX + (e.touches[0].clientX - startTouchX);
+            photoPanY = startPanY + (e.touches[0].clientY - startTouchY);
+            applyPhotoTransform();
+            e.preventDefault();
+          }
+          // 배율 100%일 때는 e.preventDefault()를 호출하지 않아 모바일 기본 세로 스크롤 100% 보장!
+        }
+      }, { passive: false });
+
+      c.addEventListener('touchend', (e) => {
+        if (e.touches.length === 0) {
+          isErasing = false;
+          isPanning = false;
+          if (photoZoomScale <= 1.02) {
+            resetPhotoZoom();
+          }
+        }
+      });
+      c.addEventListener('touchcancel', () => {
+        isErasing = false;
+        isPanning = false;
       });
     })();
 
@@ -641,6 +781,7 @@
         const img = new Image();
         img.onload = () => {
           origImg = img;
+          resetPhotoZoom();
           document.getElementById('workspace').classList.remove('hidden');
           dropZone.classList.add('hidden');
           renderColoring();
