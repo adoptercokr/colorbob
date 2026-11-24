@@ -1818,6 +1818,14 @@
       '#FDE68A', '#FDBA74', '#B45309', '#78350F', '#D4D4D8', '#71717A', '#18181B', '#FFFFFF'
     ];
 
+    const R2_CDN_BASE = 'https://pub-e5864db5cb104b7588b15eea1db1a202.r2.dev/colorbob/';
+    function formatItemImageSrc(it) {
+      if (it && it.imageSrc && it.imageSrc.startsWith('sheets/library/')) {
+        it.imageSrc = R2_CDN_BASE + it.imageSrc;
+      }
+      return it;
+    }
+
     function handleImgError(img) {
       img.onerror = null;
       img.src = 'favicon.svg';
@@ -1840,6 +1848,7 @@
         const res = await fetch(`sheets/manifest_theme_${theme}.json`);
         if (res.ok) {
           const themeItems = await res.json();
+          themeItems.forEach(formatItemImageSrc);
           const existingIds = new Set(items.map(it => it.id));
           const newItems = themeItems.filter(it => !existingIds.has(it.id));
           items = items.concat(newItems);
@@ -1898,6 +1907,7 @@
     async function init() {
       const preloaded = (typeof window !== 'undefined' && (window.LIBRARY_MANIFEST || window.COLORING_LIBRARY)) || null;
       if (preloaded && preloaded.length > 0) {
+        preloaded.forEach(formatItemImageSrc);
         items = preloaded.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
         window.COLORING_LIBRARY = preloaded;
         window.LIBRARY_MANIFEST = preloaded;
@@ -1909,6 +1919,7 @@
           }
           if (res.ok) {
             const raw = await res.json();
+            raw.forEach(formatItemImageSrc);
             items = raw.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
             window.COLORING_LIBRARY = raw;
             window.LIBRARY_MANIFEST = raw;
