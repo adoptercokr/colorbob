@@ -388,12 +388,26 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
-                type="text"
+                type="search"
                 id="searchInput"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                enterkeyhint="search"
+                onclick="event.stopPropagation()"
+                ontouchend="event.stopPropagation()"
                 oninput="handleSearchInput(this.value)"
                 placeholder="도안 검색 (공룡, 강아지, 자동차, 공주, 호랑이 등)..."
-                class="w-full pl-10 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 text-xs sm:text-base bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900 border border-zinc-200 rounded-xl transition-all shadow-2xs"
+                class="w-full pl-10 sm:pl-11 pr-8 sm:pr-9 py-2 sm:py-2.5 text-xs sm:text-base bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900 border border-zinc-200 rounded-xl transition-all shadow-2xs"
               />
+              <button
+                type="button"
+                id="searchClearBtn"
+                onclick="clearSearchInput()"
+                class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-zinc-200 hover:bg-zinc-300 text-zinc-600 hover:text-zinc-900 flex items-center justify-center text-[10px] font-bold cursor-pointer transition select-none"
+                title="검색어 지우기"
+              >✕</button>
             </div>
             <button
               type="submit"
@@ -740,6 +754,13 @@
               <input type="color" id="nativeColorInput" value="#EF4444" oninput="selectCustomColorFromNative(this.value)" onchange="selectCustomColorFromNative(this.value)" class="w-16 h-7 rounded cursor-pointer bg-zinc-50 border border-zinc-300 p-0.5" />
             </div>
           </div>
+
+          <!-- [모바일/태블릿 친화적 실시간 캔버스 확대/축소/이동 플로팅 컨트롤] -->
+          <div id="canvasZoomControl" class="absolute bottom-3 right-3 z-30 flex items-center bg-white/90 backdrop-blur-md border border-zinc-200/90 rounded-full shadow-md py-1 px-1.5 gap-1 select-none">
+            <button type="button" onclick="zoomOut()" class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-zinc-100 text-zinc-700 active:scale-90 font-bold text-base cursor-pointer" title="축소 (−)">−</button>
+            <button type="button" onclick="resetZoom()" id="zoomLevelLabel" class="px-2 py-0.5 text-[11px] font-bold text-zinc-800 hover:text-zinc-950 hover:bg-zinc-100 rounded-md cursor-pointer transition min-w-[42px] text-center" title="100% 맞춤">100%</button>
+            <button type="button" onclick="zoomIn()" class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-zinc-100 text-zinc-700 active:scale-90 font-bold text-base cursor-pointer" title="확대 (+)">+</button>
+          </div>
         </div>
 
         <!-- 우측 광고 배너 (160×600 스폰서 슬롯, 대화면 노출) -->
@@ -879,7 +900,7 @@
         modalAdRight: '160 × 600<br>카카오 애드핏 배너',
         modalAdContact: '광고 제휴 문의 →',
         faqs: [
-          { q: 'ColorBob는 어떤 사이트인가요?', a: 'ColorBob는 {TOTAL}개 이상의 색칠공부 도안을 A4로 무료 인쇄하거나 브라우저에서 바로 색칠할 수 있는 글로벌 도안 라이브러리입니다. 동물·공룡, 탈것, 인물·직업, 학습, 기념일, 스포츠, K-POP, 만다라 등 12개 테마로 분류되어 있습니다.' },
+          { q: 'ColorBob은 어떤 사이트인가요?', a: 'ColorBob은 {TOTAL}개 이상의 색칠공부 도안을 A4로 무료 인쇄하거나 브라우저에서 바로 색칠할 수 있는 글로벌 도안 라이브러리입니다. 동물·공룡, 탈것, 인물·직업, 학습, 기념일, 스포츠, K-POP, 만다라 등 12개 테마로 분류되어 있습니다.' },
           { q: '도안은 정말 무료인가요? 회원가입이 필요한가요?', a: '모든 도안은 회원가입 없이 무료로 인쇄, PDF 저장, 이미지 다운로드할 수 있습니다. 가정, 학교, 어린이집 등 비영리 교육 목적으로 자유롭게 이용할 수 있습니다.' },
           { q: '온라인으로 바로 색칠할 수 있나요?', a: '네. 도안의 "색칠하기" 버튼을 누르면 PC와 모바일(터치)에서 바로 색칠할 수 있습니다. 24색 기본 팔레트와 36색 추가 팔레트, 펜 두께·투명도 조절, 지우개를 지원하며 완성본은 컬러로 인쇄하거나 이미지로 다운로드할 수 있습니다.' },
           { q: 'A4 용지에 맞게 인쇄되나요?', a: '네. "인쇄" 또는 "A4 인쇄" 버튼을 누르면 머리글·바닥글 없이 A4 세로 용지에 맞게 도안이 최대 크기로 인쇄됩니다. PDF 파일로도 저장할 수 있습니다.' },
@@ -1803,6 +1824,77 @@
       img.classList.add('opacity-30', 'p-8');
     }
 
+    // [61,244개 전 테마 동적 온디맨드 & 백그라운드 프리로드 엔진]
+    const loadedThemes = new Set();
+    let isAllThemesLoaded = false;
+    let preloadPromise = null;
+    const ALL_THEME_NAMES = [
+      'animals', 'characters', 'objects', 'holidays',
+      'learning', 'people', 'sports', 'mandala',
+      'korea', 'maze', 'sudoku', 'words'
+    ];
+
+    async function loadThemeManifest(theme) {
+      if (!theme || theme === 'all' || loadedThemes.has(theme)) return;
+      try {
+        const res = await fetch(`sheets/manifest_theme_${theme}.json`);
+        if (res.ok) {
+          const themeItems = await res.json();
+          const existingIds = new Set(items.map(it => it.id));
+          const newItems = themeItems.filter(it => !existingIds.has(it.id));
+          items = items.concat(newItems);
+          loadedThemes.add(theme);
+        }
+      } catch (e) {
+        console.warn(`[ColorBob] Failed to load theme: ${theme}`, e);
+      }
+    }
+
+    function preloadAllThemes() {
+      if (isAllThemesLoaded || preloadPromise) return preloadPromise;
+      preloadPromise = (async () => {
+        const remaining = ALL_THEME_NAMES.filter(t => !loadedThemes.has(t));
+        await Promise.all(remaining.map(t => loadThemeManifest(t)));
+        isAllThemesLoaded = true;
+        window.TOTAL_LIBRARY_COUNT = items.length;
+        if (currentTheme === 'all' && !currentSearch) {
+          const countEl = document.getElementById('itemCount');
+          if (countEl) countEl.textContent = items.length.toLocaleString();
+        }
+      })();
+      return preloadPromise;
+    }
+
+    async function ensureSearchDataLoaded(query) {
+      if (query) {
+        const q = query.toLowerCase();
+        let targetTheme = null;
+        if (/돼지|강아지|개|고양이|호랑이|사자|공룡|새|물고기|곰|토끼|동물|horse|dog|cat|pig|dino|animal/i.test(q)) {
+          targetTheme = 'animals';
+        } else if (/포켓몬|귀멸|피카츄|스파이더맨|공주|산리오|캐릭터|마블|디즈니|애니|pokemon|character|anime/i.test(q)) {
+          targetTheme = 'characters';
+        } else if (/자동차|스포츠카|경찰차|소방차|비행기|트럭|기차|배|로봇|우주선|car|truck|airplane|vehicle/i.test(q)) {
+          targetTheme = 'objects';
+        } else if (/크리스마스|산타|할로윈|명절|holiday|christmas|halloween/i.test(q)) {
+          targetTheme = 'holidays';
+        } else if (/한복|무궁화|세종대왕|태극기|korea/i.test(q)) {
+          targetTheme = 'korea';
+        } else if (/만다라|mandala/i.test(q)) {
+          targetTheme = 'mandala';
+        } else if (/미로|maze/i.test(q)) {
+          targetTheme = 'maze';
+        }
+
+        if (targetTheme && !loadedThemes.has(targetTheme)) {
+          await loadThemeManifest(targetTheme);
+        }
+      }
+
+      if (!isAllThemesLoaded) {
+        await preloadAllThemes();
+      }
+    }
+
     async function init() {
       const preloaded = (typeof window !== 'undefined' && (window.LIBRARY_MANIFEST || window.COLORING_LIBRARY)) || null;
       if (preloaded && preloaded.length > 0) {
@@ -1862,6 +1954,15 @@
       if (!localStorage.getItem('colorbob_preferred_lang')) {
         detectCountryGeoAsync();
       }
+
+      // 800ms 후 사용자 인터랙션 방해 없이 61,000개 전체 테마 비동기 프리로드
+      setTimeout(() => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => preloadAllThemes(), { timeout: 4000 });
+        } else {
+          preloadAllThemes();
+        }
+      }, 800);
     }
 
     // 최신 업데이트 일자 자동 산출 (매니페스트 최신 batchDate 연동)
@@ -2161,40 +2262,29 @@
       }
     }
 
-    function filterTheme(theme) {
+    async function filterTheme(theme) {
       currentTheme = theme;
-      // 대표님 지침: 카테고리 클릭 시 이전 검색어 자동 초기화 (교집합 0건 방지)
       currentSearch = '';
       const input = document.getElementById('searchInput');
       if (input) input.value = '';
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) clearBtn.classList.add('hidden');
       currentPage = 1;
-      
-      // Modal Left & Right Banners Translation
-      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
-      const mlTitle = document.getElementById('modalLeftAdTitle');
-      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mlDesc = document.getElementById('modalLeftAdDesc');
-      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
-      const mlLink = document.getElementById('modalLeftAdLink');
-      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
 
-      const mrTitle = document.getElementById('modalRightAdTitle');
-      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mrDesc = document.getElementById('modalRightAdDesc');
-      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
-
-      // Modal Related Recommendations Translation
-      const elRelTitle = document.getElementById('modalRelatedTitle');
-      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
-      const elRelSub = document.getElementById('modalRelatedSub');
-      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
-      const elRelRef = document.getElementById('modalRelatedRefresh');
-      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
-
-      // Bottom GeoGuide Themes & FAQs Dynamic Update
-      renderPopularSearches(lang);
-      renderGeoGuide(lang);
-      renderFaqs(lang);
+      // 해당 테마 매니페스트가 아직 로드되지 않은 경우 온디맨드 로딩
+      if (theme !== 'all' && !loadedThemes.has(theme)) {
+        renderNav();
+        const grid = document.getElementById('cardGrid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="col-span-full py-20 text-center text-zinc-500 flex flex-col items-center justify-center gap-3">
+              <div class="w-8 h-8 border-3 border-zinc-900 border-t-transparent rounded-full animate-spin"></div>
+              <p class="text-sm font-bold text-zinc-700">도안 라이브러리 불러오는 중...</p>
+            </div>
+          `;
+        }
+        await loadThemeManifest(theme);
+      }
 
       renderNav();
       renderCards();
@@ -2203,54 +2293,74 @@
 
     let searchDebounceTimer = null;
     function handleSearchInput(val) {
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) {
+        if (val && val.length > 0) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+
+      // 검색어 입력 시작 시 전체 테마 백그라운드 프리로드 즉시 트리거
+      if (!isAllThemesLoaded) {
+        preloadAllThemes();
+      }
+
       clearTimeout(searchDebounceTimer);
-      searchDebounceTimer = setTimeout(() => {
+      searchDebounceTimer = setTimeout(async () => {
         currentSearch = val.trim().toLowerCase();
         currentPage = 1;
+        if (currentSearch) {
+          await ensureSearchDataLoaded(currentSearch);
+        }
         renderCards();
       }, 250);
     }
 
-    function handleSearch(q) {
+    function clearSearchInput() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+      if (clearBtn) clearBtn.classList.add('hidden');
+      currentSearch = '';
+      currentPage = 1;
+      renderCards();
+    }
+
+    async function handleSearch(q) {
       currentSearch = q.trim().toLowerCase();
       currentPage = 1;
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) {
+        if (currentSearch) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      if (currentSearch) {
+        await ensureSearchDataLoaded(currentSearch);
+      }
       renderCards();
       scrollToGrid();
     }
     
-    // 전체 통합 검색 (연령/테마 상관없이 전체 풀에서 검색 및 최상단 정렬)
-    function triggerSearch() {
+    // 전체 통합 검색 (연령/테마 상관없이 61,000개 전체 풀에서 검색 및 최상단 정렬)
+    async function triggerSearch() {
       const input = document.getElementById('searchInput');
-      currentSearch = input.value.trim().toLowerCase();
+      if (input) {
+        currentSearch = input.value.trim().toLowerCase();
+        input.blur(); // 모바일/태블릿 가상 키보드 닫기
+      }
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) {
+        if (currentSearch) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
       currentTheme = 'all';
       currentPage = 1;
-      
-      // Modal Left & Right Banners Translation
-      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
-      const mlTitle = document.getElementById('modalLeftAdTitle');
-      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mlDesc = document.getElementById('modalLeftAdDesc');
-      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
-      const mlLink = document.getElementById('modalLeftAdLink');
-      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
 
-      const mrTitle = document.getElementById('modalRightAdTitle');
-      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mrDesc = document.getElementById('modalRightAdDesc');
-      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
-
-      // Modal Related Recommendations Translation
-      const elRelTitle = document.getElementById('modalRelatedTitle');
-      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
-      const elRelSub = document.getElementById('modalRelatedSub');
-      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
-      const elRelRef = document.getElementById('modalRelatedRefresh');
-      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
-
-      // Bottom GeoGuide Themes & FAQs Dynamic Update
-      renderPopularSearches(lang);
-      renderGeoGuide(lang);
-      renderFaqs(lang);
+      if (currentSearch) {
+        await ensureSearchDataLoaded(currentSearch);
+      }
 
       renderNav();
       renderCards();
@@ -2261,34 +2371,10 @@
       currentTheme = 'all';
       currentSearch = '';
       currentPage = 1;
-      document.getElementById('searchInput').value = '';
-      
-      // Modal Left & Right Banners Translation
-      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
-      const mlTitle = document.getElementById('modalLeftAdTitle');
-      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mlDesc = document.getElementById('modalLeftAdDesc');
-      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
-      const mlLink = document.getElementById('modalLeftAdLink');
-      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
-
-      const mrTitle = document.getElementById('modalRightAdTitle');
-      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
-      const mrDesc = document.getElementById('modalRightAdDesc');
-      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
-
-      // Modal Related Recommendations Translation
-      const elRelTitle = document.getElementById('modalRelatedTitle');
-      if (elRelTitle) elRelTitle.textContent = dict.modalRelatedTitle || '추천 도안';
-      const elRelSub = document.getElementById('modalRelatedSub');
-      if (elRelSub) elRelSub.textContent = dict.modalRelatedSub || '· 클릭 시 바로 색칠하기';
-      const elRelRef = document.getElementById('modalRelatedRefresh');
-      if (elRelRef) elRelRef.textContent = dict.modalRelatedRefresh || '다른 도안 보기 ↻';
-
-      // Bottom GeoGuide Themes & FAQs Dynamic Update
-      renderPopularSearches(lang);
-      renderGeoGuide(lang);
-      renderFaqs(lang);
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) clearBtn.classList.add('hidden');
 
       renderNav();
       renderCards();
@@ -2305,12 +2391,12 @@
     const INTENT_TERMS = ['색칠하기', '색칠공부', '색칠놀이', '색칠', '도안', '그림', '일러스트', '선화', '스케치', '프린트', '인쇄', '무료도안', 'a4', '출력'];
     const SEARCH_TAXONOMY = {
       // 1. 자동차 / Car / 車 / 汽车
-      '자동차': ['차', 'car', 'cars', '車', '汽车', '스포츠카', '트럭', '소방차', '경찰차', '버스', '택시', '세단', 'suv', 'ferrari', 'porsche', 'lamborghini', 'bmw', 'audi', 'mercedes', 'ford', 'mustang', '페라리', '포르쉐', '람보르기니', '트랙터', '슈퍼카'],
-      '차': ['자동차', 'car', 'cars', '車', '汽车', '스포츠카', '트럭'],
-      'car': ['cars', '자동차', '차', '車', '汽车', 'vehicle', 'sports car', 'truck', 'police car', 'fire truck', 'ferrari', 'porsche', 'lamborghini', 'supercar'],
-      'cars': ['car', '자동차', '차', '車', '汽车', 'vehicle'],
-      '車': ['自動車', 'くるま', 'car', '자동차', '汽车', 'スポーツカー', 'トラック'],
-      '汽车': ['车', '轿车', '跑车', 'car', '자동차', '車', '卡车', '消防车', '警车'],
+      '자동차': ['cars', '자동차', '승용차', '스포츠카', '트럭', '소방차', '경찰차', '버스', '택시', '세단', 'suv', '슈퍼카', 'ferrari', 'porsche', 'lamborghini', 'bmw', 'audi', 'mercedes', 'ford', 'mustang', '페라리', '포르쉐', '람보르기니', '트랙터'],
+      '차': ['자동차', '승용차', '스포츠카', '트럭'],
+      'car': ['cars', 'supercar', 'sports car', 'vehicle', 'automobile'],
+      'cars': ['car', 'supercar', 'vehicle'],
+      '車': ['自動車', 'くるま', 'car', '자동차', '스포츠카', 'トラック'],
+      '汽车': ['车', '轿车', '跑车', 'car', '자동차', '卡车', '消防车', '警车'],
 
       // 2. 비행기 / Airplane / 飛行機 / 飞机
       '비행기': ['airplane', 'plane', 'aircraft', '飛行機', '飞机', '전투기', 'fighter', 'jet', 'helicopter', '헬리콥터', '여객기'],
@@ -2357,7 +2443,14 @@
       '피카추': ['피카츄', 'pikachu'],
       '피카츄': ['피카추', 'pikachu', '포켓몬'],
       '포켓몬스터': ['포켓몬', 'pokemon', 'pocket monster'],
-      '포켓몬': ['포켓몬스터', 'pokemon'],
+      '포켓몬': ['포켓몬스터', 'pokemon', 'pikachu', '피카츄', '이브이', '파이리', '꼬부기', '이상해씨', '리자몽', '뮤츠', 'ポケモン', '宝可梦'],
+      'pokemon': ['포켓몬', '포켓몬스터', 'pikachu', 'eevee', 'charizard', 'ポケモン', '宝可梦'],
+      '귀멸의 칼날': ['귀멸', '귀살대', '탄지로', '네즈코', '젠이츠', '이노스케', '렌고쿠', 'demon slayer', 'kimetsu', 'tanjirou', 'nezuko', 'zenitsu', 'rengoku', '鬼滅の刃'],
+      '귀멸': ['귀멸의 칼날', '탄지로', '네즈코', 'demon slayer', 'kimetsu', '鬼滅の刃'],
+      'demon slayer': ['귀멸의 칼날', '귀멸', 'kimetsu', 'tanjiro', 'nezuko', '鬼滅の刃'],
+      '돼지': ['pig', 'piglet', 'pigs', '아기돼지', '멧돼지', '기니피그', '豚', 'ブタ', '猪'],
+      'pig': ['pigs', 'piglet', '돼지', '멧돼지', '豚', '猪'],
+      'piglet': ['pig', '아기돼지', '돼지'],
       '티라노': ['티라노사우루스', 't-rex', 'tyrannosaurus'],
       '스파이더맨': ['스파이더', 'spiderman', 'spider-man'],
       '소방수': ['소방관', '소방차', 'firefighter'],
@@ -2571,18 +2664,31 @@
 
           const { coreTokens, rawTokens } = extractSearchCore(currentSearch);
 
+          function checkTokenMatch(scope, normScope, token) {
+            const clean = token.replace(/\s+/g, '');
+            // 1글자 한글(차, 개, 새 등)은 독립 단어나 공백/특수문자 경계에서만 매칭 (차저스, 개나리 등 오매칭 방지)
+            if (token.length === 1 && /[가-힣]/.test(token)) {
+              const re = new RegExp('(^|[^가-힣])' + token + '([^가-힣]|$)');
+              return re.test(scope);
+            }
+            // 영문 단어는 단어 경계(\b) 매칭 (car가 carnell, career, cartoon 등에 오매칭 방지)
+            if (/^[a-z0-9]+$/i.test(token)) {
+              const re = new RegExp('\\b' + token + '\\b', 'i');
+              return re.test(scope);
+            }
+            // 2글자 이상 한글/CJK는 부분일치 및 공백제거 일치
+            return scope.includes(token) || normScope.includes(clean);
+          }
+
           let isMatch = false;
           const tokensToMatch = coreTokens.length > 0 ? coreTokens : rawTokens;
           isMatch = tokensToMatch.every(tok => {
-            const cleanTok = tok.replace(/\s+/g, '');
-            if (fullSearchScope.includes(tok) || normalizedScope.includes(cleanTok)) return true;
+            if (checkTokenMatch(fullSearchScope, normalizedScope, tok)) return true;
             // 상위어 및 동의어 확장 검사
+            const cleanTok = tok.replace(/\s+/g, '');
             const expansions = SEARCH_TAXONOMY[tok] || SEARCH_TAXONOMY[cleanTok];
             if (expansions && Array.isArray(expansions)) {
-              return expansions.some(exp => {
-                const cleanExp = exp.replace(/\s+/g, '');
-                return fullSearchScope.includes(exp) || normalizedScope.includes(cleanExp);
-              });
+              return expansions.some(exp => checkTokenMatch(fullSearchScope, normalizedScope, exp));
             }
             return false;
           });
@@ -2818,12 +2924,14 @@
       setTool('brush');
       renderPalette();
       isColoringMode = true;
+      if (typeof window.resetZoom === 'function') window.resetZoom();
       loadImgToCanvas();
       updateBrushCursor();
       renderModalRecommendations(item);
     }
 
     function closeModal() {
+      if (typeof window.resetZoom === 'function') window.resetZoom();
       document.getElementById('modalBackdrop').classList.add('hidden');
       const cbnBanner = document.getElementById('cbnGuideBanner');
       if (cbnBanner) cbnBanner.classList.add('hidden');
@@ -2856,7 +2964,7 @@
           body: `
             <div class="space-y-3">
               <p class="font-bold text-zinc-950 text-sm">교육기관, 학교, 비영리 아동 단체 협력 안내</p>
-              <p>ColorBob는 전 세계 유치원, 어린이집, 초등학교, 특수학급, 아동복지관 및 시니어 복지관에 20,000종 이상의 고화질 A4 도안을 무제한 무료로 제공하고 있습니다.</p>
+              <p>ColorBob은 전 세계 유치원, 어린이집, 초등학교, 특수학급, 아동복지관 및 시니어 복지관에 20,000종 이상의 고화질 A4 도안을 무제한 무료로 제공하고 있습니다.</p>
               <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200 space-y-1.5">
                 <p class="font-bold text-zinc-900">제휴 및 지원 분야:</p>
                 <ul class="list-disc pl-5 space-y-1 text-zinc-600">
@@ -2888,7 +2996,7 @@
           body: `
             <div class="space-y-3">
               <p class="font-bold text-zinc-950 text-sm">1. 무수집 및 100% 익명 운영 원칙</p>
-              <p>ColorBob는 이용자의 프라이버시를 절대적으로 존중하며, 본 웹사이트는 <strong>회원가입 절차를 일체 운영하지 않습니다.</strong> 따라서 성명, 주민등록번호, 연락처, 이메일 주소 등 어떠한 개인 식별 정보도 서버에 수집하거나 저장하지 않습니다.</p>
+              <p>ColorBob은 이용자의 프라이버시를 절대적으로 존중하며, 본 웹사이트는 <strong>회원가입 절차를 일체 운영하지 않습니다.</strong> 따라서 성명, 주민등록번호, 연락처, 이메일 주소 등 어떠한 개인 식별 정보도 서버에 수집하거나 저장하지 않습니다.</p>
               <p class="font-bold text-zinc-950 text-sm">2. 로컬 브라우저 처리</p>
               <p>웹 색칠하기 기능에서 생성된 드로잉 및 채색 데이터는 오직 사용자의 웹 브라우저(Canvas 메모리) 내에서만 실시간 처리되며, 외부 서버로 전송되거나 저장되지 않으므로 개인정보 유출 위험이 원천적으로 없습니다.</p>
               <p class="font-bold text-zinc-950 text-sm">3. 쿠키 및 방문 분석</p>
@@ -3434,6 +3542,47 @@
       let lastX = 0;
       let lastY = 0;
 
+      // [모바일 & 태블릿 2손가락 핀치 줌 & 팬 드로잉 엔진]
+      let zoomScale = 1.0;
+      let panX = 0;
+      let panY = 0;
+      let initialPinchDist = 0;
+      let initialPinchScale = 1.0;
+      let initialMidX = 0;
+      let initialMidY = 0;
+      let initialPanX = 0;
+      let initialPanY = 0;
+      let isPinching = false;
+      const activePointers = new Map();
+
+      function applyCanvasTransform() {
+        if (!canvasContainer) return;
+        canvasContainer.style.transform = `translate3d(${panX}px, ${panY}px, 0px) scale(${zoomScale})`;
+        canvasContainer.style.transformOrigin = 'center center';
+        updateCachedRects();
+        updateBrushCursor();
+        const lbl = document.getElementById('zoomLevelLabel');
+        if (lbl) lbl.textContent = `${Math.round(zoomScale * 100)}%`;
+      }
+
+      window.setZoom = function(scale) {
+        zoomScale = Math.min(3.5, Math.max(0.75, Math.round(scale * 100) / 100));
+        if (zoomScale >= 0.98 && zoomScale <= 1.02) {
+          zoomScale = 1.0;
+          panX = 0;
+          panY = 0;
+        }
+        applyCanvasTransform();
+      };
+      window.zoomIn = function() { window.setZoom(zoomScale + 0.25); };
+      window.zoomOut = function() { window.setZoom(zoomScale - 0.25); };
+      window.resetZoom = function() {
+        zoomScale = 1.0;
+        panX = 0;
+        panY = 0;
+        applyCanvasTransform();
+      };
+
       function updateCachedRects() {
         if (!paintCanvas) return;
         cachedRect = paintCanvas.getBoundingClientRect();
@@ -3476,11 +3625,12 @@
       };
 
       function start(e) {
+        if (isPinching) return;
         if (e && e.cancelable) e.preventDefault();
         const pop = document.getElementById('customColorPopover');
         if (pop && !pop.classList.contains('hidden')) pop.classList.add('hidden');
 
-        if (!cachedRect) updateCachedRects();
+        updateCachedRects();
         isDrawing = true;
 
         lastX = (e.clientX - cachedRect.left) * cachedScaleX;
@@ -3498,7 +3648,7 @@
       }
 
       function draw(e) {
-        if (!isDrawing) return;
+        if (!isDrawing || isPinching) return;
         if (e && e.cancelable) e.preventDefault();
 
         // CoalescedEvents 지원: 마우스 고속 이동 시에도 단 1프레임 누락 없이 100% 직결 렌더링
@@ -3528,19 +3678,71 @@
       canvasContainer.addEventListener('pointerdown', (e) => {
         if (e.cancelable) e.preventDefault();
         try { canvasContainer.setPointerCapture(e.pointerId); } catch (_) {}
-        updateCachedRects();
-        start(e);
+        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+        if (activePointers.size === 1) {
+          isPinching = false;
+          updateCachedRects();
+          start(e);
+        } else if (activePointers.size >= 2) {
+          // 2손가락 터치 시 드로잉을 즉시 멈추고 핀치/팬으로 전환
+          isDrawing = false;
+          isPinching = true;
+          const pts = Array.from(activePointers.values());
+          initialPinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+          initialPinchScale = zoomScale;
+          initialMidX = (pts[0].x + pts[1].x) / 2;
+          initialMidY = (pts[0].y + pts[1].y) / 2;
+          initialPanX = panX;
+          initialPanY = panY;
+        }
       }, { passive: false });
-      canvasContainer.addEventListener('pointermove', draw, { passive: false });
-      canvasContainer.addEventListener('pointerup', (e) => {
+
+      canvasContainer.addEventListener('pointermove', (e) => {
+        if (e.cancelable) e.preventDefault();
+        if (!activePointers.has(e.pointerId)) return;
+        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+        if (activePointers.size === 1 && !isPinching) {
+          draw(e);
+        } else if (activePointers.size >= 2) {
+          isDrawing = false;
+          const pts = Array.from(activePointers.values());
+          const currDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+          if (initialPinchDist > 5) {
+            const scaleDelta = currDist / initialPinchDist;
+            zoomScale = Math.min(3.5, Math.max(0.75, initialPinchScale * scaleDelta));
+          }
+          const currMidX = (pts[0].x + pts[1].x) / 2;
+          const currMidY = (pts[0].y + pts[1].y) / 2;
+          panX = initialPanX + (currMidX - initialMidX);
+          panY = initialPanY + (currMidY - initialMidY);
+          applyCanvasTransform();
+        }
+      }, { passive: false });
+
+      function handlePointerEnd(e) {
         if (e.cancelable) e.preventDefault();
         try { canvasContainer.releasePointerCapture(e.pointerId); } catch (_) {}
-        stop();
-      }, { passive: false });
-      canvasContainer.addEventListener('pointercancel', (e) => {
-        try { canvasContainer.releasePointerCapture(e.pointerId); } catch (_) {}
-        stop();
-      }, { passive: true });
+        activePointers.delete(e.pointerId);
+
+        if (activePointers.size === 0) {
+          isPinching = false;
+          stop();
+          if (zoomScale < 0.95) {
+            zoomScale = 1.0;
+            panX = 0;
+            panY = 0;
+            applyCanvasTransform();
+          }
+        } else if (activePointers.size === 1) {
+          isDrawing = false;
+          isPinching = false;
+        }
+      }
+
+      canvasContainer.addEventListener('pointerup', handlePointerEnd, { passive: false });
+      canvasContainer.addEventListener('pointercancel', handlePointerEnd, { passive: true });
       canvasContainer.addEventListener('touchstart', (e) => {
         if (e.cancelable) e.preventDefault();
       }, { passive: false });
