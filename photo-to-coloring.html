@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사진 스케치 변환 · 라인드로잉 · 색칠공부 도안 만들기 (무료 선따기) | ColorBob (colorbob.com)</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="내 사진을 1초 만에 흑백 선화, 라인드로잉, 연필 스케치, 밑그림, 색칠공부 도안으로 무료 변환하세요. 회원가입·워터마크·서버 전송 없이 100% 브라우저 무료 변환 및 A4 인쇄 지원.">
+  <meta name="keywords" content="사진 스케치 변환, 사진 라인드로잉, 사진 선따기, 사진 밑그림 변환, 사진 색칠공부 도안 만들기, 사진 흑백 선화, photo to line drawing, photo to sketch, photo to coloring page, 写真 線画 変換, 照片转线稿">
+  <link rel="icon" href="data:,">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      body * { visibility: hidden !important; }
+      #printArea, #printArea * { visibility: visible !important; }
+      #printArea {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #ffffff !important;
+        padding: 10mm !important;
+      }
+      #printImg {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+      }
+    }
+    #eraserCursor {
+      position: fixed;
+      pointer-events: none;
+      border: 1.5px dashed #18181b;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 9999px;
+      transform: translate(-50%, -50%);
+      z-index: 60;
+      display: none;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.85);
+    }
+  </style>
+</head>
+<body class="bg-[#FAFAFA] min-h-screen text-zinc-900 antialiased flex flex-col justify-between selection:bg-zinc-900 selection:text-white">
+
+  <!-- 동적 원형 지우개 커서 -->
+  <div id="eraserCursor"></div>
+
+  <!-- 헤더 -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-3">
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-zinc-950 text-white flex items-center justify-center font-black text-sm tracking-widest">CB</div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-black text-lg sm:text-2xl tracking-tight text-zinc-950">ColorBob</span>
+              <span class="text-[11px] font-bold text-zinc-500 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded-md hidden sm:inline">Archive</span>
+            </div>
+            <p id="hdSub" class="text-xs text-zinc-500 hidden sm:block font-medium">사진 → 색칠공부 도안 변환기</p>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="index.html" id="navHome" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition">도안 홈</a>
+          <a href="contact.html" id="navContact" class="hidden sm:inline-block px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition">문의하기</a>
+          <div id="langSwitcher" class="relative">
+            <button type="button" id="langDropdownBtn" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language selection"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white hover:bg-zinc-50 border border-zinc-200 rounded-xl shadow-2xs transition cursor-pointer">
+              <span id="currentLangFlag" class="inline-flex items-center justify-center w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0"></span>
+              <svg id="langChevron" class="w-3.5 h-3.5 text-zinc-500 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div id="langDropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-2xl shadow-lg py-1.5 z-50">
+              <button type="button" onclick="selectLangFromMenu('ko')" data-lang="ko" class="lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-bold text-zinc-950 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="ko"></span><span>한국어</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('en')" data-lang="en" class="lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="en"></span><span>English</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('ja')" data-lang="ja" class="lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="ja"></span><span>日本語</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('zh')" data-lang="zh" class="lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="zh"></span><span>中文 (中国)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 공간 (와이드 max-w-7xl) -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-5">
+
+    <!-- 타이틀 (무료 + 개인정보 보호 강조 배지) -->
+    <div class="text-center space-y-2 max-w-2xl mx-auto">
+      <h1 id="pageTitle" class="text-xl sm:text-3xl font-black text-zinc-950 tracking-tight">무료 사진 스케치 · 라인드로잉 · 도안 변환기</h1>
+      <p id="pageDesc" class="text-xs sm:text-sm text-zinc-500">내 사진을 색칠 도안·스케치·일러스트 밑그림으로 1초 무료 변환 (라인드로잉 · A4 인쇄)</p>
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-[11px] sm:text-xs font-semibold text-zinc-700">
+        <svg class="w-3.5 h-3.5 text-zinc-900 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+        <span id="privacyBadge">완전 무료 · 사진은 외부로 전송되거나 서버에 전혀 저장되지 않습니다</span>
+      </div>
+    </div>
+
+    <!-- 초기 진입 2단 쇼케이스 카드 (좌측: 업로드 + 스타일 선택 / 우측: 실제 Before → After 미리보기) -->
+    <section id="dropZone" class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
+      <input type="file" id="fileInput" accept="image/*" class="hidden">
+
+      <!-- 좌측: 사진 업로드 & 스타일 선택 카드 -->
+      <div id="uploadCard" class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 flex flex-col justify-between gap-6 shadow-2xs hover:border-zinc-400 transition cursor-pointer">
+        <div class="text-center space-y-3 pt-2">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-900">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/>
+            </svg>
+          </div>
+          <div>
+            <div id="uploadMain" class="text-base sm:text-lg font-black text-zinc-950">사진 선택 또는 끌어다 놓기</div>
+            <div id="uploadSub" class="text-xs text-zinc-400 mt-1">JPG, PNG, WEBP · 완전 무료 · A4 인쇄</div>
+          </div>
+          <div class="pt-1">
+            <span id="btnSelectPhoto" class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-bold transition shadow-xs">
+              + 내 사진 업로드
+            </span>
+          </div>
+        </div>
+
+        <!-- 샘플 3종 (반반 Before/After 미리보기 + 클릭 시 바로 체험) -->
+        <div class="border-t border-zinc-100 pt-5" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-3 gap-2.5">
+            <button type="button" onclick="loadSample('sheets/samples/sample_portrait_before.jpg')" class="group text-center space-y-1.5">
+              <div class="aspect-[4/5] rounded-xl overflow-hidden border border-zinc-200 group-hover:border-zinc-950 transition bg-zinc-50">
+                <img src="sheets/samples/sample_portrait_split.jpg" alt="가족 인물 변환 예시" class="w-full h-full object-cover group-hover:scale-105 transition">
+              </div>
+              <span id="lblSample1" class="block text-[11px] font-semibold text-zinc-600 group-hover:text-zinc-950">가족 · 인물</span>
+            </button>
+            <button type="button" onclick="loadSample('sheets/samples/sample_dog_before.jpg')" class="group text-center space-y-1.5">
+              <div class="aspect-[4/5] rounded-xl overflow-hidden border border-zinc-200 group-hover:border-zinc-950 transition bg-zinc-50">
+                <img src="sheets/samples/sample_dog_split.jpg" alt="반려견 변환 예시" class="w-full h-full object-cover group-hover:scale-105 transition">
+              </div>
+              <span id="lblSample2" class="block text-[11px] font-semibold text-zinc-600 group-hover:text-zinc-950">반려견</span>
+            </button>
+            <button type="button" onclick="loadSample('sheets/samples/sample_anime_before.jpg')" class="group text-center space-y-1.5">
+              <div class="aspect-[4/5] rounded-xl overflow-hidden border border-zinc-200 group-hover:border-zinc-950 transition bg-zinc-50">
+                <img src="sheets/samples/sample_anime_split.jpg" alt="만화 일러스트 변환 예시" class="w-full h-full object-cover group-hover:scale-105 transition">
+              </div>
+              <span id="lblSample3" class="block text-[11px] font-semibold text-zinc-600 group-hover:text-zinc-950">만화 · 애니</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측: 실제 Before → After 겹침 쇼케이스 카드 -->
+      <div class="bg-zinc-100/80 border border-zinc-200 rounded-3xl p-5 sm:p-7 flex flex-col justify-center">
+        <div class="relative w-full max-w-[420px] mx-auto aspect-[4/4.6]">
+          <!-- 좌상단: 원본 컬러 사진 -->
+          <div class="absolute top-0 left-0 w-[62%] rounded-2xl overflow-hidden shadow-md border-2 border-white bg-white">
+            <img src="sheets/samples/sample_portrait_before.jpg" alt="원본 사진 예시" class="w-full h-auto block">
+            <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-zinc-950/75 text-white text-[10px] font-bold">Before</span>
+          </div>
+
+          <!-- 우하단: 실제 엔진 변환 선화 도안 -->
+          <div class="absolute bottom-0 right-0 w-[64%] rounded-2xl overflow-hidden shadow-xl border-2 border-white bg-white">
+            <img src="sheets/samples/sample_portrait_after.png" alt="변환된 색칠공부 도안 예시" class="w-full h-auto block">
+            <span class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-zinc-950 text-white text-[10px] font-bold">After</span>
+          </div>
+
+          <!-- 중앙 연결 곡선 화살표 (모노크롬 포인트) -->
+          <div class="absolute left-[26%] bottom-[26%] z-10 w-12 h-12 rounded-full bg-zinc-950 text-white flex items-center justify-center shadow-lg border-2 border-white">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </div>
+        </div>
+        <p id="showcaseCaption" class="text-center text-[11px] sm:text-xs text-zinc-500 mt-4 font-medium">
+          실제 무료 사진에 본 변환기를 적용한 결과 예시입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 변환 컨트롤 & 미리보기 -->
+    <section id="workspace" class="hidden space-y-5">
+
+      <!-- 컨트롤 패널 (모바일 최적화 초간결 UI) -->
+      <div class="max-w-5xl mx-auto bg-white border border-zinc-200 rounded-3xl p-3.5 sm:p-5 space-y-3.5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-zinc-100 pb-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button type="button" onclick="applyPreset('natural')" id="btnPresetNatural" class="pbtn px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white transition">자연 스케치</button>
+            <button type="button" onclick="applyPreset('clear')" id="btnPresetClear" class="pbtn px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 text-zinc-700 hover:bg-zinc-200 transition">펜 선화</button>
+            <button type="button" onclick="applyPreset('bold')" id="btnPresetBold" class="pbtn px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 text-zinc-700 hover:bg-zinc-200 transition">진한 선</button>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="toggleEraserMode()" id="btnEraserMode" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-300 transition">지우개 OFF</button>
+            <button type="button" onclick="document.getElementById('fileInput').click()" id="btnChangePhoto" class="px-3 py-1.5 rounded-xl text-xs font-bold border border-zinc-300 text-zinc-700 hover:bg-zinc-100 transition">사진 변경</button>
+          </div>
+        </div>
+
+        <!-- 초간결 지우개 바 -->
+        <div id="eraserTipBox" class="hidden bg-zinc-900 text-white rounded-2xl px-3.5 py-2 flex items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-2 flex-1 min-w-0">
+            <span id="lblEraserSize" class="text-zinc-300 shrink-0">크기</span>
+            <input type="range" id="rngEraserSize" min="8" max="90" value="32" class="flex-1 max-w-[140px] accent-white cursor-pointer">
+            <span id="valEraserSize" class="tabular-nums font-bold text-white w-7">32</span>
+          </div>
+          <button type="button" onclick="renderColoring()" id="btnEraserReset" class="px-2.5 py-1 rounded-lg bg-white text-zinc-950 font-bold text-[11px] hover:bg-zinc-200 transition shrink-0">초기화</button>
+        </div>
+
+        <!-- 정중앙(50) 기준 초간결 슬라이더 3종 -->
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+          <div>
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-zinc-700 mb-1">
+              <span id="lblClean">밝기</span>
+              <span id="valClean" class="tabular-nums text-zinc-400">50</span>
+            </div>
+            <input type="range" id="rngClean" min="0" max="100" value="50" class="w-full accent-zinc-950 cursor-pointer">
+          </div>
+          <div>
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-zinc-700 mb-1">
+              <span id="lblSmooth">부드럽게</span>
+              <span id="valSmooth" class="tabular-nums text-zinc-400">50</span>
+            </div>
+            <input type="range" id="rngSmooth" min="0" max="100" value="50" class="w-full accent-zinc-950 cursor-pointer">
+          </div>
+          <div>
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-zinc-700 mb-1">
+              <span id="lblThick">진하기</span>
+              <span id="valThick" class="tabular-nums text-zinc-400">50</span>
+            </div>
+            <input type="range" id="rngThick" min="0" max="100" value="50" class="w-full accent-zinc-950 cursor-pointer">
+          </div>
+        </div>
+      </div>
+
+      <!-- 위아래 1단 대형 배치 (결과 도안 최우선 크게 + 하단 원본 비교, PC/모바일 최적화) -->
+      <div id="previewGrid" class="max-w-5xl mx-auto space-y-5">
+        <div id="resultCard" class="bg-white border border-zinc-200 rounded-3xl p-3 sm:p-5 space-y-2.5 shadow-2xs">
+          <div class="flex items-center justify-between px-1">
+            <span id="lblResult" class="text-xs sm:text-sm font-bold text-zinc-950">색칠공부 도안 결과</span>
+            <span id="statusBadge" class="text-[11px] font-medium text-zinc-400">실시간 변환 완료</span>
+          </div>
+          <div class="bg-white rounded-2xl overflow-hidden flex items-center justify-center border border-zinc-200 p-1.5 sm:p-3">
+            <canvas id="outCanvas" class="w-full h-auto max-h-[82vh] object-contain touch-none"></canvas>
+          </div>
+        </div>
+
+        <!-- 액션 버튼 (결과 도안 바로 아래 배치하여 모바일/PC 즉시 접근) -->
+        <div class="flex flex-wrap items-center justify-center gap-3 py-1">
+          <button type="button" onclick="printA4()" id="btnPrint" class="flex-1 sm:flex-none px-7 py-3.5 rounded-2xl bg-zinc-950 hover:bg-zinc-800 text-white text-sm font-bold transition shadow-xs">
+            A4 바로 인쇄하기
+          </button>
+          <button type="button" onclick="downloadPng()" id="btnDownload" class="flex-1 sm:flex-none px-7 py-3.5 rounded-2xl bg-white hover:bg-zinc-100 text-zinc-950 border border-zinc-300 text-sm font-bold transition">
+            고화질 PNG 저장
+          </button>
+        </div>
+
+        <div id="origCard" class="bg-white border border-zinc-200 rounded-3xl p-3 sm:p-5 space-y-2.5">
+          <div class="flex items-center justify-between px-1">
+            <span id="lblOrig" class="text-xs sm:text-sm font-bold text-zinc-500">원본 사진</span>
+          </div>
+          <div class="bg-zinc-50 rounded-2xl overflow-hidden flex items-center justify-center border border-zinc-100 p-1.5 sm:p-3">
+            <canvas id="origCanvas" class="w-full h-auto max-h-[75vh] object-contain"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 안내 가이드 -->
+    <section class="max-w-4xl mx-auto bg-white border border-zinc-200 rounded-3xl p-5 sm:p-6 text-xs sm:text-sm text-zinc-600 space-y-1.5 leading-relaxed">
+      <h2 id="guideTitle" class="font-bold text-zinc-950 text-sm">사용 팁</h2>
+      <ul class="list-disc pl-5 space-y-1">
+        <li id="guide1">사진을 올리면 바로 최적화된 색칠공부 도안이 만들어집니다. 원하시면 슬라이더(기본값 50)를 좌우로 미세 조절해 보세요.</li>
+        <li id="guide2"><strong>도안 크게 보기</strong>와 <strong>배경 지우개</strong>를 켜면 뒤쪽 배경을 마우스로 정교하게 지울 수 있습니다.</li>
+        <li id="guide3">모든 처리는 내 브라우저 안에서만 실행되므로 개인 사진이 외부 서버로 전송되지 않습니다.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 인쇄 전용 숨김 영역 -->
+  <div id="printArea" class="hidden">
+    <img id="printImg" alt="Coloring Sheet">
+  </div>
+
+  <!-- 푸터 -->
+  <footer class="bg-white border-t border-zinc-200 py-8 text-center text-xs text-zinc-500 mt-10">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <div class="flex items-center justify-center gap-4 font-medium">
+        <a href="index.html" id="footerHomeLink" class="hover:text-zinc-950 transition">ColorBob 홈</a>
+        <span class="text-zinc-300">|</span>
+        <a href="contact.html" id="footerContactLink" class="hover:text-zinc-950 transition">문의하기</a>
+      </div>
+      <p class="text-zinc-400 text-[11px]">&copy; 2026 ColorBob (colorbob.com). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const I18N = {
+      ko: {
+        hdSub: '무료 사진 → 선화 · 스케치 변환', navHome: '홈', navContact: '문의하기',
+        pageTitle: '무료 사진 스케치 · 라인드로잉 · 도안 변환기',
+        pageDesc: '내 사진을 색칠 도안·스케치·일러스트 밑그림으로 1초 무료 변환 (라인드로잉 · A4 인쇄)',
+        privacyBadge: '완전 무료 · 사진은 외부로 전송되거나 서버에 전혀 저장되지 않습니다',
+        btnSelectPhoto: '+ 내 사진 업로드',
+        lblSample1: '가족 · 인물', lblSample2: '반려견', lblSample3: '만화 · 애니',
+        showcaseCaption: '실제 무료 사진에 본 변환기를 적용한 결과 예시입니다.',
+        uploadMain: '사진 선택 또는 끌어다 놓기',
+        uploadSub: 'JPG, PNG, WEBP · 무료 · A4 인쇄',
+        btnPresetNatural: '자연 스케치', btnPresetClear: '펜 선화', btnPresetBold: '진한 선',
+        eraserOff: '지우개 OFF', eraserOn: '지우개 ON', lblEraserSize: '크기', btnEraserReset: '초기화',
+        btnChangePhoto: '사진 변경', lblClean: '밝기', lblSmooth: '부드럽게', lblThick: '진하기',
+        lblOrig: '원본 사진', lblResult: '도안 결과', statusBadge: '완료',
+        btnPrint: 'A4 인쇄', btnDownload: 'PNG 저장', footerHome: 'ColorBob 홈', footerContact: '문의하기',
+        guideTitle: '사용 팁',
+        guide1: '기본값(50)으로 바로 인쇄하거나 슬라이더로 미세 조절하세요.',
+        guide2: '지우개 ON 후 도안 위를 문지르면 배경을 지울 수 있습니다.',
+        guide3: '사진은 내 기기에서만 처리되며 외부 전송·저장이 전혀 없습니다.'
+      },
+      en: {
+        hdSub: 'Free Photo to Line Art', navHome: 'Home', navContact: 'Contact',
+        pageTitle: 'Free Photo to Line Drawing · Sketch · Coloring Page',
+        pageDesc: 'Convert any photo into clean line art, pencil sketch, or printable coloring page free in 1 second.',
+        privacyBadge: 'Free Forever · Your photos are never uploaded or saved anywhere',
+        btnSelectPhoto: '+ Upload Photo',
+        lblSample1: 'Family', lblSample2: 'Dog', lblSample3: 'Anime Art',
+        showcaseCaption: 'Real conversion example made with this converter.',
+        uploadMain: 'Click or drop a photo here',
+        uploadSub: 'JPG, PNG, WEBP · Free · A4 Print',
+        btnPresetNatural: 'Natural', btnPresetClear: 'Pen Line', btnPresetBold: 'Bold',
+        eraserOff: 'Eraser OFF', eraserOn: 'Eraser ON', lblEraserSize: 'Size', btnEraserReset: 'Reset',
+        btnChangePhoto: 'Change', lblClean: 'Bright', lblSmooth: 'Smooth', lblThick: 'Dark',
+        lblOrig: 'Original', lblResult: 'Line Art Result', statusBadge: 'Ready',
+        btnPrint: 'Print A4', btnDownload: 'Save PNG', footerHome: 'ColorBob Home', footerContact: 'Contact Us',
+        guideTitle: 'Tips',
+        guide1: 'Ready to print at default (50), or fine-tune sliders.',
+        guide2: 'Turn Eraser ON and drag over the page to clean backgrounds.',
+        guide3: 'Processed 100% locally — your photos are never sent or stored.'
+      },
+      ja: {
+        hdSub: '無料 写真→線画・スケッチ変換', navHome: 'ホーム', navContact: 'お問い合わせ',
+        pageTitle: '無料 写真 線画変換・スケッチ・ぬりえ作成',
+        pageDesc: '写真を白黒の線画・下絵・ぬりえ図案へ1秒で無料変換（A4印刷・PNG保存対応）',
+        privacyBadge: '完全無料 · 写真は外部送信・サーバー保存一切なし（端末内で安全処理）',
+        btnSelectPhoto: '+ 写真をアップロード',
+        lblSample1: '家族・人物', lblSample2: '犬', lblSample3: 'アニメ・イラスト',
+        showcaseCaption: '実際の無料写真を本ツールで変換したサンプルです。',
+        uploadMain: '写真を選択またはドロップ',
+        uploadSub: 'JPG, PNG, WEBP · 無料 · A4印刷',
+        btnPresetNatural: '自然', btnPresetClear: 'ペン線', btnPresetBold: '太線',
+        eraserOff: '消しゴム OFF', eraserOn: '消しゴム ON', lblEraserSize: 'サイズ', btnEraserReset: 'リセット',
+        btnChangePhoto: '写真変更', lblClean: '明るさ', lblSmooth: '滑らか', lblThick: '濃さ',
+        lblOrig: '元の写真', lblResult: '線画変換結果', statusBadge: '完了',
+        btnPrint: 'A4印刷', btnDownload: 'PNG保存', footerHome: 'ColorBob ホーム', footerContact: 'お問い合わせ',
+        guideTitle: 'ヒント',
+        guide1: '標準(50)のまま印刷でき、スライダーで微調整できます。',
+        guide2: '消しゴムONで不要な背景をなぞって消せます。',
+        guide3: '画像は端末内のみで処理され、外部送信や保存は一切されません。'
+      },
+      zh: {
+        hdSub: '免费 照片转线稿 · 素描生成', navHome: '首页', navContact: '联系我们',
+        pageTitle: '免费照片转线稿 · 素描 · 涂色画生成器',
+        pageDesc: '一键将照片转为黑白线稿、画画底稿与涂色画，免费支持A4打印与高清下载。',
+        privacyBadge: '完全免费 · 照片绝不上传外部或保存至服务器（仅本地安全处理）',
+        btnSelectPhoto: '+ 上传照片',
+        lblSample1: '家庭人像', lblSample2: '狗狗', lblSample3: '动漫插画',
+        showcaseCaption: '使用本转换器生成的真实效果示例。',
+        uploadMain: '点击或拖拽上传照片',
+        uploadSub: 'JPG, PNG, WEBP · 免费 · A4打印',
+        btnPresetNatural: '自然', btnPresetClear: '钢笔', btnPresetBold: '粗线',
+        eraserOff: '橡皮擦 OFF', eraserOn: '橡皮擦 ON', lblEraserSize: '大小', btnEraserReset: '重置',
+        btnChangePhoto: '换图', lblClean: '亮度', lblSmooth: '柔和', lblThick: '深浅',
+        lblOrig: '原图', lblResult: '线稿结果', statusBadge: '完成',
+        btnPrint: 'A4打印', btnDownload: '保存PNG', footerHome: 'ColorBob 首页', footerContact: '联系我们',
+        guideTitle: '提示',
+        guide1: '默认(50)即可直接打印，也可微调滑块。',
+        guide2: '开启橡皮擦后涂抹画布可擦除多余背景。',
+        guide3: '全程在本地浏览器完成，绝不上传或保存任何个人照片。'
+      }
+    };
+
+    let currentLang = 'ko';
+    let origImg = null;
+    let currentPreset = 'natural';
+    let eraserOn = false;
+    let isErasing = false;
+    let isLargeView = false;
+
+    const FLAG_SVGS = {
+      ko: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><circle cx="12" cy="8" r="3.6" fill="#C60C30"/><path d="M12 8a1.8 1.8 0 0 1-3.6 0 3.6 3.6 0 0 0 7.2 0A1.8 1.8 0 0 1 12 8z" fill="#003478"/><g stroke="#111" stroke-width="0.9"><line x1="4.5" y1="3.5" x2="7.2" y2="5.5"/><line x1="3.8" y1="4.5" x2="6.5" y2="6.5"/><line x1="19.5" y1="3.5" x2="16.8" y2="5.5"/><line x1="20.2" y1="4.5" x2="17.5" y2="6.5"/><line x1="4.5" y1="12.5" x2="7.2" y2="10.5"/><line x1="19.5" y1="12.5" x2="16.8" y2="10.5"/></g></svg>',
+      en: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><g fill="#B22234"><rect y="0" width="24" height="1.3"/><rect y="2.6" width="24" height="1.3"/><rect y="5.2" width="24" height="1.3"/><rect y="7.8" width="24" height="1.3"/><rect y="10.4" width="24" height="1.3"/><rect y="13" width="24" height="1.3"/><rect y="15" width="24" height="1"/></g><rect width="10.5" height="8.5" fill="#3C3B6E"/></svg>',
+      ja: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><circle cx="12" cy="8" r="4.2" fill="#BC002D"/></svg>',
+      zh: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#DE2910"/><polygon points="5,2.5 5.7,4.5 7.8,4.5 6.1,5.7 6.7,7.7 5,6.5 3.3,7.7 3.9,5.7 2.2,4.5 4.3,4.5" fill="#FFDE00"/></svg>'
+    };
+
+    function toggleLangMenu(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('langDropdownMenu');
+      const chev = document.getElementById('langChevron');
+      const isHidden = menu.classList.toggle('hidden');
+      if (chev) chev.style.transform = isHidden ? '' : 'rotate(180deg)';
+    }
+
+    function selectLangFromMenu(lang) {
+      document.getElementById('langDropdownMenu').classList.add('hidden');
+      document.getElementById('langChevron').style.transform = '';
+      setLang(lang);
+    }
+
+    document.addEventListener('click', (e) => {
+      const sw = document.getElementById('langSwitcher');
+      const menu = document.getElementById('langDropdownMenu');
+      if (sw && menu && !sw.contains(e.target)) {
+        menu.classList.add('hidden');
+        document.getElementById('langChevron').style.transform = '';
+      }
+    });
+
+    function setLang(lang) {
+      currentLang = lang;
+      try {
+        localStorage.setItem('colorworld_preferred_lang', lang);
+      } catch (_) {}
+      const d = I18N[lang] || I18N.ko;
+      Object.keys(d).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.textContent = d[k];
+      });
+      const fh = document.getElementById('footerHomeLink');
+      if (fh && d.footerHome) fh.textContent = d.footerHome;
+      const fc = document.getElementById('footerContactLink');
+      if (fc && d.footerContact) fc.textContent = d.footerContact;
+      const eBtn = document.getElementById('btnEraserMode');
+      if (eBtn) eBtn.textContent = eraserOn ? d.eraserOn : d.eraserOff;
+      const curFlag = document.getElementById('currentLangFlag');
+      if (curFlag) curFlag.innerHTML = FLAG_SVGS[lang] || FLAG_SVGS.ko;
+      document.querySelectorAll('.lang-flag-slot').forEach(slot => {
+        const f = slot.getAttribute('data-flag');
+        if (FLAG_SVGS[f]) slot.innerHTML = FLAG_SVGS[f];
+      });
+      document.querySelectorAll('.lbtn').forEach(b => {
+        const active = b.dataset.lang === lang;
+        b.className = active
+          ? 'lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-bold text-zinc-950 bg-zinc-100 flex items-center gap-2.5 transition'
+          : 'lbtn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition';
+      });
+    }
+
+    const dropZone = document.getElementById('dropZone');
+    const uploadCard = document.getElementById('uploadCard');
+    const fileInput = document.getElementById('fileInput');
+    uploadCard.addEventListener('click', () => fileInput.click());
+    uploadCard.addEventListener('dragover', e => { e.preventDefault(); uploadCard.classList.add('border-zinc-950', 'bg-zinc-50'); });
+    uploadCard.addEventListener('dragleave', () => uploadCard.classList.remove('border-zinc-950', 'bg-zinc-50'));
+    uploadCard.addEventListener('drop', e => {
+      e.preventDefault();
+      uploadCard.classList.remove('border-zinc-950', 'bg-zinc-50');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', e => {
+      if (e.target.files && e.target.files[0]) handleFile(e.target.files[0]);
+    });
+
+    function loadSample(src) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        origImg = img;
+        document.getElementById('workspace').classList.remove('hidden');
+        dropZone.classList.add('hidden');
+        renderColoring();
+      };
+      img.src = src;
+    }
+
+    ['rngClean', 'rngSmooth', 'rngThick'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        document.getElementById('valClean').textContent = document.getElementById('rngClean').value;
+        document.getElementById('valSmooth').textContent = document.getElementById('rngSmooth').value;
+        document.getElementById('valThick').textContent = document.getElementById('rngThick').value;
+        if (origImg) renderColoring();
+      });
+    });
+
+    document.getElementById('rngEraserSize').addEventListener('input', (e) => {
+      document.getElementById('valEraserSize').textContent = e.target.value;
+      updateCursorSize();
+    });
+
+    function toggleLargeView() {
+      isLargeView = !isLargeView;
+      const origCard = document.getElementById('origCard');
+      const grid = document.getElementById('previewGrid');
+      const btn = document.getElementById('btnLargeView');
+      const outC = document.getElementById('outCanvas');
+      if (isLargeView) {
+        origCard.classList.add('hidden');
+        grid.className = 'grid grid-cols-1 gap-5 items-start max-w-5xl mx-auto';
+        outC.className = 'w-full h-auto max-h-[84vh] object-contain touch-none';
+        btn.textContent = '비교 보기 (좌우)';
+        btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white border border-zinc-950 transition';
+      } else {
+        origCard.classList.remove('hidden');
+        grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-5 items-start';
+        outC.className = 'w-full h-auto max-h-[78vh] object-contain touch-none';
+        btn.textContent = '도안 크게 보기';
+        btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-300 transition';
+      }
+      updateCursorSize();
+    }
+
+    function updateCursorSize() {
+      const cur = document.getElementById('eraserCursor');
+      const rScreen = parseInt(document.getElementById('rngEraserSize').value, 10);
+      cur.style.width = (rScreen * 2) + 'px';
+      cur.style.height = (rScreen * 2) + 'px';
+    }
+
+    function toggleEraserMode() {
+      eraserOn = !eraserOn;
+      const d = I18N[currentLang] || I18N.ko;
+      const btn = document.getElementById('btnEraserMode');
+      const tip = document.getElementById('eraserTipBox');
+      const outC = document.getElementById('outCanvas');
+      const cur = document.getElementById('eraserCursor');
+      if (eraserOn) {
+        btn.textContent = d.eraserOn;
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white border border-zinc-950 transition';
+        tip.classList.remove('hidden');
+        outC.style.cursor = 'none';
+        updateCursorSize();
+      } else {
+        btn.textContent = d.eraserOff;
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-300 transition';
+        tip.classList.add('hidden');
+        outC.style.cursor = 'default';
+        cur.style.display = 'none';
+      }
+    }
+
+    // Exact 1:1 Dynamic Circular Eraser Cursor & Stroke
+    (function bindEraserCanvas() {
+      const c = document.getElementById('outCanvas');
+      const cur = document.getElementById('eraserCursor');
+
+      const eraseAt = (e) => {
+        if (!eraserOn || !isErasing) return;
+        e.preventDefault();
+        const rect = c.getBoundingClientRect();
+        const clientX = e.clientX;
+        const clientY = e.clientY;
+        const scaleX = c.width / rect.width;
+        const scaleY = c.height / rect.height;
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
+        const rScreen = parseInt(document.getElementById('rngEraserSize').value, 10);
+        const rCanvas = rScreen * scaleX; // Exact 1:1 match with visible circular cursor!
+
+        const ctx = c.getContext('2d');
+        ctx.save();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(x, y, rCanvas, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      };
+
+      c.addEventListener('pointerenter', () => {
+        if (eraserOn) {
+          updateCursorSize();
+          cur.style.display = 'block';
+        }
+      });
+      c.addEventListener('pointerleave', () => {
+        cur.style.display = 'none';
+      });
+      c.addEventListener('pointerdown', (e) => {
+        if (!eraserOn) return;
+        isErasing = true;
+        c.setPointerCapture(e.pointerId);
+        eraseAt(e);
+      });
+      window.addEventListener('pointerup', () => { isErasing = false; });
+      c.addEventListener('pointermove', (e) => {
+        if (eraserOn) {
+          cur.style.display = 'block';
+          cur.style.left = e.clientX + 'px';
+          cur.style.top = e.clientY + 'px';
+        }
+        eraseAt(e);
+      });
+    })();
+
+    function applyPreset(p) {
+      currentPreset = p;
+      // Default 'natural' sits right at 50 / 50 / 50!
+      const map = {
+        natural: { clean: 50, smooth: 50, thick: 50, btn: 'btnPresetNatural' },
+        clear:   { clean: 72, smooth: 65, thick: 65, btn: 'btnPresetClear' },
+        bold:    { clean: 82, smooth: 70, thick: 85, btn: 'btnPresetBold' }
+      };
+      const cfg = map[p] || map.natural;
+      document.getElementById('rngClean').value = cfg.clean;
+      document.getElementById('rngSmooth').value = cfg.smooth;
+      document.getElementById('rngThick').value = cfg.thick;
+      document.getElementById('valClean').textContent = cfg.clean;
+      document.getElementById('valSmooth').textContent = cfg.smooth;
+      document.getElementById('valThick').textContent = cfg.thick;
+      document.querySelectorAll('.pbtn').forEach(b => {
+        const active = b.id === cfg.btn;
+        b.className = active
+          ? 'pbtn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white transition'
+          : 'pbtn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-zinc-100 text-zinc-700 hover:bg-zinc-200 transition';
+      });
+      if (origImg) renderColoring();
+    }
+
+    function handleFile(file) {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const img = new Image();
+        img.onload = () => {
+          origImg = img;
+          document.getElementById('workspace').classList.remove('hidden');
+          dropZone.classList.add('hidden');
+          renderColoring();
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function edgePreservingSmooth(src, w, h, passes) {
+      let cur = new Float32Array(src);
+      let nxt = new Float32Array(w * h);
+      const sigmaR = 24;
+      const inv2SigmaR2 = 1 / (2 * sigmaR * sigmaR);
+      for (let p = 0; p < passes; p++) {
+        for (let y = 0; y < h; y++) {
+          const row = y * w;
+          for (let x = 0; x < w; x++) {
+            const c = cur[row + x];
+            let sum = c, wsum = 1.0;
+            for (let dx = -2; dx <= 2; dx++) {
+              if (dx === 0) continue;
+              const nx = Math.min(w - 1, Math.max(0, x + dx));
+              const v = cur[row + nx];
+              const d = v - c;
+              const wt = Math.exp(-(d * d) * inv2SigmaR2);
+              sum += v * wt; wsum += wt;
+            }
+            nxt[row + x] = sum / wsum;
+          }
+        }
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const idx = y * w + x;
+            const c = nxt[idx];
+            let sum = c, wsum = 1.0;
+            for (let dy = -2; dy <= 2; dy++) {
+              if (dy === 0) continue;
+              const ny = Math.min(h - 1, Math.max(0, y + dy));
+              const v = nxt[ny * w + x];
+              const d = v - c;
+              const wt = Math.exp(-(d * d) * inv2SigmaR2);
+              sum += v * wt; wsum += wt;
+            }
+            cur[idx] = sum / wsum;
+          }
+        }
+      }
+      return cur;
+    }
+
+    function boxBlur(src, w, h, r) {
+      if (r <= 0) return new Float32Array(src);
+      const tmp = new Float32Array(w * h);
+      const dst = new Float32Array(w * h);
+      const inv = 1 / (2 * r + 1);
+      for (let y = 0; y < h; y++) {
+        let sum = 0;
+        const row = y * w;
+        for (let i = -r; i <= r; i++) sum += src[row + Math.min(w - 1, Math.max(0, i))];
+        for (let x = 0; x < w; x++) {
+          tmp[row + x] = sum * inv;
+          sum += src[row + Math.min(w - 1, x + r + 1)] - src[row + Math.max(0, x - r)];
+        }
+      }
+      for (let x = 0; x < w; x++) {
+        let sum = 0;
+        for (let i = -r; i <= r; i++) sum += tmp[Math.min(h - 1, Math.max(0, i)) * w + x];
+        for (let y = 0; y < h; y++) {
+          dst[y * w + x] = sum * inv;
+          sum += tmp[Math.min(h - 1, y + r + 1) * w + x] - tmp[Math.max(0, y - r) * w + x];
+        }
+      }
+      return dst;
+    }
+
+    // Calibrated so slider 50 / 50 / 50 produces the exact sweet-spot natural illustration sketch!
+    function renderColoring() {
+      const maxDim = 1100;
+      let w = origImg.width, h = origImg.height;
+      const scale = Math.min(1, maxDim / Math.max(w, h));
+      w = Math.round(w * scale);
+      h = Math.round(h * scale);
+
+      const origC = document.getElementById('origCanvas');
+      const outC = document.getElementById('outCanvas');
+      origC.width = outC.width = w;
+      origC.height = outC.height = h;
+
+      const oCtx = origC.getContext('2d');
+      oCtx.fillStyle = '#FFFFFF';
+      oCtx.fillRect(0, 0, w, h);
+      oCtx.drawImage(origImg, 0, 0, w, h);
+
+      const srcData = oCtx.getImageData(0, 0, w, h).data;
+      const n = w * h;
+      const gray = new Float32Array(n);
+      for (let i = 0; i < n; i++) {
+        const j = i * 4;
+        gray[i] = 0.299 * srcData[j] + 0.587 * srcData[j + 1] + 0.114 * srcData[j + 2];
+      }
+
+      const cleanSlider = parseInt(document.getElementById('rngClean').value, 10);   // 0..100 (center 50)
+      const smoothSlider = parseInt(document.getElementById('rngSmooth').value, 10); // 0..100 (center 50)
+      const thickSlider = parseInt(document.getElementById('rngThick').value, 10);   // 0..100 (center 50)
+
+      // At smoothSlider=50 -> 0 passes (crisp natural hair/eyes); 65+ -> 1..2 bilateral passes
+      const smoothPasses = smoothSlider <= 55 ? 0 : Math.min(3, Math.floor((smoothSlider - 45) / 18));
+      const base = smoothPasses > 0 ? edgePreservingSmooth(gray, w, h, smoothPasses) : gray;
+
+      // At thickSlider=50 -> dodgeRadius=6, gamma=1.31 (exact sweet spot!)
+      const dodgeRadius = Math.max(3, Math.round(3 + (thickSlider / 100) * 7));
+      const inv = new Float32Array(n);
+      for (let i = 0; i < n; i++) inv[i] = 255 - base[i];
+      const invBlur = boxBlur(boxBlur(inv, w, h, dodgeRadius), w, h, Math.max(2, Math.round(dodgeRadius * 0.6)));
+
+      // At cleanSlider=50 -> whiteCut=248 (exact sweet spot!); 0->255, 100->220
+      const whiteCut = 255 - (cleanSlider / 100) * 32;
+      const gamma = 0.75 + (thickSlider / 100) * 1.15;
+
+      const outImg = oCtx.createImageData(w, h);
+      const out = outImg.data;
+      for (let i = 0; i < n; i++) {
+        let v = Math.min(255, (base[i] * 255) / Math.max(1, 255 - invBlur[i]));
+        if (v >= whiteCut) {
+          v = 255;
+        } else {
+          const norm = Math.max(0, Math.min(1, v / whiteCut));
+          v = 255 * Math.pow(norm, gamma);
+          if (cleanSlider >= 70 && v > 225) v = 255;
+        }
+        const b = Math.max(0, Math.min(255, Math.round(v)));
+        const j = i * 4;
+        out[j] = out[j + 1] = out[j + 2] = b;
+        out[j + 3] = 255;
+      }
+      outC.getContext('2d').putImageData(outImg, 0, 0);
+    }
+
+    function printA4() {
+      const outC = document.getElementById('outCanvas');
+      document.getElementById('printImg').src = outC.toDataURL('image/png');
+      document.getElementById('printArea').classList.remove('hidden');
+      setTimeout(() => {
+        window.print();
+        document.getElementById('printArea').classList.add('hidden');
+      }, 120);
+    }
+
+    function downloadPng() {
+      const outC = document.getElementById('outCanvas');
+      if (outC.toBlob) {
+        outC.toBlob((blob) => {
+          if (!blob) return;
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.download = 'colorworld-photo-coloring-page.png';
+          a.href = url;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 5000);
+        }, 'image/png');
+      } else {
+        const a = document.createElement('a');
+        a.download = 'colorworld-photo-coloring-page.png';
+        a.href = outC.toDataURL('image/png');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+
+    try {
+      const p = new URLSearchParams(window.location.search).get('lang');
+      const savedLang = localStorage.getItem('colorworld_preferred_lang');
+      const initialLang = (p && I18N[p]) ? p : ((savedLang && I18N[savedLang]) ? savedLang : 'ko');
+      setLang(initialLang);
+    } catch (e) { setLang('ko'); }
+  </script>
+</body>
+</html>

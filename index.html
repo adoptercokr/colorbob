@@ -1,0 +1,3549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorBob - 무료 색칠공부 & 도안 프린트 라이브러리 (62,000+ A4 무료 인쇄) | colorbob.com</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="keywords" content="색칠공부, 색칠하기, 도안, 무료도안, 스케치, 드로잉, 색칠공부 도안, 프린트 도안, 색칠 그림, 어린이 색칠공부, 캐릭터 도안, 동물 도안, 자동차 도안, 공룡 도안, A4 무료인쇄, 컬러링북, 색칠놀이">
+  <meta name="description" content="48,000개 이상의 초고화질 무료 색칠공부, 도안, 스케치, 드로잉을 A4로 바로 인쇄하거나 브라우저에서 직접 색칠해 보세요. 동물, 공룡, 자동차, 캐릭터, 학습 도안 100% 무료 제공.">
+  <meta property="og:title" content="ColorBob - 무료 색칠공부 & 도안 프린트 라이브러리 (62,000+ A4 무료 인쇄) | colorbob.com">
+  <meta property="og:site_name" content="ColorBob">
+  <meta property="og:url" content="https://colorbob.com/">
+  <link rel="canonical" href="https://colorbob.com/">
+  <meta property="og:description" content="48,000+ 무료 색칠공부, 도안, 스케치. A4 즉시 인쇄 및 온라인 색칠하기 지원.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ColorBob",
+    "url": "https://colorbob.com/",
+    "description": "무료 색칠공부 도안, 컬러링북, 스케치, 드로잉 48,000+ A4 무료 인쇄 라이브러리",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- jsPDF CDN for A4 PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- 10,000+ High-Resolution Printable Sheets Manifest -->
+  <script src="sheets/library_manifest.js"></script>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0 !important; /* 브라우저 기본 머리글(날짜, 제목) 및 바닥글(URL, 페이지번호) 완전 제거 */
+    }
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0 !important;
+      }
+      *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+      }
+      nav, header, footer, aside, .no-print, button, input, .modal-backdrop, .controls-panel, .floating-toolbar, #modalBackdrop, #policyModalBackdrop {
+        display: none !important;
+      }
+      .printable-paper-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        padding: 6mm !important; /* 용지 여백 최소화 & 도안 최대 확장 */
+        box-sizing: border-box !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        background: #ffffff !important;
+        z-index: 999999 !important;
+      }
+      .printable-paper-container img,
+      .printable-paper-container canvas {
+        display: block !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        filter: none !important;
+      }
+    }
+    .touch-none { touch-action: none; }
+  </style>
+  <!-- GEO:JSONLD:START -->
+  <link rel="alternate" type="text/plain" href="llms.txt" title="LLM guide">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "ColorBob 온라인 색칠하기",
+      "url": "https://colorbob.com/",
+      "url": "/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web, Windows, macOS, Android, iOS",
+      "inLanguage": [
+        "ko",
+        "en",
+        "ja",
+        "zh"
+      ],
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "description": "53,190개 이상의 색칠공부 도안을 A4 무료 인쇄, PDF 저장, 브라우저 온라인 색칠로 제공",
+      "featureList": [
+        "A4 무료 인쇄",
+        "PDF 저장",
+        "이미지 다운로드",
+        "온라인 색칠(PC·모바일)",
+        "60색 팔레트",
+        "4개 언어 지원"
+      ],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": [
+          "student",
+          "parent",
+          "teacher"
+        ]
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "색칠공부 도안 테마 목록",
+      "numberOfItems": 12,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "사물·탈것·음식 (17,889개)",
+          "url": "/?theme=objects"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "동물·공룡 (14,216개)",
+          "url": "/?theme=animals"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "캐릭터·애니메이션 (11,699개)",
+          "url": "/?theme=characters"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "인물·직업 (2,644개)",
+          "url": "/?theme=people"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "기념일·시즌 (1,937개)",
+          "url": "/?theme=holidays"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "학습·교육놀이 (1,729개)",
+          "url": "/?theme=learning"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "만다라 & 힐링 아트 (1,686개)",
+          "url": "/?theme=mandala"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "스포츠 (980개)",
+          "url": "/?theme=sports"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "한국 전통 (279개)",
+          "url": "/?theme=korea"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "미로 찾기 (144개)",
+          "url": "/?theme=maze"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "스도쿠 퍼즐 (50개)",
+          "url": "/?theme=sudoku"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "단어 학습 (20개)",
+          "url": "/?theme=words"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ColorBob은 어떤 사이트인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ColorBob(colorbob.com)은 62,000개 이상의 색칠공부 도안을 A4로 무료 인쇄하거나 브라우저에서 바로 색칠할 수 있는 도안 라이브러리입니다. 캐릭터, 동물·공룡, 탈것, 인물·직업, 학습, 기념일, 스포츠, 성인 만다라 등 12개 테마로 분류되어 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "도안은 정말 무료인가요? 회원가입이 필요한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "모든 도안은 회원가입 없이 무료로 인쇄, PDF 저장, 이미지 다운로드할 수 있습니다. 가정, 학교, 어린이집 등 비영리 교육 목적으로 자유롭게 이용할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "온라인으로 바로 색칠할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네. 도안의 \"색칠하기\" 버튼을 누르면 PC와 모바일(터치)에서 바로 색칠할 수 있습니다. 24색 기본 팔레트와 36색 추가 팔레트, 펜 두께·투명도 조절, 지우개를 지원하며 완성본은 컬러로 인쇄하거나 이미지로 다운로드할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A4 용지에 맞게 인쇄되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네. \"인쇄\" 또는 \"A4 인쇄\" 버튼을 누르면 머리글·바닥글 없이 A4 세로 용지에 맞게 도안이 최대 크기로 인쇄됩니다. PDF 파일로도 저장할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 언어를 지원하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "한국어, 영어, 일본어, 중국어 4개 언어를 지원하며 모든 도안 제목이 4개 언어로 제공됩니다. 주소 뒤에 ?lang=en, ?lang=ja, ?lang=zh 를 붙이면 해당 언어로 열립니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "원하는 도안을 바로 찾으려면 어떻게 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "상단 검색창에 캐릭터 이름이나 동물 종명(예: 피카츄, 티라노사우루스, 소방차)을 입력하세요. 주소에 ?q=검색어 또는 ?theme=animals 처럼 붙이면 검색 결과와 테마로 바로 이동합니다."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!-- GEO:JSONLD:END -->
+</head>
+<body class="bg-[#FAFAFA] text-zinc-900 font-sans antialiased min-h-screen flex flex-col selection:bg-zinc-200">
+
+  <!-- 인쇄 전용 숨김 컨테이너 -->
+  <div id="printContainer" class="printable-paper-container hidden"></div>
+
+  <!-- ========================================== -->
+  <!-- 1. 헤더 (시원한 폰트 & 심플 워드마크) -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- 로고 -->
+        <div class="flex items-center gap-3.5 shrink-0 cursor-pointer" onclick="resetFilters()">
+          <div class="w-11 h-11 rounded-xl bg-zinc-950 text-white flex items-center justify-center font-black text-sm tracking-widest shadow-xs">
+            CB
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="brandName" class="font-black text-xl sm:text-2xl tracking-tight text-zinc-950">
+                ColorBob
+              </span>
+              <span class="text-[11px] font-bold text-zinc-500 bg-zinc-100 border border-zinc-200/80 px-1.5 py-0.5 rounded-md">
+                .com
+              </span>
+            </div>
+            <p id="brandTagline" class="text-xs sm:text-sm text-zinc-500 hidden sm:block tracking-normal font-medium">
+              무료 색칠공부 & 교육 워크시트 라이브러리
+            </p>
+          </div>
+        </div>
+
+        <!-- 검색창 & 검색 버튼 -->
+        <div class="flex-1 max-w-lg mx-3 sm:mx-6">
+          <form onsubmit="event.preventDefault(); triggerSearch();" class="flex items-center gap-2">
+            <div class="relative flex-1">
+              <svg class="w-4 h-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                id="searchInput"
+                oninput="handleSearchInput(this.value)"
+                placeholder="도안 검색 (공룡, 강아지, 자동차, 공주, 호랑이, 만다라 등)..."
+                class="w-full pl-11 pr-4 py-2.5 text-sm sm:text-base bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900 border border-zinc-200 rounded-xl transition-all shadow-2xs"
+              />
+            </div>
+            <button
+              type="submit"
+              class="px-4 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95"
+            >
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span id="btnSearchLabel">검색</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- 문의 링크 및 바로 보이는 4개국어 세그먼트 스위처 -->
+        <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          <a href="photo-to-coloring.html" id="navPhotoConvert" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-zinc-950 text-white hover:bg-zinc-800 transition whitespace-nowrap">
+            무료 사진 도안 변환
+          </a>
+          <a href="contact.html" id="navGeneralContact" class="hidden sm:inline-block px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-700 bg-zinc-100 hover:bg-zinc-200 transition whitespace-nowrap">
+            문의하기
+          </a>
+
+          <!-- 컴팩트 국기 드롭다운 언어 스위처 (PC/모바일 헤더 공간 최소화) -->
+          <div id="langSwitcher" class="relative">
+            <button type="button" id="langDropdownBtn" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false" aria-label="Language selection"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white hover:bg-zinc-50 border border-zinc-200 rounded-xl shadow-2xs transition cursor-pointer">
+              <span id="currentLangFlag" class="inline-flex items-center justify-center w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0"></span>
+              <svg id="langChevron" class="w-3.5 h-3.5 text-zinc-500 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div id="langDropdownMenu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-zinc-200 rounded-2xl shadow-lg py-1.5 z-50">
+              <button type="button" onclick="selectLangFromMenu('ko')" data-lang="ko" class="lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-bold text-zinc-950 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="ko"></span><span>한국어</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('en')" data-lang="en" class="lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="en"></span><span>English</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('ja')" data-lang="ja" class="lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="ja"></span><span>日本語</span>
+              </button>
+              <button type="button" onclick="selectLangFromMenu('zh')" data-lang="zh" class="lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition">
+                <span class="lang-flag-slot inline-flex w-5 h-3.5 rounded-[3px] overflow-hidden border border-zinc-200 shrink-0" data-flag="zh"></span><span>中文 (中国)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 2. 카테고리 탭 (큼직한 크기) -->
+  <!-- ========================================== -->
+  <!-- ========================================== -->
+  <!-- 2. 테마 필터 바 (한눈에 전체 보기 모던 칩 스타일) -->
+  <!-- ========================================== -->
+  <nav class="bg-white/95 backdrop-blur-md border-b border-zinc-200/80 py-2.5 sm:py-3 px-3 sm:px-6 lg:px-8 no-print sticky top-20 z-30 shadow-2xs">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 py-0.5" id="themeFilterBar">
+      <!-- 테마 필터 캡슐 동적 렌더링 -->
+    </div>
+  </nav>
+
+  <!-- ========================================== -->
+  <!-- 3. 컴팩트 인트로 헤더 (좌 72% 인트로 + 우 28% 무료 사진 도안 변환 배너 카드) -->
+  <!-- ========================================== -->
+  <section class="bg-white border-b border-zinc-200 py-4 sm:py-5 px-4 sm:px-6 lg:px-8 no-print">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-6">
+      <!-- 좌측 인트로 & 인기 검색 (약 72%) -->
+      <div class="flex-1 text-center lg:text-left space-y-1.5 sm:space-y-2">
+        <h1 id="heroTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-zinc-950 tracking-tight leading-tight">
+          무료 색칠공부 &amp; 교육 도안
+        </h1>
+        <p id="heroDesc" class="text-xs sm:text-sm text-zinc-500 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          100% 무료 도안이며 가정, 개인 및 교육 목적으로 자유롭게 이용 가능합니다. A4로 바로 인쇄하거나 브라우저에서 직접 색칠해 보세요.
+        </p>
+
+        <!-- 실시간 검색 유입 인기 키워드 칩 (4개 국어 동적 렌더링) -->
+        <div id="popularSearchesContainer" class="pt-0.5 flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5 flex-wrap text-[11px] sm:text-xs text-zinc-500">
+        </div>
+      </div>
+
+      <!-- 우측 28~30% 비중: 둥근 박스 없이 세로 구분선으로만 나눈 와이드 무료 사진 도안 변환 영역 -->
+      <a href="photo-to-coloring.html" class="w-full lg:w-[340px] xl:w-[380px] shrink-0 group flex items-center gap-4 pt-3 lg:pt-0 lg:pl-7 border-t lg:border-t-0 lg:border-l border-zinc-200 transition">
+        <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-lg overflow-hidden border border-zinc-200 shrink-0 bg-white shadow-2xs">
+          <img src="sheets/samples/sample_portrait_split.jpg" alt="무료 사진 도안 변환" class="w-full h-full object-cover group-hover:scale-105 transition duration-200">
+        </div>
+        <div class="flex-1 min-w-0 text-left space-y-1">
+          <div id="heroPhotoBadge" class="inline-block text-[10px] font-bold text-white bg-zinc-950 px-2 py-0.5 rounded">FREE</div>
+          <div id="heroPhotoTitle" class="text-sm sm:text-base font-black text-zinc-950 group-hover:underline underline-offset-4">무료 사진 도안 변환</div>
+          <div id="heroPhotoDesc" class="text-xs text-zinc-500 leading-relaxed">내 사진을 1초 만에 색칠 도안으로 &rarr;</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- [메인 페이지 좌측 고정 날개 배너 (160x600)] -->
+  <aside class="hidden min-[1520px]:block fixed top-44 left-3 2xl:left-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" aria-label="좌측 광고 배너">
+    <div class="w-full h-full bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs flex flex-col justify-between hover:border-zinc-400 transition">
+      <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
+      <div class="my-auto py-8 text-zinc-400">
+        <svg class="w-6 h-6 mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span id="bannerSideTitleLeft" class="text-zinc-800 font-bold text-xs">스폰서 광고 영역</span>
+        <span id="bannerSideDescLeft" class="text-[10px] text-zinc-400 mt-1 block leading-tight">160×600<br>구글 애드센스 및<br>직접 광고 스폰서</span>
+      </div>
+      <div class="w-full pt-2 border-t border-zinc-100">
+        <span id="bannerSideSubLeft" class="text-[10px] text-zinc-400 font-medium block mb-1.5">광고 제휴</span>
+        <a href="contact.html?type=ad" id="bannerSideBtnLeft" class="block w-full py-1.5 px-2 bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] font-bold rounded-lg transition text-center shadow-2xs">
+          광고 문의 바로가기 &rarr;
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- [메인 페이지 우측 고정 날개 배너 (160x600)] -->
+  <aside class="hidden min-[1520px]:block fixed top-44 right-3 2xl:right-6 z-20 w-[140px] 2xl:w-[160px] h-[600px] select-none no-print" aria-label="우측 광고 배너">
+    <div class="w-full h-full bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs flex flex-col justify-between hover:border-zinc-400 transition">
+      <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
+      <div class="my-auto py-8 text-zinc-400">
+        <svg class="w-6 h-6 mx-auto mb-2 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span id="bannerSideTitleRight" class="text-zinc-800 font-bold text-xs">스폰서 광고 영역</span>
+        <span id="bannerSideDescRight" class="text-[10px] text-zinc-400 mt-1 block leading-tight">160×600<br>구글 애드센스 및<br>직접 광고 스폰서</span>
+      </div>
+      <div class="w-full pt-2 border-t border-zinc-100">
+        <span id="bannerSideSubRight" class="text-[10px] text-zinc-400 font-medium block mb-1.5">광고 제휴</span>
+        <a href="contact.html?type=ad" id="bannerSideBtnRight" class="block w-full py-1.5 px-2 bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] font-bold rounded-lg transition text-center shadow-2xs">
+          광고 문의 바로가기 &rarr;
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- 4. 도안 카드 반응형 그리드 -->
+  <!-- ========================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 no-print">
+    <div id="resultHeader" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 mb-6 scroll-mt-36">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <div class="text-sm sm:text-base font-semibold text-zinc-600">
+          <span id="itemCount" class="text-zinc-950 font-black text-lg sm:text-xl mr-1">0</span>
+          <span id="itemCountLabel">개 도안</span>
+        </div>
+        <span class="hidden sm:inline text-zinc-300">·</span>
+        <!-- 라이브 업데이트 알림 배지 (초록색 펄스 인디케이터 + 실시간 업데이트 안내) -->
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200/80 rounded-full text-[11px] sm:text-xs text-emerald-800 font-medium shadow-2xs">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+          <span id="updateNotice">매일 신규 도안 업데이트 중 · 최근: 2026.11.23</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- JS로 동적 렌더링 -->
+    </div>
+
+    <!-- 2만 개 대용량 지원 페이지네이션 컨트롤러 -->
+    <div id="paginationContainer" class="mt-12 pt-8 border-t border-zinc-200 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div id="paginationInfo" class="text-sm font-medium text-zinc-600"></div>
+      <div id="paginationControls" class="flex items-center gap-1.5 flex-wrap justify-center"></div>
+    </div>
+
+    <!-- [메인 페이지 스폰서 광고 배너 영역 (반응형 728x90, 300x250)] -->
+    <section class="mt-12 mb-2 no-print" aria-label="스폰서 광고">
+      <div class="w-full bg-white border border-dashed border-zinc-300 rounded-3xl p-5 sm:p-6 text-center shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4 min-h-[105px] sm:min-h-[125px] hover:border-zinc-400 transition">
+        <div class="flex flex-col sm:flex-row items-center gap-3 text-left">
+          <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">ADVERTISEMENT</span>
+            <span id="bannerBottomTitle" class="text-zinc-900 font-bold text-sm">스폰서 광고 제휴 영역</span>
+            <span id="bannerBottomDesc" class="text-zinc-400 text-xs block">(구글 애드센스 반응형 728×90, 300×250 / 카카오 애드핏 및 직접 배너 연동 영역)</span>
+          </div>
+        </div>
+        <a href="contact.html?type=ad" id="bannerBottomBtn" class="shrink-0 py-2.5 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl shadow-xs transition">
+          광고 제휴 문의 &rarr;
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 5. 고화질 뷰어 & 인쇄/다운로드/대화면 색칠 모달 -->
+  <!-- ========================================== -->
+  <div id="modalBackdrop" class="fixed inset-0 z-50 bg-zinc-950/80 flex items-center justify-center p-0 sm:p-3 hidden no-print">
+    <div id="modalCard" class="relative w-full max-w-full h-full max-h-full sm:max-w-[98vw] sm:h-[96vh] bg-white border border-zinc-200 rounded-none sm:rounded-2xl shadow-xl overflow-hidden flex flex-col select-none">
+      
+      <!-- [최우측 상단 닫기 X 버튼] 어떤 화면에서도 맨 오른쪽 맨 위에 항상 1순위 고정 -->
+      <button onclick="closeModal()" class="absolute top-2.5 right-2.5 sm:top-3 sm:right-4 z-50 w-8 h-8 sm:w-9 sm:h-9 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 rounded-xl flex items-center justify-center transition-transform active:scale-90 border border-zinc-200 shadow-xs cursor-pointer" title="닫기 (ESC)">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- [헤더 1행: 타이틀 및 핵심 액션 바 - 화이트 모드] -->
+      <div class="h-11 sm:h-12 px-3 sm:px-5 bg-white border-b border-zinc-200 flex items-center justify-between shrink-0 pr-12 sm:pr-16">
+        <!-- 도안 제목 -->
+        <div class="flex items-center min-w-0 mr-2">
+          <h2 id="modalTitle" class="text-xs sm:text-base font-bold text-zinc-950 truncate max-w-[200px] xs:max-w-[320px] sm:max-w-md">도안 색칠하기</h2>
+        </div>
+
+        <!-- 액션 버튼 그룹 (PDF, 다운로드, A4 인쇄) -->
+        <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+          <button onclick="downloadPdfCurrentItem()" class="px-2 sm:px-2.5 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-xs font-semibold rounded-lg border border-zinc-200 flex items-center gap-1 transition-colors cursor-pointer" title="PDF 다운로드">
+            <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="hidden xs:inline">PDF</span>
+          </button>
+
+          <button onclick="downloadPngCurrentItem()" class="px-2.5 sm:px-3 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold rounded-lg border border-zinc-200 flex items-center gap-1 transition-colors cursor-pointer" title="이미지 다운로드">
+            <svg class="w-3.5 h-3.5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span id="btnModalPng">다운로드</span>
+          </button>
+
+          <button onclick="printCurrentItem()" class="px-2.5 sm:px-3.5 py-1 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-bold rounded-lg shadow-xs flex items-center gap-1 transition-transform active:scale-95 border border-zinc-950 cursor-pointer">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span id="btnModalPrint">A4 인쇄</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- [헤더 2행: 채색 툴바 - 화이트 모드] 모바일 2단 구성 & 데스크톱 한눈에 보기 최적화 -->
+      <div class="px-2.5 sm:px-5 py-1.5 sm:py-2 bg-zinc-50 border-b border-zinc-200 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-1.5 sm:gap-3 shrink-0">
+        
+        <!-- 1단 (좌측): 펜/지우개 + 24색 원형 팔레트 (모바일 가로 스와이프 지원) -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          <div class="flex items-center bg-zinc-200/80 p-0.5 rounded-lg border border-zinc-300/80 shrink-0">
+            <button id="btnToolBrush" onclick="setTool('brush')" class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors bg-white text-zinc-950 shadow-xs">
+              펜
+            </button>
+            <button id="btnToolEraser" onclick="setTool('eraser')" class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors text-zinc-600 hover:text-zinc-950">
+              지우개
+            </button>
+          </div>
+
+          <!-- 24색 + 커스텀 컬러 피커 팔레트 -->
+          <div class="flex items-center gap-1.5 shrink-0 py-0.5 pr-1" id="paletteBar"></div>
+        </div>
+
+        <!-- 2단 (우측): 두께 + 투명도 + 다시 칠하기 -->
+        <div class="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 shrink-0 border-t border-zinc-200/80 lg:border-t-0 pt-1 lg:pt-0">
+          <!-- 두께 조절 슬라이더 & 원형 1:1 실시간 프리뷰 점 -->
+          <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <span id="labelBrushSize" class="text-[11px] sm:text-xs text-zinc-500 font-medium">두께</span>
+            <span class="text-[11px] sm:text-xs text-zinc-900 font-bold min-w-[22px]" id="brushSizeLabel">24px</span>
+            <input type="range" min="6" max="80" value="24" id="brushSlider" oninput="changeBrushSize(this.value)" class="w-14 sm:w-20 accent-zinc-900 cursor-pointer h-1.5 bg-zinc-200 rounded-lg">
+            <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-white border border-zinc-300 flex items-center justify-center overflow-hidden shrink-0" title="현재 펜 굵기">
+              <div id="brushSizePreviewDot" class="rounded-full" style="width: 10px; height: 10px; background-color: #EF4444;"></div>
+            </div>
+          </div>
+
+          <!-- 투명도 조절 슬라이더 -->
+          <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <span id="labelBrushOpacity" class="text-[11px] sm:text-xs text-zinc-500 font-medium">투명도</span>
+            <span class="text-[11px] sm:text-xs text-zinc-900 font-bold min-w-[28px]" id="brushOpacityLabel">100%</span>
+            <input type="range" min="15" max="100" value="100" id="opacitySlider" oninput="changeBrushOpacity(this.value)" class="w-14 sm:w-20 accent-zinc-900 cursor-pointer h-1.5 bg-zinc-200 rounded-lg">
+          </div>
+
+          <!-- 다시 칠하기 리셋 -->
+          <button id="btnResetDrawing" onclick="resetCanvasDrawing()" class="px-2 sm:px-2.5 py-1 bg-white hover:bg-zinc-100 text-zinc-700 text-[11px] sm:text-xs font-semibold rounded-lg border border-zinc-300 transition-colors shrink-0 shadow-2xs cursor-pointer">
+            다시 칠하기
+          </button>
+        </div>
+      </div>
+
+      <!-- [모달 본문: 대화면 꽉 찬 캔버스 뷰어 + 좌우 스폰서 광고 배너] -->
+      <div id="modalBody" class="flex-1 overflow-hidden p-1 sm:p-3 bg-zinc-100 flex items-center justify-center gap-3 xl:gap-5 relative select-none">
+        
+        <!-- 좌측 광고 배너 (160×600 스폰서 슬롯, 대화면 노출) -->
+        <aside id="modalLeftBanner" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
+          <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">SPONSOR</span>
+          <div class="flex flex-col items-center gap-2 my-auto text-zinc-500">
+            <svg class="w-6 h-6 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span id="modalLeftAdTitle" class="text-xs font-bold text-zinc-800 modal-ad-title">스폰서 광고 영역</span>
+            <span id="modalLeftAdDesc" class="text-[10px] text-zinc-400 leading-tight">160 × 600<br>구글 애드센스 배너</span>
+          </div>
+          <a id="modalLeftAdLink" href="contact.html?type=ad" class="text-[10px] text-zinc-500 hover:text-zinc-950 underline underline-offset-2">광고 제휴 문의 →</a>
+        </aside>
+
+        <!-- 중앙 캔버스 래퍼 (초고속 직결 desynchronized 0ms 드로잉 엔진) -->
+        <div id="viewerContainer" class="flex-1 h-full flex items-center justify-center relative overflow-hidden">
+          <!-- [숫자별 색칠놀이(Color by Number) 전용 안내 가이드 배너] -->
+          <div id="cbnGuideBanner" class="hidden absolute top-2 sm:top-3 z-30 max-w-lg sm:max-w-xl mx-2 sm:mx-auto px-3.5 py-2 bg-amber-500/95 text-white backdrop-blur-md rounded-xl sm:rounded-full shadow-lg border border-amber-400/80 flex items-center justify-between gap-2.5 transition-all text-[11px] sm:text-xs font-medium pointer-events-auto select-none">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="text-base sm:text-lg leading-none shrink-0">🔢</span>
+              <span id="cbnGuideText" class="leading-tight"></span>
+            </div>
+            <button onclick="document.getElementById('cbnGuideBanner').classList.add('hidden')" class="w-5 h-5 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center shrink-0 cursor-pointer text-xs ml-1" title="가이드 닫기">✕</button>
+          </div>
+
+          <div id="canvasContainer" class="relative inline-flex items-center justify-center max-w-full max-h-full rounded-xl overflow-hidden bg-white border border-zinc-300" style="touch-action: none; contain: layout paint;">
+            <!-- 1. 채색 레이어 (0.00ms 하드웨어 가속 직결) -->
+            <canvas id="paintCanvas" class="block max-h-[calc(100vh-142px)] sm:max-h-[84vh] max-w-full lg:max-w-[65vw] xl:max-w-[70vw] w-auto h-auto touch-none" style="touch-action: none; -webkit-touch-callout: none;"></canvas>
+            <!-- 2. 도안 외곽선 오버레이 (투명 PNG 모드로 GPU 렉 0% & 선화 최상단 완벽 보존) -->
+            <canvas id="overlayCanvas" class="pointer-events-none absolute inset-0 w-full h-full touch-none" style="touch-action: none;"></canvas>
+          </div>
+
+          <!-- 무지개 추가 색상 선택 팝업 (화이트 모드) -->
+          <div id="customColorPopover" class="hidden absolute top-2 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md border border-zinc-200 rounded-2xl p-3 shadow-2xl w-[280px] sm:w-[320px] select-none">
+            <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-zinc-100">
+              <span id="popoverTitle" class="text-xs font-bold text-zinc-900">추가 색상 선택 (36색)</span>
+              <button id="popoverCloseBtn" onclick="toggleCustomColorPopover(event)" class="text-zinc-500 hover:text-zinc-950 text-xs font-bold px-2 py-0.5 rounded-md bg-zinc-100 hover:bg-zinc-200 cursor-pointer">닫기 ✕</button>
+            </div>
+            <div id="extendedPaletteGrid" class="grid grid-cols-9 gap-1.5 mb-2.5"></div>
+            <div class="flex items-center justify-between gap-2 pt-2 border-t border-zinc-100">
+              <span id="popoverFineTuneLabel" class="text-[11px] text-zinc-600 font-medium">미세 색상 직접 조절:</span>
+              <input type="color" id="nativeColorInput" value="#EF4444" oninput="selectCustomColorFromNative(this.value)" onchange="selectCustomColorFromNative(this.value)" class="w-16 h-7 rounded cursor-pointer bg-zinc-50 border border-zinc-300 p-0.5" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측 광고 배너 (160×600 스폰서 슬롯, 대화면 노출) -->
+        <aside id="modalRightBanner" class="hidden lg:flex flex-col items-center justify-between w-36 xl:w-40 h-[82vh] max-h-[600px] bg-white border border-dashed border-zinc-300 rounded-2xl p-3 text-center shadow-xs shrink-0 select-none no-print">
+          <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">ADVERTISEMENT</span>
+          <div class="flex flex-col items-center gap-2 my-auto text-zinc-500">
+            <svg class="w-6 h-6 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span id="modalRightAdTitle" class="text-xs font-bold text-zinc-800 modal-ad-title">스폰서 광고 영역</span>
+            <span id="modalRightAdDesc" class="text-[10px] text-zinc-400 leading-tight">160 × 600<br>카카오 애드핏 배너</span>
+          </div>
+          <span id="modalRightAdBadge" class="text-[9px] text-zinc-400">ColorBob Ad</span>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 푸터 & 법적 필수 메뉴 모달 -->
+  <!-- ========================================== -->
+  <!-- GEO:STATIC:START -->
+  <section id="geoGuide" class="no-print bg-white border-t border-zinc-200 px-4 py-12" aria-labelledby="geoGuideTitle">
+    <div class="max-w-5xl mx-auto grid gap-10 md:grid-cols-2 text-sm">
+      <div>
+        <h2 id="geoGuideTitle" class="text-lg font-bold tracking-tight text-zinc-950">테마별 색칠공부 도안</h2>
+        <p id="geoGuideSubtitle" class="mt-1 text-zinc-500">전체 도안 · A4 무료 인쇄 · 온라인 색칠하기</p>
+        <ul id="geoGuideThemeList" class="mt-4 grid grid-cols-2 gap-2 text-zinc-700"></ul>
+      </div>
+      <div>
+        <h2 id="faqTitle" class="text-lg font-bold tracking-tight text-zinc-950">자주 묻는 질문</h2>
+        <div id="faqContainer" class="mt-3"></div>
+      </div>
+    </div>
+  </section>
+  <!-- GEO:STATIC:END -->
+
+  <footer class="bg-white border-t border-zinc-200 py-10 px-4 text-center text-xs sm:text-sm text-zinc-500 space-y-4 no-print">
+    <div class="text-zinc-950 font-bold text-base tracking-tight">ColorBob<span class="text-zinc-400 font-normal text-xs ml-1.5">colorbob.com</span></div>
+    <p id="footerDescEl" class="text-zinc-600 max-w-xl mx-auto">100% 무료 도안이며 가정, 개인 및 교육 목적으로 자유롭게 이용 가능합니다.</p>
+    
+    <!-- 법적 필수 메뉴 및 문의 안내 -->
+    <div class="flex items-center justify-center gap-3 sm:gap-6 flex-wrap text-xs text-zinc-600 font-medium pt-2">
+      <a href="photo-to-coloring.html" id="footerPhotoConvert" class="hover:text-zinc-950 hover:underline transition-colors font-bold text-zinc-950">무료 사진 도안 변환</a>
+      <span class="text-zinc-300">|</span>
+      <a href="contact.html" id="footerContactGeneral" class="hover:text-zinc-950 hover:underline transition-colors font-medium">문의하기</a>
+      <span class="text-zinc-300">|</span>
+      <button onclick="openPolicyModal('terms')" id="footerLinkTerms" class="hover:text-zinc-950 hover:underline transition-colors">이용약관</button>
+      <span class="text-zinc-300">|</span>
+      <button onclick="openPolicyModal('privacy')" id="footerLinkPrivacy" class="hover:text-zinc-950 hover:underline transition-colors">개인정보처리방침</button>
+      <span class="text-zinc-300">|</span>
+      <button onclick="openPolicyModal('license')" id="footerLinkLicense" class="hover:text-zinc-950 hover:underline transition-colors">저작권 및 이용 라이선스</button>
+    </div>
+    
+    <!-- 캐릭터 저작권 및 비상업적 이용 면책 조항 (Legal Disclaimer) -->
+    <div class="max-w-3xl mx-auto p-4 rounded-2xl bg-zinc-50 border border-zinc-200 text-[11px] leading-relaxed text-zinc-500 text-left sm:text-center space-y-1.5">
+      <div id="footerDisclaimerTitle" class="font-semibold text-zinc-700">저작권 안내 및 공정이용 면책 조항 (CC0 및 창작물 안내)</div>
+      <p id="footerDisclaimerBody">본 웹사이트에 수록된 도안의 대부분은 국제 퍼블릭 도메인(CC0) 및 자유 이용 공공 라이선스를 기반으로 수집·제작되었습니다. 기타 일부 캐릭터 및 일러스트 이미지는 인터넷상에 공유된 원저작자를 알 수 없는 창작물들이 포함되어 있으며, 이는 영리 목적이 아닌 가정, 학교, 교육기관의 비영리 학습 및 개인적 창작 목적으로만 제공됩니다. 원저작자 또는 정당한 권리자가 요청할 경우 확인 즉시 수정 또는 삭제 처리됩니다.</p>
+      <div class="pt-1 flex items-center justify-center gap-1.5 text-zinc-400 text-xs">
+        <span id="footerDisclaimerContact">저작권 관련 문의:</span>
+        <a href="contact.html?type=copyright" id="footerDisclaimerContactBtn" class="text-zinc-500 hover:text-zinc-900 underline underline-offset-2 ml-0.5">
+          <span id="footerDisclaimerBtnLabel">문의</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="text-zinc-400 text-[11px] pt-1">
+      &copy; 2026 ColorBob (colorbob.com). All rights reserved. Free for education and personal projects.
+    </div>
+  </footer>
+
+  <!-- 제휴/이용약관/개인정보/저작권 전문 모달 -->
+  <div id="policyModalBackdrop" class="fixed inset-0 z-50 bg-zinc-950/70 backdrop-blur-xs flex items-center justify-center p-4 hidden no-print">
+    <div class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-zinc-200 overflow-hidden flex flex-col max-h-[85vh]">
+      <div class="px-6 py-4 border-b border-zinc-200 flex items-center justify-between">
+        <h3 id="policyModalTitle" class="text-lg font-black text-zinc-950">정책 안내</h3>
+        <button onclick="closePolicyModal()" class="p-2 text-zinc-400 hover:text-zinc-950 rounded-xl transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="policyModalBody" class="p-6 overflow-y-auto text-xs sm:text-sm text-zinc-700 leading-relaxed space-y-4">
+        <!-- 동적 삽입 -->
+      </div>
+      <div class="p-4 bg-zinc-50 border-t border-zinc-200 text-right">
+        <button onclick="closePolicyModal()" class="px-5 py-2 bg-zinc-950 text-white rounded-xl text-xs sm:text-sm font-bold shadow-xs hover:bg-zinc-800 transition-colors">
+          확인
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 6. 인라인 스크립트 (완벽한 1:1 좌표계 & 브러시 원형 가이드) -->
+  <!-- ========================================== -->
+  <script>
+    
+    // [I18N EXPANDED: 하단 동적 테마 가이드, 테마별 번역, 6대 FAQ, 모달 배너]
+    const I18N_GEO_THEMES = {
+      ko: {
+        title: '테마별 색칠공부 도안',
+        subtitle: '전체 {TOTAL}개 도안 · A4 무료 인쇄 · 온라인 색칠하기',
+        faqTitle: '자주 묻는 질문',
+        themes: {
+          objects: '사물·탈것·음식',
+          animals: '동물·공룡',
+          characters: '캐릭터·애니메이션',
+          people: '인물·직업',
+          holidays: '기념일·시즌',
+          learning: '학습·교육놀이',
+          mandala: '만다라 & 힐링 아트',
+          sports: '스포츠',
+          korea: 'K-POP & 한국 문화',
+          maze: '미로 찾기',
+          sudoku: '스도쿠 퍼즐',
+          words: '단어 학습'
+        },
+        modalAdLeft: '160 × 600<br>구글 애드센스 배너',
+        modalAdRight: '160 × 600<br>카카오 애드핏 배너',
+        modalAdContact: '광고 제휴 문의 →',
+        faqs: [
+          { q: 'ColorBob는 어떤 사이트인가요?', a: 'ColorBob는 {TOTAL}개 이상의 색칠공부 도안을 A4로 무료 인쇄하거나 브라우저에서 바로 색칠할 수 있는 글로벌 도안 라이브러리입니다. 동물·공룡, 탈것, 인물·직업, 학습, 기념일, 스포츠, K-POP, 만다라 등 12개 테마로 분류되어 있습니다.' },
+          { q: '도안은 정말 무료인가요? 회원가입이 필요한가요?', a: '모든 도안은 회원가입 없이 무료로 인쇄, PDF 저장, 이미지 다운로드할 수 있습니다. 가정, 학교, 어린이집 등 비영리 교육 목적으로 자유롭게 이용할 수 있습니다.' },
+          { q: '온라인으로 바로 색칠할 수 있나요?', a: '네. 도안의 "색칠하기" 버튼을 누르면 PC와 모바일(터치)에서 바로 색칠할 수 있습니다. 24색 기본 팔레트와 36색 추가 팔레트, 펜 두께·투명도 조절, 지우개를 지원하며 완성본은 컬러로 인쇄하거나 이미지로 다운로드할 수 있습니다.' },
+          { q: 'A4 용지에 맞게 인쇄되나요?', a: '네. "인쇄" 또는 "A4 인쇄" 버튼을 누르면 머리글·바닥글 없이 A4 세로 용지에 맞게 도안이 최대 크기로 인쇄됩니다. PDF 파일로도 저장할 수 있습니다.' },
+          { q: '어떤 언어를 지원하나요?', a: '한국어, 영어, 일본어, 중국어 4개 언어를 지원하며 모든 도안 제목이 4개 언어로 제공됩니다. 상단 언어 선택 메뉴에서 언제든지 언어를 변경할 수 있습니다.' },
+          { q: '원하는 도안을 바로 찾으려면 어떻게 하나요?', a: '상단 검색창에 동물 종명이나 사물 이름(예: 티라노사우루스, 소방차, 한복, 만다라)을 입력하세요. 주소에 ?q=검색어 또는 ?theme=animals 처럼 붙이면 검색 결과와 테마로 바로 이동합니다.' }
+        ]
+      },
+      en: {
+        title: 'Coloring Pages by Theme',
+        subtitle: 'Total {TOTAL} Sheets · Free A4 Print · Online Coloring',
+        faqTitle: 'Frequently Asked Questions',
+        themes: {
+          objects: 'Objects · Vehicles · Food',
+          animals: 'Animals & Dinosaurs',
+          characters: 'Characters & Anime',
+          people: 'People & Jobs',
+          holidays: 'Holidays & Seasons',
+          learning: 'Learning & Educational',
+          mandala: 'Mandala & Healing Art',
+          sports: 'Sports',
+          korea: 'K-POP & Korean Culture',
+          maze: 'Mazes & Puzzles',
+          sudoku: 'Sudoku Puzzles',
+          words: 'Word Learning'
+        },
+        modalAdLeft: '160 × 600<br>Google AdSense Banner',
+        modalAdRight: '160 × 600<br>Sponsor Ad Slot',
+        modalAdContact: 'Ad Inquiry →',
+        faqs: [
+          { q: 'What is ColorBob?', a: 'ColorBob is a global coloring library featuring over {TOTAL} printable pages and worksheets in standard A4 format, with browser-based online coloring. It includes 12 themes such as animals, vehicles, people, learning, holidays, sports, and mandala.' },
+          { q: 'Are all coloring pages free? Is sign-up required?', a: 'All coloring sheets are 100% free to print, save as PDF, and download without any account or registration. Free for family, school, and non-commercial educational use.' },
+          { q: 'Can I color them online directly?', a: 'Yes. Click the "Color Online" button to color directly on PC, tablet, and mobile touchscreens. It features 24 core shades, 36 extended colors, brush size & opacity sliders, eraser, and color download/print.' },
+          { q: 'Are the pages optimized for A4 printing?', a: 'Yes. Clicking "Print A4" scales the sheet perfectly to full-page A4 portrait without headers or footers. You can also save directly as PDF.' },
+          { q: 'Which languages are supported?', a: 'We support English, Korean, Japanese, and Chinese. All sheet titles are localized across all 4 languages. You can switch languages anytime from the header menu.' },
+          { q: 'How can I quickly find a specific sheet?', a: 'Type keywords into the search bar at the top (e.g. dinosaur, fire truck, princess, mandala). You can also filter directly using URL parameters like ?q=keyword or ?theme=animals.' }
+        ]
+      },
+      ja: {
+        title: 'テーマ別 ぬりえ図案一覧',
+        subtitle: '全 {TOTAL}枚の図案 · A4無料印刷 · オンラインぬりえ',
+        faqTitle: 'よくある質問 (FAQ)',
+        themes: {
+          objects: '物・乗り物・食べ物',
+          animals: '動物・恐竜',
+          characters: 'キャラクター・アニメ',
+          people: '人物・職業',
+          holidays: '祝日・季節',
+          learning: '学習・知育',
+          mandala: 'マンダラ＆ヒーリングアート',
+          sports: 'スポーツ',
+          korea: 'K-POP＆韓国文化',
+          maze: '迷路あそび',
+          dots: '点つなぎ',
+        colornumber: '数字塗り絵',
+        sudoku: '数独パズル',
+          words: 'ことば学習'
+        },
+        modalAdLeft: '160 × 600<br>Google AdSenseバナー',
+        modalAdRight: '160 × 600<br>スポンサー広告枠',
+        modalAdContact: '広告掲載のお問い合わせ →',
+        faqs: [
+          { q: 'ColorBobとはどのようなサイトですか？', a: 'ColorBobは、{TOTAL}枚以上のぬりえ図案をA4サイズで無料印刷したり、ブラウザ上で直接色塗りできるグローバル図案ライブラリです。動物・恐竜、乗り物、人物・職業、知育、マンダラなど12のテーマに分類されています。' },
+          { q: '図案は本当に無料ですか？会員登録は必要ですか？', a: 'すべての図案は会員登録不要で、無料で印刷、PDF保存、画像ダウンロードが可能です。ご家庭、学校、幼稚園・保育園など教育目的で自由にご利用いただけます。' },
+          { q: 'ブラウザでそのままオンラインで色塗りできますか？', a: 'はい。図案の「色塗り」ボタンを押すと、PCやスマホ・タブレットのタッチ操作で直接色塗りできます。24色の基本パレットと36色の拡張パレット、ペン太さ・透明度調整、消しゴムに対応し、完成作品の印刷・保存も可能です。' },
+          { q: 'A4用紙にぴったり印刷できますか？', a: 'はい。「A4印刷」ボタンを押すと、余計なヘッダーやフッターなしでA4縦向き用紙に最大サイズで綺麗に印刷されます。PDFとして保存することも可能です。' },
+          { q: '対応している言語は何ですか？', a: '日本語、英語、韓国語、中国語の4言語に対応しており、すべての図案タイトルが4言語で表示されます。画面右上の言語メニューからいつでも切り替え可能です。' },
+          { q: '欲しい図案をすぐに探すにはどうすればよいですか？', a: '上部の検索バーに動物の名前や乗り物（例：ティラノサウルス、消防車、プリンセス、マンダラ）を入力してください。?q=検索語 または ?theme=animals のようにURLから直接アクセスも可能です。' }
+        ]
+      },
+      zh: {
+        title: '按主题分类涂色线稿',
+        subtitle: '共 {TOTAL}张线稿 · A4免费打印 · 在线涂色',
+        faqTitle: '常见问题解答 (FAQ)',
+        themes: {
+          objects: '物品·交通·食物',
+          animals: '动物·恐龙',
+          characters: '角色·动漫',
+          people: '人物·职业',
+          holidays: '节日·季节',
+          learning: '学习·早教',
+          mandala: '曼陀罗·治愈艺术',
+          sports: '运动·体育',
+          korea: 'K-POP·韩国文化',
+          maze: '迷宫游戏',
+          sudoku: '数独谜题',
+          words: '单词学习'
+        },
+        modalAdLeft: '160 × 600<br>谷歌广告联盟横幅',
+        modalAdRight: '160 × 600<br>赞助展示位',
+        modalAdContact: '广告合作咨询 →',
+        faqs: [
+          { q: 'ColorBob 是一个怎样的网站？', a: 'ColorBob 是一个全球涂色线稿库，提供超过 {TOTAL} 张涂色画，支持标准 A4 免费打印或直接在浏览器中在线涂色。涵盖动物、载具、人物职业、早教、曼陀罗等 12 大主题。' },
+          { q: '这些线稿真的免费吗？需要注册账号吗？', a: '所有涂色线稿均完全免费，无需注册账号即可直接打印、保存为 PDF 或下载图片。适用于家庭、学校、幼儿园等非商业教育用途。' },
+          { q: '可以在线直接涂色吗？', a: '可以。点击“在线涂色”按钮即可在电脑或手机触控屏上直接涂色。提供 24 种基础颜色和 36 种扩展调色盘，支持画笔粗细、透明度调节、橡皮擦，并可直接彩色打印或保存成果。' },
+          { q: '适合使用 A4 纸张直接打印吗？', a: '是的。点击“A4 打印”即可自动适配 A4 竖版纸张满版清晰打印，无多余页眉页脚。同时支持直接另存为 PDF 文件。' },
+          { q: '支持哪些语言？', a: '支持中文、英语、韩语、日语 4 种语言，所有涂色线稿标题均提供多语言本地化。可在页面顶部的语言菜单中随时切换。' },
+          { q: '如何快速找到想要的涂色画？', a: '在顶部搜索栏输入关键词（例如霸王龙、消防车、公主、曼陀罗等）。也可以通过网址直接访问，例如 ?q=关键词 或 ?theme=animals。' }
+        ]
+      }
+    };
+
+    
+    // [동적 하단 테마 집계 및 4개 언어 렌더링 함수]
+    
+    const POPULAR_SEARCHES_DATA = {
+      ko: {
+        label: '인기 검색:',
+        tags: [
+          { label: '#공룡', q: '공룡' },
+          { label: '#자동차', q: '자동차' },
+          { label: '#소방관', q: '소방관' },
+          { label: '#강아지', q: '강아지' },
+          { label: '#고양이', q: '고양이' },
+          { label: '#공주', q: '공주' },
+          { label: '#비행기', q: '비행기' },
+          { label: '#한복', q: '한복' },
+          { label: '#만다라', q: '만다라' }
+        ],
+        popoverTitle: '추가 색상 선택 (36색)',
+        popoverClose: '닫기 ✕',
+        popoverFineTune: '미세 색상 직접 조절:'
+      },
+      en: {
+        label: 'Popular:',
+        tags: [
+          { label: '#Dinosaur', q: 'dinosaur' },
+          { label: '#Car', q: 'car' },
+          { label: '#Firefighter', q: 'firefighter' },
+          { label: '#Puppy', q: 'puppy' },
+          { label: '#Cat', q: 'cat' },
+          { label: '#Princess', q: 'princess' },
+          { label: '#Airplane', q: 'airplane' },
+          { label: '#Hanbok', q: 'hanbok' },
+          { label: '#Mandala', q: 'mandala' }
+        ],
+        popoverTitle: 'More Colors (36 Shades)',
+        popoverClose: 'Close ✕',
+        popoverFineTune: 'Custom Color Picker:'
+      },
+      ja: {
+        label: '人気検索:',
+        tags: [
+          { label: '#恐竜', q: '恐竜' },
+          { label: '#車', q: '車' },
+          { label: '#消防士', q: '消防士' },
+          { label: '#子犬', q: '子犬' },
+          { label: '#猫', q: '猫' },
+          { label: '#プリンセス', q: 'プリンセス' },
+          { label: '#飛行機', q: '飛行機' },
+          { label: '#韓服', q: '韓服' },
+          { label: '#マンダラ', q: 'マンダラ' }
+        ],
+        popoverTitle: 'カラーパレット (36色)',
+        popoverClose: '閉じる ✕',
+        popoverFineTune: 'カラーピッカー:'
+      },
+      zh: {
+        label: '热门搜索:',
+        tags: [
+          { label: '#恐龙', q: '恐龙' },
+          { label: '#汽车', q: '汽车' },
+          { label: '#消防员', q: '消防员' },
+          { label: '#小狗', q: '小狗' },
+          { label: '#猫咪', q: '猫咪' },
+          { label: '#公主', q: '公主' },
+          { label: '#飞机', q: '飞机' },
+          { label: '#韩服', q: '韩服' },
+          { label: '#曼陀罗', q: '曼陀罗' }
+        ],
+        popoverTitle: '选择扩展颜色 (36色)',
+        popoverClose: '关闭 ✕',
+        popoverFineTune: '自定义微调颜色:'
+      }
+    };
+
+    function renderPopularSearches(lang) {
+      const data = POPULAR_SEARCHES_DATA[lang] || POPULAR_SEARCHES_DATA.ko;
+      const c = document.getElementById('popularSearchesContainer');
+      if (c) {
+        let html = `<span class="text-zinc-400 font-semibold mr-0.5">${data.label}</span>`;
+        data.tags.forEach(t => {
+          html += `<button onclick="applyQuickSearch('${t.q}')" class="px-2 py-0.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-700 transition cursor-pointer">${t.label}</button>`;
+        });
+        c.innerHTML = html;
+      }
+      const pTitle = document.getElementById('popoverTitle');
+      if (pTitle) pTitle.textContent = data.popoverTitle;
+      const pClose = document.getElementById('popoverCloseBtn');
+      if (pClose) pClose.textContent = data.popoverClose;
+      const pFine = document.getElementById('popoverFineTuneLabel');
+      if (pFine) pFine.textContent = data.popoverFineTune;
+    }
+
+    function renderGeoGuide(lang) {
+      const geo = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const titleEl = document.getElementById('geoGuideTitle');
+      const subEl = document.getElementById('geoGuideSubtitle');
+      const listEl = document.getElementById('geoGuideThemeList');
+      if (!listEl) return;
+
+      // 실제 라이브러리 기반 테마별 도안 수량 집계
+      const themeOrder = ['objects', 'animals', 'characters', 'people', 'holidays', 'learning', 'mandala', 'sports', 'korea', 'maze', 'sudoku', 'words'];
+      const counts = {};
+      themeOrder.forEach(t => { counts[t] = 0; });
+      let totalCount = 0;
+
+      const sourceItems = (typeof items !== 'undefined' && items && items.length > 0)
+        ? items
+        : ((typeof window !== 'undefined' && (window.COLORING_LIBRARY || window.LIBRARY_MANIFEST)) || []);
+
+      if (sourceItems && sourceItems.length > 0) {
+        sourceItems.forEach(it => {
+          const th = (it.theme || 'objects').toLowerCase();
+          if (counts[th] !== undefined) {
+            counts[th]++;
+          } else {
+            counts.objects = (counts.objects || 0) + 1;
+          }
+          totalCount++;
+        });
+      } else {
+        // 폴백 기본 수치
+        totalCount = 62244;
+      }
+
+      if (titleEl) titleEl.textContent = geo.title;
+      if (subEl) {
+        subEl.textContent = geo.subtitle.replace('{TOTAL}', totalCount.toLocaleString());
+      }
+
+      let html = '';
+      themeOrder.forEach(th => {
+        const name = (geo.themes && geo.themes[th]) || th;
+        const cnt = (counts[th] || 0).toLocaleString();
+        html += `<li><a href="?theme=${th}" class="flex items-center justify-between px-3 py-2 rounded-lg border border-zinc-200 hover:border-zinc-400 hover:text-zinc-950 transition-colors"><span>${name}</span><span class="text-zinc-400 tabular-nums">${cnt}</span></a></li>`;
+      });
+      listEl.innerHTML = html;
+    }
+
+    // [자주 묻는 질문(FAQ) 4개 언어 동적 렌더링 함수]
+    function renderFaqs(lang) {
+      const geo = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const faqTitleEl = document.getElementById('faqTitle');
+      const container = document.getElementById('faqContainer');
+      if (!container) return;
+
+      if (faqTitleEl) faqTitleEl.textContent = geo.faqTitle;
+
+      const totalNum = ((typeof items !== 'undefined' && items && items.length > 0) ? items.length : 62244).toLocaleString();
+      let html = '';
+      (geo.faqs || []).forEach(f => {
+        const q = f.q;
+        const a = f.a.replace('{TOTAL}', totalNum);
+        html += `<details class="group border-b border-zinc-200 py-3"><summary class="cursor-pointer list-none flex items-center justify-between font-semibold text-zinc-900"><span>${q}</span><span class="text-zinc-400 group-open:rotate-45 transition-transform">+</span></summary><p class="mt-2 text-zinc-600 leading-relaxed">${a}</p></details>`;
+      });
+      container.innerHTML = html;
+    }
+
+    const i18n = {
+      ko: {
+        navGeneral: '문의하기',
+        navAd: '문의하기',
+        bannerSideTitle: '스폰서 광고 영역',
+        bannerSideDesc: '160×600<br>구글 애드센스 및<br>직접 광고 스폰서',
+        bannerSideSub: '광고 제휴',
+        bannerSideBtn: '문의하기 →',
+        bannerBottomTitle: '스폰서 광고 제휴 영역',
+        bannerBottomDesc: '(구글 애드센스 반응형 728×90, 300×250 / 카카오 애드핏 및 직접 배너 연동 영역)',
+        bannerBottomBtn: '문의하기 →',
+        footerBtnGeneral: '문의하기',
+        footerBtnAd: '문의하기',
+        modalAdTitle: '스폰서 광고',
+        modalAdPopupDesc: '(구글 애드센스 300×250 / 카카오 애드핏 연동)',
+        brandName: 'ColorBob',
+        brandTagline: '무료 색칠공부 & 교육 도안 라이브러리',
+        searchPlaceholder: '도안 검색 (공룡, 강아지, 자동차, 공주, 호랑이, 만다라 등)...',
+        heroTitle: '무료 색칠공부 & 교육 도안',
+        heroDesc: '100% 무료 도안이며 가정, 개인 및 교육 목적으로 자유롭게 이용 가능합니다. A4로 바로 인쇄하거나 브라우저에서 직접 색칠해 보세요.',
+        itemCountLabel: '개 도안',
+        updateNotice: '매일 신규 도안 업데이트 중 · 최근: {DATE}',
+        printNow: 'A4 인쇄',
+        downloadPdf: 'PDF 다운로드',
+        downloadPng: '다운로드',
+        colorOnline: '웹 색칠하기',
+        quickPrint: '인쇄',
+        quickColor: '색칠하기',
+        viewDetails: '상세보기',
+        tipsTitle: '인쇄 안내',
+        tip1: '인쇄 설정에서 "용지에 맞춤"을 선택하시면 여백 없이 깔끔하게 출력됩니다.',
+        specTitle: '도안 인쇄 사양',
+        specSize: '표준 A4 규격 (1240 x 1754 px)',
+        specDesc: '초고화질 무결점 흑백 선화 도안',
+        freeCommercialBadge: '무료 인쇄용 A4 300DPI',
+        onlineColorBadge: '웹 색칠 가능',
+        ageLabel: '연령:',
+        themeLabel: '카테고리:',
+        all: '전체',
+        toddler: '영유아 (1-3세)',
+        preschool: '유치원 (4-6세)',
+        kids: '어린이 (7-12세)',
+        adults: '성인 (힐링 & 만다라)',
+        characters: '캐릭터 & 애니',
+        learning: '학습 & 교육놀이',
+        people: '인물 & 직업',
+        animals: '동물 & 공룡',
+        objects: '사물 & 탈것 & 건축',
+        korea: 'K-POP & 한국 문화',
+        holidays: '기념일 & 할로윈',
+        sports: '운동 & 스포츠',
+        words: '단어 & 글자 학습',
+        mandala: '만다라 & 힐링 아트',
+        maze: '미로찾기',
+        patterns: '기하학 문양 & 도형',
+        dots: '점잇기 에듀',
+        colornumber: '번호 색칠놀이',
+        sudoku: '스도쿠 퍼즐',
+        page: '페이지',
+        prev: '이전',
+        next: '다음',
+        first: '처음',
+        last: '마지막',
+        btnSearch: '검색',
+        diffEasy: '쉬움',
+        diffMedium: '보통',
+        diffHard: '어려움',
+        diffDetailed: '정밀',
+        diffExpert: '전문가',
+        toolStudio: '색칠 스튜디오',
+        toolPen: '펜',
+        toolEraser: '지우개',
+        toolSize: '두께',
+        toolOpacity: '투명도',
+        toolReset: '다시 칠하기',
+        toolSave: '다운로드',
+        toolExit: '나가기',
+        footerDesc: '100% 무료 도안이며 가정, 개인 및 교육 목적으로 자유롭게 이용 가능합니다.',
+        footerPartnership: '제휴 및 문의',
+        footerTerms: '이용약관',
+        footerPrivacy: '개인정보처리방침',
+        footerLicense: '저작권 및 이용 라이선스',
+        footerDisclaimerTitle: '저작권 안내 및 공정이용 면책 조항 (CC0 및 창작물 안내)',
+        footerDisclaimerBody: '본 웹사이트에 수록된 도안의 대부분은 국제 퍼블릭 도메인(CC0) 및 자유 이용 공공 라이선스를 기반으로 수집·제작되었습니다. 기타 일부 캐릭터 및 일러스트 이미지는 인터넷상에 공유된 원저작자를 알 수 없는 창작물들이 포함되어 있으며, 이는 영리 목적이 아닌 가정, 학교, 교육기관의 비영리 학습 및 개인적 창작 목적으로만 제공됩니다. 원저작자 또는 정당한 권리자가 요청할 경우 확인 즉시 수정 또는 삭제 처리됩니다.',
+        footerDisclaimerContact: '저작권 관련 문의:',
+        footerDisclaimerBtn: '문의',
+        a4Printable: 'A4 인쇄용'
+      },
+      en: {
+        navGeneral: 'Contact Us',
+        navAd: 'Contact Us',
+        bannerSideTitle: 'Sponsored Ad Area',
+        bannerSideDesc: '160×600<br>Google AdSense &<br>Direct Sponsor',
+        bannerSideSub: 'Ad Partnership',
+        bannerSideBtn: 'Contact Us →',
+        bannerBottomTitle: 'Sponsor & Advertising Partnership',
+        bannerBottomDesc: '(Google AdSense Responsive 728×90, 300×250 / Direct Banner Space)',
+        bannerBottomBtn: 'Contact Us →',
+        footerBtnGeneral: 'Contact Us',
+        footerBtnAd: 'Contact Us',
+        modalAdTitle: 'Sponsored Ad',
+        modalAdPopupDesc: '(Google AdSense 300×250 / Sponsor Ads)',
+        brandName: 'ColorBob',
+        brandTagline: 'Free Printable Coloring & Worksheets',
+        searchPlaceholder: 'Search sheets (dinosaur, puppy, cars, princess, mandala)...',
+        heroTitle: 'Printable Coloring Pages & Worksheets',
+        heroDesc: '100% free coloring sheets for personal, family, and educational use. Print on A4 or color directly in your browser.',
+        itemCountLabel: 'sheets',
+        updateNotice: 'New coloring sheets added daily · Updated: {DATE}',
+        printNow: 'Print A4',
+        downloadPdf: 'Download PDF',
+        downloadPng: 'Download',
+        colorOnline: 'Color Online',
+        quickPrint: 'Print',
+        quickColor: 'Color',
+        viewDetails: 'View',
+        tipsTitle: 'Printing Guide',
+        tip1: 'Select "Fit to Printable Area" in the print dialog for optimal margins.',
+        specTitle: 'PRINTABLE SPECIFICATION',
+        specSize: 'Standard A4 (1240 x 1754 px)',
+        specDesc: 'Ultra-Clean High Definition Line Art',
+        freeCommercialBadge: 'Free Printable A4 300DPI',
+        onlineColorBadge: 'Color Online',
+        ageLabel: 'Age:',
+        themeLabel: 'Theme:',
+        all: 'All',
+        toddler: 'Toddlers (1-3)',
+        preschool: 'Preschool (4-6)',
+        kids: 'Kids (7-12)',
+        adults: 'Adults (Mandala)',
+        characters: 'Characters & Anime',
+        learning: 'Learning & Worksheets',
+        people: 'People & Jobs',
+        animals: 'Animals & Dinosaurs',
+        objects: 'Objects & Transport',
+        korea: 'K-POP & Korea',
+        holidays: 'Holidays & Halloween',
+        sports: 'Sports & Games',
+        words: 'Words & Phonics',
+        mandala: 'Mandala Patterns',
+        maze: 'Labyrinth Mazes',
+        patterns: 'Geometric Patterns',
+        dots: 'Connect Dots',
+        colornumber: 'Color by Number',
+        sudoku: 'Sudoku Puzzles',
+        page: 'Page',
+        prev: 'Prev',
+        next: 'Next',
+        first: 'First',
+        last: 'Last',
+        btnSearch: 'Search',
+        diffEasy: 'Easy',
+        diffMedium: 'Medium',
+        diffHard: 'Hard',
+        diffDetailed: 'Detailed',
+        diffExpert: 'Expert',
+        toolStudio: 'Coloring Studio',
+        toolPen: 'Pen',
+        toolEraser: 'Eraser',
+        toolSize: 'Size',
+        toolOpacity: 'Opacity',
+        toolReset: 'Reset',
+        toolSave: 'Download',
+        toolExit: 'Exit',
+        footerDesc: '100% free coloring sheets for personal and educational use.',
+        footerPartnership: 'Partnership & Inquiries',
+        footerTerms: 'Terms of Service',
+        footerPrivacy: 'Privacy Policy',
+        footerLicense: 'Copyright & License Guide',
+        footerDisclaimerTitle: 'Copyright & Fair Use Disclaimer',
+        footerDisclaimerBody: 'All trademarks, logos, and character designs featured on this website are the property of their respective copyright owners and creators. Character coloring sheets are provided strictly for non-commercial, personal, home schooling, and educational purposes. Content will be promptly removed upon request from verified rights holders.',
+        footerDisclaimerContact: 'Copyright inquiries:',
+        footerDisclaimerBtn: 'Inquiry',
+        a4Printable: 'Printable A4'
+      },
+      ja: {
+        navGeneral: 'お問い合わせ',
+        navAd: '広告掲載・提携',
+        bannerSideTitle: 'スポンサー広告枠',
+        bannerSideDesc: '160×600<br>Google AdSense・<br>公式スポンサー枠',
+        bannerSideSub: '広告掲載・提携',
+        bannerSideBtn: '広告のお問い合わせ →',
+        bannerBottomTitle: 'スポンサー広告・公式提携スペース',
+        bannerBottomDesc: '(Google AdSense レスポンシブ 728×90, 300×250 / 公式バナー広告連動)',
+        bannerBottomBtn: '広告掲載のお問い合わせ →',
+        footerBtnGeneral: '一般お問い合わせ',
+        footerBtnAd: '広告掲載・ビジネス提携',
+        modalAdTitle: 'スポンサー広告',
+        modalAdPopupDesc: '(Google AdSense 300×250 / スポンサー枠)',
+        brandName: 'ColorBob',
+        brandTagline: '無料の塗り絵・学習プリントライブラリ',
+        searchPlaceholder: 'ぬりえ検索 (恐竜、子犬、車、プリンセス、マンダラなど)...',
+        heroTitle: '無料の塗り絵・学習プリント',
+        heroDesc: '100%無料・個人・家庭および教育目的で自由に利用できる塗り絵です。A4で印刷するか、ブラウザでそのまま色塗りできます。',
+        itemCountLabel: '点',
+        updateNotice: '毎日新しい図案を更新中 · 最終更新: {DATE}',
+        printNow: 'A4 印刷',
+        downloadPdf: 'PDF ダウンロード',
+        downloadPng: 'ダウンロード',
+        colorOnline: 'WEBで色塗り',
+        quickPrint: '印刷',
+        quickColor: '色塗り',
+        viewDetails: '詳細を見る',
+        tipsTitle: '印刷ガイド',
+        tip1: '印刷ダイアログで「用紙に合わせる」を選択すると綺麗に出力されます。',
+        specTitle: '印刷仕様規格',
+        specSize: '標準 A4 規格 (1240 x 1754 px)',
+        specDesc: '超高精細 ベクターラインアート',
+        freeCommercialBadge: '印刷無料 A4 300DPI',
+        onlineColorBadge: 'WEB色塗り対応',
+        ageLabel: '年齢:',
+        themeLabel: 'テーマ:',
+        all: 'すべて',
+        toddler: '乳幼児 (1-3歳)',
+        preschool: '未就学児 (4-6歳)',
+        kids: '小学生 (7-12歳)',
+        adults: '大人 (マンダラ)',
+        characters: 'キャラクター・アニメ',
+        learning: '学習・知育ワーク',
+        people: '人物・職業',
+        animals: '動物 & 恐竜',
+        objects: '乗り物・建物・物',
+        korea: 'K-POP・韓国文化',
+        holidays: '記念日 & ハロウィン',
+        sports: 'スポーツ・運動',
+        words: '文字・単語・漢字',
+        mandala: 'マンダラ模様',
+        maze: '迷路ワークシート',
+        patterns: '幾何学模様',
+        dots: '点つなぎ',
+        colornumber: '番号ぬりえ',
+        sudoku: '数独パズル',
+        page: 'ページ',
+        prev: '前へ',
+        next: '次へ',
+        first: '最初',
+        last: '最後',
+        btnSearch: '検索',
+        diffEasy: 'かんたん',
+        diffMedium: 'ふつう',
+        diffHard: 'むずかしい',
+        diffDetailed: '精密',
+        diffExpert: '上級',
+        toolStudio: 'ぬりえスタジオ',
+        toolPen: 'ペン',
+        toolEraser: '消しゴム',
+        toolSize: '太さ',
+        toolOpacity: '透明度',
+        toolReset: 'やり直す',
+        toolSave: 'ダウンロード',
+        toolExit: '戻る',
+        footerDesc: '100%無料・個人・家庭および教育目的で自由に利用できる塗り絵ライブラリです。',
+        footerPartnership: '提携・お問い合わせ',
+        footerTerms: '利用規約',
+        footerPrivacy: '個人情報保護方針',
+        footerLicense: '著作権・利用規約',
+        footerDisclaimerTitle: '著作権に関するお知らせおよび免責事項（キャラクターの非商用利用）',
+        footerDisclaimerBody: '当サイトに掲載されているアニメ・ゲーム・マンガ等のキャラクターに関する著作権および商標権は、各著作権者および制作会社に帰属します。キャラクター図案は非営利の個人利用、家庭内学習、教育目的でのみご利用いただけます。権利者様からの要請があった場合、速やかに修正または削除対応いたします。',
+        footerDisclaimerContact: '著作権に関するお問い合わせ・権利侵害申告:',
+        footerDisclaimerBtn: '著作権・掲載取り下げのお問い合わせ →',
+        a4Printable: 'A4 印刷用'
+      },
+      zh: {
+        navGeneral: '常规咨询',
+        navAd: '广告投放合作',
+        bannerSideTitle: '赞助商广告位',
+        bannerSideDesc: '160×600<br>Google AdSense 及<br>官方赞助商广告',
+        bannerSideSub: '商务合作',
+        bannerSideBtn: '广告合作咨询 →',
+        bannerBottomTitle: '赞助商广告与商务合作',
+        bannerBottomDesc: '(Google AdSense 自适应 728×90, 300×250 / 官方定制横幅广告位)',
+        bannerBottomBtn: '广告合作咨询 →',
+        footerBtnGeneral: '常规咨询通道',
+        footerBtnAd: '广告与商务合作',
+        modalAdTitle: '赞助商广告',
+        modalAdPopupDesc: '(Google AdSense 300×250 / 赞助商广告)',
+        brandName: 'ColorBob',
+        brandTagline: '免费填色画与益智工作纸库',
+        searchPlaceholder: '搜索涂色卡 (恐龙、小狗、汽车、公主、曼陀罗等)...',
+        heroTitle: '免费填色图纸与练习纸',
+        heroDesc: '100%免费图纸，支持家庭、个人与教育机构自由打印与在线涂色。',
+        itemCountLabel: '款图纸',
+        updateNotice: '每日持续新增线稿 · 最近更新: {DATE}',
+        printNow: 'A4 打印',
+        downloadPdf: '下载 PDF',
+        downloadPng: '下载',
+        colorOnline: '在线涂色',
+        quickPrint: '打印',
+        quickColor: '涂色',
+        viewDetails: '查看详情',
+        tipsTitle: '打印说明',
+        tip1: '在打印窗口中选择“适合纸张大小”即可获得最佳边距。',
+        specTitle: '打印规格说明',
+        specSize: '标准 A4 规格 (1240 x 1754 px)',
+        specDesc: '超清高精度无瑕线稿',
+        freeCommercialBadge: '免费打印 A4 300DPI',
+        onlineColorBadge: '支持在线涂色',
+        ageLabel: '年龄:',
+        themeLabel: '主题:',
+        all: '全部',
+        toddler: '托幼 (1-3岁)',
+        preschool: '幼儿园 (4-6岁)',
+        kids: '小学 (7-12岁)',
+        adults: '成人 (曼陀罗)',
+        characters: '卡通角色与动漫',
+        learning: '益智学习与练习纸',
+        people: '人物与职业',
+        animals: '动物与恐龙',
+        objects: '物体·交通·建筑',
+        korea: 'K-POP 与韩国文化',
+        holidays: '节日与万圣节',
+        sports: '运动与体育',
+        words: '文字·汉字·拼音',
+        mandala: '曼陀罗花纹',
+        maze: '迷宫挑战纸',
+        patterns: '几何平铺艺术',
+        dots: '连点画',
+        colornumber: '数字填色',
+        sudoku: '数独益智题',
+        page: '页',
+        prev: '上一页',
+        next: '下一页',
+        first: '首页',
+        last: '末页',
+        btnSearch: '搜索',
+        diffEasy: '简单',
+        diffMedium: '中等',
+        diffHard: '困难',
+        diffDetailed: '精美',
+        diffExpert: '专家',
+        toolStudio: '填色工作台',
+        toolPen: '画笔',
+        toolEraser: '橡皮擦',
+        toolSize: '粗细',
+        toolOpacity: '不透明度',
+        toolReset: '重新填色',
+        toolSave: '下载',
+        toolExit: '退出',
+        footerDesc: '100%免费图纸，专为家庭、个人与教育用途提供。',
+        footerPartnership: '商务合作与咨询',
+        footerTerms: '使用条款',
+        footerPrivacy: '隐私政策',
+        footerLicense: '版权与使用许可说明',
+        footerDisclaimerTitle: '版权声明与非商业用途免责声明',
+        footerDisclaimerBody: '本网站收录的动漫、游戏、漫画等角色图纸的全部版权及商标权均归原版权方及制作机构所有。角色类图纸仅供非商业性质的个人欣赏、家庭涂色与儿童益智教育使用。如版权方提出要求，我们将第一时间进行核实并下架处理。',
+        footerDisclaimerContact: '版权争议咨询与侵权下架申请受理:',
+        footerDisclaimerBtn: '版权侵权与下架申诉咨询 →',
+        a4Printable: 'A4 打印版'
+      }
+    };
+
+    const fallbackItems = [
+      {
+        id: 'pd-mandala-001',
+        title: { ko: '초정밀 힐링 플라워 만다라 (5000px)', en: 'High-Res Floral Zen Mandala (5000px)', ja: '超高精細 フローラル曼荼羅', zh: '超高清花卉解压静心曼陀罗' },
+        ageCategory: 'adults',
+        theme: 'mandala',
+        difficulty: 'Detailed',
+        downloads: 28920,
+        imageSrc: 'sheets/mandala/mandala_001.png',
+        sourceTitle: 'Wikimedia Commons (5142 x 5162 px)'
+      },
+      {
+        id: 'pd-mandala-002',
+        title: { ko: '아즈나 명상 힐링 만다라', en: 'Ajna Meditation Chakra Mandala', ja: 'アジュナ瞑想チャクラ曼荼羅', zh: '阿基那冥想脉轮曼陀罗' },
+        ageCategory: 'adults',
+        theme: 'mandala',
+        difficulty: 'Detailed',
+        downloads: 19340,
+        imageSrc: 'sheets/mandala/mandala_002.png',
+        sourceTitle: 'Ajna-mandala-coloring-page'
+      },
+      {
+        id: 'pd-mandala-003',
+        title: { ko: '태양의 빛살 에너지 만다라', en: 'Sunburst Sacred Geometry Mandala', ja: '太陽の光線エナジー曼荼羅', zh: '太阳光芒能量几何曼陀罗' },
+        ageCategory: 'adults',
+        theme: 'mandala',
+        difficulty: 'Detailed',
+        downloads: 18760,
+        imageSrc: 'sheets/mandala/mandala_003.png',
+        sourceTitle: 'Sun-Mandala-Element'
+      },
+      {
+        id: 'pd-mandala-004',
+        title: { ko: '트라이앵글 기하학 만다라', en: 'Triangles Sacred Geometric Pattern', ja: 'トライアングル幾何学曼荼羅', zh: '三角形神圣几何曼陀罗' },
+        ageCategory: 'adults',
+        theme: 'mandala',
+        difficulty: 'Detailed',
+        downloads: 16180,
+        imageSrc: 'sheets/mandala/mandala_004.png',
+        sourceTitle: 'Geometric triangles mandala'
+      },
+      {
+        id: 'pd-animals-005',
+        title: { ko: '아구하케라톱스 뿔공룡 (국립공원)', en: 'Agujaceratops Horned Dinosaur (NPS)', ja: 'アグハケラトプス角竜', zh: '阿古哈角龙复原线稿' },
+        ageCategory: 'preschool',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 24600,
+        imageSrc: 'sheets/animals/animals_005.png',
+        sourceTitle: 'National Park Service (3300 x 2550 px)'
+      },
+      {
+        id: 'pd-animals-006',
+        title: { ko: '알라모사우루스 거대 초식공룡', en: 'Alamosaurus Giant Sauropod Dinosaur', ja: 'アラモサウルス超大型草食恐竜', zh: '阿拉莫龙巨型蜥脚恐龙' },
+        ageCategory: 'preschool',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 18020,
+        imageSrc: 'sheets/animals/animals_006.png',
+        sourceTitle: 'Cretaceous Sauropod Restoration'
+      },
+      {
+        id: 'pd-animals-007',
+        title: { ko: '안키사우루스 쥐라기 원시 초식공룡 (국립공원)', en: 'Anchisaurus Jurassic Herbivore Dinosaur (NPS)', ja: 'アンキサウルス ジュラ紀の草食恐竜', zh: '安奇龙侏罗纪植食性恐龙线稿' },
+        ageCategory: 'preschool',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 21440,
+        imageSrc: 'sheets/animals/animals_007.png',
+        sourceTitle: 'Anchisaurus polyzelus NPS Official (3300 x 2550 px)'
+      },
+      {
+        id: 'pd-animals-008',
+        title: { ko: '친데사우루스 쥐라기 육식공룡', en: 'Chindesaurus Carnivore Dinosaur', ja: 'チンデサウルス肉食恐竜', zh: '钦迪龙肉食恐龙' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 15860,
+        imageSrc: 'sheets/animals/animals_008.png',
+        sourceTitle: 'Triassic Carnivore Fossil Sheet'
+      },
+      {
+        id: 'pd-animals-009',
+        title: { ko: '귀여운 아기 고양이와 나비 (정통 선화)', en: 'Playful Kitten & Butterfly Line Art', ja: '可愛い子猫と蝶々のぬりえ', zh: '可爱小猫与蝴蝶简笔填色画' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 32280,
+        imageSrc: 'sheets/animals/animals_009.png',
+        sourceTitle: 'Chats-blancs Master Line Art (1920 x 1522 px)'
+      },
+      {
+        id: 'pd-animals-010',
+        title: { ko: '바다를 헤엄치는 돌고래 가족 (국립공원)', en: 'Dolphins Swimming in the Ocean (NPS)', ja: '海を泳ぐイルカのファミリー', zh: '欢腾海豚海洋世界涂色卡' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 19700,
+        imageSrc: 'sheets/animals/animals_010.png',
+        sourceTitle: 'National Park Service (1920 x 1484 px)'
+      },
+      {
+        id: 'pd-animals-011',
+        title: { ko: '귀여운 곱슬털 강아지 퍼피', en: 'Cute Fluffy Puppy Line Art', ja: '可愛いふわふわ子犬', zh: '可爱毛茸茸小狗狗' },
+        ageCategory: 'toddler',
+        theme: 'animals',
+        difficulty: 'Easy',
+        downloads: 26120,
+        imageSrc: 'sheets/animals/animals_011.png',
+        sourceTitle: 'Cute and Hairy Puppy (2333 x 2689 px)'
+      },
+      {
+        id: 'pd-animals-012',
+        title: { ko: '빙하기 거대 매머드 코끼리 (국립공원)', en: 'Columbian Mammoth Giant Elephant (NPS)', ja: 'コロンビアマンモス巨象のぬりえ', zh: '哥伦比亚猛犸巨象儿童涂色卡' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 14200,
+        imageSrc: 'sheets/animals/animals_012.png',
+        sourceTitle: 'Mammuthus columbi NPS Official Coloring Sheet (1920 x 1484 px)'
+      },
+      {
+        id: 'pd-animals-013',
+        title: { ko: '위엄 있는 사자 문장 엠블럼', en: 'Majestic Royal Lion Heraldic Crest', ja: '威厳ある王家のライオン紋章', zh: '威严皇家狮子徽章线描' },
+        ageCategory: 'adults',
+        theme: 'animals',
+        difficulty: 'Detailed',
+        downloads: 17350,
+        imageSrc: 'sheets/animals/animals_013.png',
+        sourceTitle: 'Thomas Bertheau Archive (3425 x 2307 px)'
+      },
+      {
+        id: 'pd-animals-014',
+        title: { ko: '달리는 야생마 펜화 드로잉', en: 'Dynamic Galloping Wild Horse', ja: '疾走する野生の馬', zh: '奔腾骏马写生线稿' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 21900,
+        imageSrc: 'sheets/animals/animals_014.png',
+        sourceTitle: 'Cavallo Coloring Book (3071 x 2363 px)'
+      },
+      {
+        id: 'pd-animals-015',
+        title: { ko: '고결한 명작 백마 초정밀 선화 (7000px)', en: 'Noble Stallion Masterpiece (7000px)', ja: '気高き白馬の超精細ペン画', zh: '高贵骏马大师级超清线稿 (7000px)' },
+        ageCategory: 'adults',
+        theme: 'animals',
+        difficulty: 'Detailed',
+        downloads: 34500,
+        imageSrc: 'sheets/animals/animals_015.png',
+        sourceTitle: 'Horse Coloring Page (7250 x 5805 px)'
+      },
+      {
+        id: 'pd-vehicles-016',
+        title: { ko: '질주하는 머스탱 스포츠카 (정통 선화)', en: 'Fast Mustang Sports Car Line Art', ja: 'マスタング スポーツカーのぬりえ', zh: '极速野马跑车涂色线描' },
+        ageCategory: 'kids',
+        theme: 'vehicles',
+        difficulty: 'Medium',
+        downloads: 22800,
+        imageSrc: 'sheets/vehicles/vehicles_016.png',
+        sourceTitle: 'Ford Mustang Coloring Page (1189 x 841 px)'
+      },
+      {
+        id: 'pd-vehicles-017',
+        title: { ko: '선사시대 검치호 고양이과 맹수 (국립공원)', en: 'Smilodon Saber-Toothed Cat (NPS Official)', ja: 'サーベルタイガー太古の猛獣', zh: '剑齿虎远古猛兽线描画' },
+        ageCategory: 'kids',
+        theme: 'animals',
+        difficulty: 'Medium',
+        downloads: 16400,
+        imageSrc: 'sheets/vehicles/vehicles_017.png',
+        sourceTitle: 'National Park Service (1804 x 1278 px)'
+      },
+      {
+        id: 'pd-cozy-018',
+        title: { ko: '호숫가의 우아한 백조와 연꽃 가든 (BCT)', en: 'Graceful Swan & Lotus Pond Botanical (BCT)', ja: '優美な白鳥と睡蓮のボタニカルアート', zh: '湖畔优雅天鹅与荷花池绘本线描' },
+        ageCategory: 'kids',
+        theme: 'cozy',
+        difficulty: 'Medium',
+        downloads: 18200,
+        imageSrc: 'sheets/cozy/cozy_018.png',
+        sourceTitle: 'Coloring Book BCT, 2017 (1920 x 1299 px)'
+      },
+      {
+        id: 'pd-cozy-019',
+        title: { ko: '이탈리아 1500년대 보태니컬 식물도감', en: 'Italian Renaissance Botanical Pumpkin Vine', ja: 'イタリア1500年代のボタニカル植物画', zh: '意大利文艺复兴植物图谱南瓜藤' },
+        ageCategory: 'adults',
+        theme: 'cozy',
+        difficulty: 'Detailed',
+        downloads: 23100,
+        imageSrc: 'sheets/cozy/cozy_019.png',
+        sourceTitle: 'BCT Archive (2232 x 3425 px)'
+      },
+      {
+        id: 'pd-cozy-020',
+        title: { ko: '에이다의 비밀 정원 플라워 가든 (7000px)', en: 'Garden of Ada Secret Botanical (7000px)', ja: 'エイダの秘密の庭園 ボタニカルアート', zh: '艾达的秘密花园植物花卉 (7000px)' },
+        ageCategory: 'adults',
+        theme: 'cozy',
+        difficulty: 'Detailed',
+        downloads: 36800,
+        imageSrc: 'sheets/cozy/cozy_020.png',
+        sourceTitle: 'Garden of Ada (4965 x 7040 px)'
+      }
+    ];
+
+    // 1만 개 대규모 도안 라이브러리 연동 (LIBRARY_MANIFEST 및 COLORING_LIBRARY 동시 지원)
+    const preloadedLibrary = (typeof window !== 'undefined' && (window.LIBRARY_MANIFEST || window.COLORING_LIBRARY)) || null;
+    let items = (preloadedLibrary && preloadedLibrary.length > 0)
+      ? preloadedLibrary
+      : fallbackItems;
+
+    function detectInitialLanguage() {
+      // 1. URL Query Parameter (?lang=en, ja, zh, ko)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const qLang = urlParams.get('lang');
+        if (qLang && ['ko', 'en', 'ja', 'zh'].includes(qLang.toLowerCase())) {
+          return qLang.toLowerCase();
+        }
+      } catch (e) {}
+
+      // 2. Saved user preference in localStorage
+      try {
+        const saved = localStorage.getItem('colorbob_preferred_lang');
+        if (saved && ['ko', 'en', 'ja', 'zh'].includes(saved)) {
+          return saved;
+        }
+      } catch (e) {}
+
+      // 3. User browser & system locale detection
+      try {
+        const browserLangs = (navigator.languages && navigator.languages.length > 0)
+          ? navigator.languages
+          : [navigator.language || navigator.userLanguage || ''];
+
+        for (const raw of browserLangs) {
+          if (!raw) continue;
+          const l = raw.toLowerCase();
+          if (l.startsWith('ko')) return 'ko';
+          if (l.startsWith('ja')) return 'ja';
+          if (l.startsWith('zh')) return 'zh';
+          if (l.startsWith('en')) return 'en';
+        }
+
+        // Global visitors with non-CJK locales (es, fr, de, pt, ru, etc.) default to English
+        const primary = (browserLangs[0] || '').toLowerCase();
+        if (primary && !primary.startsWith('ko')) {
+          return 'en';
+        }
+      } catch (e) {}
+
+      // 4. Default fallback: 'ko'
+      return 'ko';
+    }
+
+    async function detectCountryGeoAsync() {
+      try {
+        const res = await fetch('https://api.country.is', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          const country = (data.country || '').toUpperCase();
+          let targetLang = null;
+          if (country === 'KR') targetLang = 'ko';
+          else if (country === 'JP') targetLang = 'ja';
+          else if (['CN', 'TW', 'HK', 'MO'].includes(country)) targetLang = 'zh';
+          else targetLang = 'en';
+
+          if (targetLang && targetLang !== currentLang && !localStorage.getItem('colorbob_preferred_lang')) {
+            changeLanguage(targetLang, false);
+          }
+        }
+      } catch (e) {}
+    }
+
+    let currentLang = detectInitialLanguage();
+    let currentTheme = 'all';
+    let currentSearch = '';
+    let currentPage = 1;
+    const itemsPerPage = 36;
+
+    let selectedItem = null;
+    let isColoringMode = false;
+    let currentTool = 'brush'; // 'brush' | 'eraser'
+    let selectedColor = '#EF4444';
+    let brushSize = 24;
+    let brushOpacity = 1.0;
+    let isDrawing = false;
+    let originalImageObj = null;
+
+    const paletteColors = [
+      // 1~8: 생생한 메인 원색 (레드, 다홍, 오렌지, 골드옐로우, 레몬, 라임그린, 에메랄드, 딥그린)
+      '#EF4444', '#F43F5E', '#F97316', '#F59E0B', '#FACC15', '#84CC16', '#10B981', '#15803D',
+      // 9~16: 블루 & 퍼플 & 핑크 (민트, 스카이블루, 블루, 네이비, 바이올렛, 퍼플, 핫핑크, 코랄핑크)
+      '#06B6D4', '#38BDF8', '#2563EB', '#1E3A8A', '#8B5CF6', '#A855F7', '#EC4899', '#FB7185',
+      // 17~24: 피부톤 & 자연 브라운 & 무채색 (살구/피부색, 피치, 황토색, 초코브라운, 라이트그레이, 다크그레이, 블랙, 화이트)
+      '#FDE68A', '#FDBA74', '#B45309', '#78350F', '#D4D4D8', '#71717A', '#18181B', '#FFFFFF'
+    ];
+
+    function handleImgError(img) {
+      const raw = img.getAttribute('data-rawsrc') || img.src;
+      if (!img.src.includes('public/') && !img.dataset.triedPublic) {
+        img.dataset.triedPublic = 'true';
+        img.src = 'public/' + raw;
+      }
+    }
+
+    async function init() {
+      const preloaded = (typeof window !== 'undefined' && (window.LIBRARY_MANIFEST || window.COLORING_LIBRARY)) || null;
+      if (preloaded && preloaded.length > 0) {
+        items = preloaded.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
+        window.COLORING_LIBRARY = preloaded;
+        window.LIBRARY_MANIFEST = preloaded;
+      } else {
+        try {
+          const res = await fetch('sheets/library_manifest.json');
+          if (res.ok) {
+            const raw = await res.json();
+            items = raw.slice().sort((a, b) => ((b.batchDate || '') !== (a.batchDate || '')) ? (b.batchDate || '').localeCompare(a.batchDate || '') : (b.id || '').localeCompare(a.id || ''));
+            window.COLORING_LIBRARY = raw;
+            window.LIBRARY_MANIFEST = raw;
+          }
+        } catch (e) {
+          console.log('[INFO] Using fallback dataset');
+        }
+      }
+
+      changeLanguage(currentLang, false);
+      renderPalette();
+      setupCanvasEvents();
+
+      // AI/검색엔진 인용 링크 딥링크 지원: ?theme=animals, ?q=공룡
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const qTheme = (params.get('theme') || '').trim();
+        const qSearch = (params.get('q') || '').trim();
+        if (qTheme && items.some(i => i.theme === qTheme)) {
+          filterTheme(qTheme);
+        }
+        if (qSearch) {
+          const input = document.getElementById('searchInput');
+          if (input) input.value = qSearch;
+          handleSearch(qSearch);
+        }
+      } catch (_) {}
+
+      // Non-blocking geo-location check (only if user hasn't explicitly set preference)
+      if (!localStorage.getItem('colorbob_preferred_lang')) {
+        detectCountryGeoAsync();
+      }
+    }
+
+    // 최신 업데이트 일자 자동 산출 (매니페스트 최신 batchDate 연동)
+    function getLatestUpdateDate() {
+      try {
+        if (typeof items !== 'undefined' && items && items.length > 0) {
+          for (let it of items) {
+            if (it.batchDate && it.batchDate.length >= 10) {
+              return it.batchDate.replace(/-/g, '.');
+            }
+          }
+        }
+      } catch (e) {}
+      return '2026.11.23';
+    }
+
+    function changeLanguage(lang, persist = true) {
+      if (!i18n[lang]) lang = 'ko';
+      currentLang = lang;
+      if (persist) {
+        try {
+          localStorage.setItem('colorbob_preferred_lang', lang);
+        } catch (e) {}
+      }
+      const dict = i18n[lang];
+      document.getElementById('brandName').textContent = dict.brandName;
+      document.getElementById('brandTagline').textContent = dict.brandTagline;
+      document.getElementById('searchInput').placeholder = dict.searchPlaceholder;
+      const btnSearchEl = document.getElementById('btnSearchLabel');
+      if (btnSearchEl) btnSearchEl.textContent = dict.btnSearch;
+      document.getElementById('heroTitle').textContent = dict.heroTitle;
+      document.getElementById('heroDesc').textContent = dict.heroDesc;
+      document.getElementById('itemCountLabel').textContent = dict.itemCountLabel;
+      const elUpdateNotice = document.getElementById('updateNotice');
+      if (elUpdateNotice && dict.updateNotice) {
+        elUpdateNotice.textContent = dict.updateNotice.replace('{DATE}', getLatestUpdateDate());
+      }
+      const elPrint = document.getElementById('btnModalPrint'); if (elPrint) elPrint.textContent = dict.printNow;
+      const elPdf = document.getElementById('btnModalPdf'); if (elPdf) elPdf.textContent = dict.downloadPdf;
+      const elPng = document.getElementById('btnModalPng'); if (elPng) elPng.textContent = dict.downloadPng;
+      const elColor = document.getElementById('btnModalColor'); if (elColor) elColor.textContent = dict.colorOnline;
+      const elTips = document.getElementById('tipsTitle'); if (elTips) elTips.textContent = dict.tipsTitle;
+      const elTip1 = document.getElementById('tip1'); if (elTip1) elTip1.textContent = dict.tip1;
+      
+      const specTitleEl = document.getElementById('specTitleEl');
+      if (specTitleEl) specTitleEl.textContent = dict.specTitle;
+      const specSizeEl = document.getElementById('specSizeEl');
+      if (specSizeEl) specSizeEl.textContent = dict.specSize;
+      const specDescEl = document.getElementById('specDescEl');
+      if (specDescEl) specDescEl.textContent = dict.specDesc;
+
+      // Header Navigation
+      const navGen = document.getElementById('navGeneralContact');
+      if (navGen) navGen.textContent = dict.navGeneral;
+      const navAd = document.getElementById('navAdContact');
+      if (navAd) navAd.textContent = dict.navAd;
+
+      // Side Banners (Left & Right)
+      for (const side of ['Left', 'Right']) {
+        const titleEl = document.getElementById('bannerSideTitle' + side);
+        if (titleEl) titleEl.textContent = dict.bannerSideTitle;
+        const descEl = document.getElementById('bannerSideDesc' + side);
+        if (descEl) descEl.innerHTML = dict.bannerSideDesc;
+        const subEl = document.getElementById('bannerSideSub' + side);
+        if (subEl) subEl.textContent = dict.bannerSideSub;
+        const btnEl = document.getElementById('bannerSideBtn' + side);
+        if (btnEl) btnEl.innerHTML = dict.bannerSideBtn;
+      }
+
+      // Bottom Sponsor Banner
+      const botTitle = document.getElementById('bannerBottomTitle');
+      if (botTitle) botTitle.textContent = dict.bannerBottomTitle;
+      const botDesc = document.getElementById('bannerBottomDesc');
+      if (botDesc) botDesc.textContent = dict.bannerBottomDesc;
+      const botBtn = document.getElementById('bannerBottomBtn');
+      if (botBtn) botBtn.innerHTML = dict.bannerBottomBtn;
+
+      // Footer Contact Links
+      const fGen = document.getElementById('footerContactGeneral');
+      if (fGen) fGen.textContent = dict.footerBtnGeneral;
+      const fAd = document.getElementById('footerContactAd');
+      if (fAd) fAd.textContent = dict.footerBtnAd;
+
+      // Modal & Canvas Ad Labels
+      document.querySelectorAll('.modal-ad-title').forEach(el => {
+        el.textContent = dict.modalAdTitle;
+      });
+      const mDesc = document.getElementById('modalAdPopupDesc');
+      if (mDesc) mDesc.textContent = dict.modalAdPopupDesc;
+
+      // Compact Flag Dropdown Switcher Active Highlight & SVG Flag Rendering
+      const FLAG_SVGS = {
+        ko: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><circle cx="12" cy="8" r="3.6" fill="#C60C30"/><path d="M12 8a1.8 1.8 0 0 1-3.6 0 3.6 3.6 0 0 0 7.2 0A1.8 1.8 0 0 1 12 8z" fill="#003478"/><g stroke="#111" stroke-width="0.9"><line x1="4.5" y1="3.5" x2="7.2" y2="5.5"/><line x1="3.8" y1="4.5" x2="6.5" y2="6.5"/><line x1="19.5" y1="3.5" x2="16.8" y2="5.5"/><line x1="20.2" y1="4.5" x2="17.5" y2="6.5"/><line x1="4.5" y1="12.5" x2="7.2" y2="10.5"/><line x1="19.5" y1="12.5" x2="16.8" y2="10.5"/></g></svg>',
+        en: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><g fill="#B22234"><rect y="0" width="24" height="1.3"/><rect y="2.6" width="24" height="1.3"/><rect y="5.2" width="24" height="1.3"/><rect y="7.8" width="24" height="1.3"/><rect y="10.4" width="24" height="1.3"/><rect y="13" width="24" height="1.3"/><rect y="15" width="24" height="1"/></g><rect width="10.5" height="8.5" fill="#3C3B6E"/></svg>',
+        ja: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#fff"/><circle cx="12" cy="8" r="4.2" fill="#BC002D"/></svg>',
+        zh: '<svg viewBox="0 0 24 16" class="w-full h-full"><rect width="24" height="16" fill="#DE2910"/><polygon points="5,2.5 5.7,4.5 7.8,4.5 6.1,5.7 6.7,7.7 5,6.5 3.3,7.7 3.9,5.7 2.2,4.5 4.3,4.5" fill="#FFDE00"/></svg>'
+      };
+      const curFlag = document.getElementById('currentLangFlag');
+      if (curFlag) curFlag.innerHTML = FLAG_SVGS[lang] || FLAG_SVGS.ko;
+      document.querySelectorAll('.lang-flag-slot').forEach(slot => {
+        const f = slot.getAttribute('data-flag');
+        if (FLAG_SVGS[f]) slot.innerHTML = FLAG_SVGS[f];
+      });
+      document.querySelectorAll('#langSwitcher .lang-btn').forEach(btn => {
+        const isCurrent = btn.getAttribute('data-lang') === lang;
+        btn.className = isCurrent
+          ? 'lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-bold text-zinc-950 bg-zinc-100 flex items-center gap-2.5 transition'
+          : 'lang-btn w-full px-3.5 py-2 text-left text-xs sm:text-sm font-medium text-zinc-700 hover:bg-zinc-50 flex items-center gap-2.5 transition';
+      });
+      const navPhotoEl = document.getElementById('navPhotoConvert');
+      if (navPhotoEl) navPhotoEl.textContent = ({ ko: '무료 사진 도안 변환', en: 'Free Photo to Line Art', ja: '無料 写真→線画', zh: '免费 照片转线稿' })[lang] || '무료 사진 도안 변환';
+      const footerPhotoEl = document.getElementById('footerPhotoConvert');
+      if (footerPhotoEl) footerPhotoEl.textContent = ({ ko: '무료 사진 도안 변환', en: 'Free Photo to Line Art', ja: '無料 写真→線画', zh: '免费 照片转线稿' })[lang] || '무료 사진 도안 변환';
+      const hpTitle = document.getElementById('heroPhotoTitle');
+      if (hpTitle) hpTitle.textContent = ({ ko: '무료 사진 도안 변환', en: 'Free Photo to Line Art', ja: '無料 写真→線画変換', zh: '免费 照片转线稿' })[lang] || '무료 사진 도안 변환';
+      const hpDesc = document.getElementById('heroPhotoDesc');
+      if (hpDesc) hpDesc.textContent = ({ ko: '내 사진을 1초 만에 색칠 도안으로 →', en: 'Turn any photo into a coloring page →', ja: '写真を1秒でぬりえ図案に →', zh: '1秒将照片变成涂色画 →' })[lang] || '내 사진을 1초 만에 색칠 도안으로 →';
+
+      const toolStudioTitle = document.getElementById('toolStudioTitle');
+      if (toolStudioTitle) toolStudioTitle.textContent = dict.toolStudio;
+      const btnToolBrush = document.getElementById('btnToolBrush');
+      if (btnToolBrush) btnToolBrush.textContent = dict.toolPen;
+      const btnToolEraser = document.getElementById('btnToolEraser');
+      if (btnToolEraser) btnToolEraser.textContent = dict.toolEraser;
+      const labelBrushSize = document.getElementById('labelBrushSize');
+      if (labelBrushSize) labelBrushSize.textContent = dict.toolSize;
+      const labelBrushOpacity = document.getElementById('labelBrushOpacity');
+      if (labelBrushOpacity) labelBrushOpacity.textContent = dict.toolOpacity;
+      const btnResetDrawing = document.getElementById('btnResetDrawing');
+      if (btnResetDrawing) btnResetDrawing.textContent = dict.toolReset;
+      const btnSaveDrawing = document.getElementById('btnSaveDrawing');
+      if (btnSaveDrawing) btnSaveDrawing.textContent = dict.toolSave;
+      const btnExitColoring = document.getElementById('btnExitColoring');
+      if (btnExitColoring) btnExitColoring.textContent = dict.toolExit;
+
+      const footerDescEl = document.getElementById('footerDescEl');
+      if (footerDescEl) footerDescEl.textContent = dict.footerDesc;
+      const footerLinkPartnership = document.getElementById('footerLinkPartnership');
+      if (footerLinkPartnership) footerLinkPartnership.textContent = dict.footerPartnership;
+      const footerLinkTerms = document.getElementById('footerLinkTerms');
+      if (footerLinkTerms) footerLinkTerms.textContent = dict.footerTerms;
+      const footerLinkPrivacy = document.getElementById('footerLinkPrivacy');
+      if (footerLinkPrivacy) footerLinkPrivacy.textContent = dict.footerPrivacy;
+      const footerLinkLicense = document.getElementById('footerLinkLicense');
+      if (footerLinkLicense) footerLinkLicense.textContent = dict.footerLicense;
+      const footerDisclaimerTitle = document.getElementById('footerDisclaimerTitle');
+      if (footerDisclaimerTitle) footerDisclaimerTitle.textContent = dict.footerDisclaimerTitle;
+      const footerDisclaimerBody = document.getElementById('footerDisclaimerBody');
+      if (footerDisclaimerBody) footerDisclaimerBody.textContent = dict.footerDisclaimerBody;
+      const footerDisclaimerContact = document.getElementById('footerDisclaimerContact');
+      if (footerDisclaimerContact) footerDisclaimerContact.textContent = dict.footerDisclaimerContact;
+      const footerDisclaimerBtn = document.getElementById('footerDisclaimerBtnLabel');
+      if (footerDisclaimerBtn) footerDisclaimerBtn.textContent = dict.footerDisclaimerBtn;
+
+      
+      // Modal Left & Right Banners Translation
+      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const mlTitle = document.getElementById('modalLeftAdTitle');
+      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mlDesc = document.getElementById('modalLeftAdDesc');
+      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
+      const mlLink = document.getElementById('modalLeftAdLink');
+      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
+
+      const mrTitle = document.getElementById('modalRightAdTitle');
+      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mrDesc = document.getElementById('modalRightAdDesc');
+      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
+
+      // Bottom GeoGuide Themes & FAQs Dynamic Update
+      renderPopularSearches(lang);
+      renderGeoGuide(lang);
+      renderFaqs(lang);
+
+      renderNav();
+      renderCards();
+      if (selectedItem) openModal(selectedItem);
+    }
+
+    function toggleLangMenu(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('langDropdownMenu');
+      const chev = document.getElementById('langChevron');
+      const btn = document.getElementById('langDropdownBtn');
+      if (!menu) return;
+      const isHidden = menu.classList.toggle('hidden');
+      if (chev) chev.style.transform = isHidden ? '' : 'rotate(180deg)';
+      if (btn) btn.setAttribute('aria-expanded', String(!isHidden));
+    }
+
+    function selectLangFromMenu(lang) {
+      const menu = document.getElementById('langDropdownMenu');
+      const chev = document.getElementById('langChevron');
+      if (menu) menu.classList.add('hidden');
+      if (chev) chev.style.transform = '';
+      changeLanguage(lang);
+    }
+
+    document.addEventListener('click', (e) => {
+      const sw = document.getElementById('langSwitcher');
+      const menu = document.getElementById('langDropdownMenu');
+      const chev = document.getElementById('langChevron');
+      if (sw && menu && !sw.contains(e.target)) {
+        menu.classList.add('hidden');
+        if (chev) chev.style.transform = '';
+      }
+    });
+
+    function renderNav() {
+      const dict = i18n[currentLang];
+      const themeBar = document.getElementById('themeFilterBar');
+
+      const themeList = [
+        { id: 'all', label: dict.all },
+        { id: 'characters', label: dict.characters },
+        { id: 'learning', label: dict.learning },
+        { id: 'people', label: dict.people },
+        { id: 'animals', label: dict.animals },
+        { id: 'objects', label: dict.objects },
+        { id: 'holidays', label: dict.holidays },
+        { id: 'sports', label: dict.sports },
+        { id: 'korea', label: dict.korea },
+        { id: 'mandala', label: dict.mandala },
+        { id: 'maze', label: dict.maze },
+        { id: 'colornumber', label: dict.colornumber || '번호 색칠놀이' },
+        { id: 'dots', label: dict.dots || '점잇기 선긋기' },
+        { id: 'sudoku', label: dict.sudoku }
+      ];
+
+      themeBar.innerHTML = themeList.map(t => {
+        const isSelected = currentTheme === t.id;
+        return `<button onclick="filterTheme('${t.id}')" class="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+          isSelected 
+            ? 'bg-zinc-950 text-white shadow-xs' 
+            : 'bg-zinc-100/90 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-950 border border-transparent'
+        }">${t.label}</button>`;
+      }).join('');
+    }
+
+    function scrollToGrid() {
+      const target = document.getElementById('resultHeader') || document.querySelector('main');
+      if (target) {
+        const headerEl = document.querySelector('header');
+        const navEl = document.querySelector('nav');
+        const headerH = (headerEl ? headerEl.offsetHeight : 80) + (navEl ? navEl.offsetHeight : 54);
+        const rect = target.getBoundingClientRect();
+        const targetScrollY = window.pageYOffset + rect.top - headerH - 14;
+        window.scrollTo({
+          top: Math.max(0, targetScrollY),
+          behavior: 'smooth'
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function filterTheme(theme) {
+      currentTheme = theme;
+      // 대표님 지침: 카테고리 클릭 시 이전 검색어 자동 초기화 (교집합 0건 방지)
+      currentSearch = '';
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      currentPage = 1;
+      
+      // Modal Left & Right Banners Translation
+      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const mlTitle = document.getElementById('modalLeftAdTitle');
+      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mlDesc = document.getElementById('modalLeftAdDesc');
+      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
+      const mlLink = document.getElementById('modalLeftAdLink');
+      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
+
+      const mrTitle = document.getElementById('modalRightAdTitle');
+      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mrDesc = document.getElementById('modalRightAdDesc');
+      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
+
+      // Bottom GeoGuide Themes & FAQs Dynamic Update
+      renderPopularSearches(lang);
+      renderGeoGuide(lang);
+      renderFaqs(lang);
+
+      renderNav();
+      renderCards();
+      scrollToGrid();
+    }
+
+    let searchDebounceTimer = null;
+    function handleSearchInput(val) {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        currentSearch = val.trim().toLowerCase();
+        currentPage = 1;
+        renderCards();
+      }, 250);
+    }
+
+    function handleSearch(q) {
+      currentSearch = q.trim().toLowerCase();
+      currentPage = 1;
+      renderCards();
+      scrollToGrid();
+    }
+    
+    // 전체 통합 검색 (연령/테마 상관없이 전체 풀에서 검색 및 최상단 정렬)
+    function triggerSearch() {
+      const input = document.getElementById('searchInput');
+      currentSearch = input.value.trim().toLowerCase();
+      currentTheme = 'all';
+      currentPage = 1;
+      
+      // Modal Left & Right Banners Translation
+      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const mlTitle = document.getElementById('modalLeftAdTitle');
+      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mlDesc = document.getElementById('modalLeftAdDesc');
+      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
+      const mlLink = document.getElementById('modalLeftAdLink');
+      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
+
+      const mrTitle = document.getElementById('modalRightAdTitle');
+      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mrDesc = document.getElementById('modalRightAdDesc');
+      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
+
+      // Bottom GeoGuide Themes & FAQs Dynamic Update
+      renderPopularSearches(lang);
+      renderGeoGuide(lang);
+      renderFaqs(lang);
+
+      renderNav();
+      renderCards();
+      scrollToGrid();
+    }
+
+    function resetFilters() {
+      currentTheme = 'all';
+      currentSearch = '';
+      currentPage = 1;
+      document.getElementById('searchInput').value = '';
+      
+      // Modal Left & Right Banners Translation
+      const geoDict = I18N_GEO_THEMES[lang] || I18N_GEO_THEMES.ko;
+      const mlTitle = document.getElementById('modalLeftAdTitle');
+      if (mlTitle) mlTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mlDesc = document.getElementById('modalLeftAdDesc');
+      if (mlDesc) mlDesc.innerHTML = geoDict.modalAdLeft;
+      const mlLink = document.getElementById('modalLeftAdLink');
+      if (mlLink) mlLink.textContent = geoDict.modalAdContact;
+
+      const mrTitle = document.getElementById('modalRightAdTitle');
+      if (mrTitle) mrTitle.textContent = dict.modalAdTitle || '스폰서 광고 영역';
+      const mrDesc = document.getElementById('modalRightAdDesc');
+      if (mrDesc) mrDesc.innerHTML = geoDict.modalAdRight;
+
+      // Bottom GeoGuide Themes & FAQs Dynamic Update
+      renderPopularSearches(lang);
+      renderGeoGuide(lang);
+      renderFaqs(lang);
+
+      renderNav();
+      renderCards();
+      scrollToGrid();
+    }
+    
+    function goToPage(page) {
+      currentPage = page;
+      renderCards();
+      scrollToGrid();
+    }
+
+    const categoryPrefixRegex = /^(동물|곤충|사물|식물|탈것|자동차|새|물고기|바다동물|신화|생활소품|자연|공룡|인물|음식|과일|채소|기념일|스포츠|건축)\s+/;
+    const INTENT_TERMS = ['색칠하기', '색칠공부', '색칠놀이', '색칠', '도안', '그림', '일러스트', '선화', '스케치', '프린트', '인쇄', '무료도안', 'a4', '출력'];
+    const SEARCH_TAXONOMY = {
+      // 1. 자동차 / Car / 車 / 汽车
+      '자동차': ['차', 'car', 'cars', '車', '汽车', '스포츠카', '트럭', '소방차', '경찰차', '버스', '택시', '세단', 'suv', 'ferrari', 'porsche', 'lamborghini', 'bmw', 'audi', 'mercedes', 'ford', 'mustang', '페라리', '포르쉐', '람보르기니', '트랙터', '슈퍼카'],
+      '차': ['자동차', 'car', 'cars', '車', '汽车', '스포츠카', '트럭'],
+      'car': ['cars', '자동차', '차', '車', '汽车', 'vehicle', 'sports car', 'truck', 'police car', 'fire truck', 'ferrari', 'porsche', 'lamborghini', 'supercar'],
+      'cars': ['car', '자동차', '차', '車', '汽车', 'vehicle'],
+      '車': ['自動車', 'くるま', 'car', '자동차', '汽车', 'スポーツカー', 'トラック'],
+      '汽车': ['车', '轿车', '跑车', 'car', '자동차', '車', '卡车', '消防车', '警车'],
+
+      // 2. 비행기 / Airplane / 飛行機 / 飞机
+      '비행기': ['airplane', 'plane', 'aircraft', '飛行機', '飞机', '전투기', 'fighter', 'jet', 'helicopter', '헬리콥터', '여객기'],
+      'airplane': ['plane', 'aircraft', '비행기', '飛行機', '飞机', 'fighter', 'jet', 'helicopter'],
+      'plane': ['airplane', 'aircraft', '비행기', '飛行機', '飞机'],
+      '飛行機': ['airplane', 'plane', '비행기', '飞机', '戦闘機', 'ヘリコプター'],
+      '飞机': ['airplane', 'plane', '비행기', '飛行機', '战斗机', '直升机'],
+
+      // 3. 공룡 / Dinosaur / 恐竜 / 恐龙
+      '공룡': ['dinosaur', 'dino', '恐竜', '恐龙', '티라노사우루스', '트리케라톱스', '벨로키랍토르', '브라키오사우루스', '스테고사우루스', '익룡', 'tyrannosaurus', 'triceratops', 'ankylosaurus'],
+      'dinosaur': ['dino', '공룡', '恐竜', '恐龙', 'tyrannosaurus', 'triceratops', 'velociraptor', 'brachiosaurus', 'stegosaurus'],
+      'dino': ['dinosaur', '공룡', '恐竜', '恐龙'],
+      '恐竜': ['dinosaur', '공룡', '恐龙', 'ティラノサウルス', 'トリケラトプス'],
+      '恐龙': ['dinosaur', '공룡', '恐竜', '霸王龙', '三角龙'],
+
+      // 4. 개 & 강아지 / Dog & Puppy / 犬 / 狗
+      '강아지': ['개', 'dog', 'puppy', '犬', '子犬', '狗', '小狗', '골든리트리버', '치와와', '불독', '푸들', '말티즈', '시바견', '달마시안', '허스키'],
+      '개': ['강아지', 'dog', 'puppy', '犬', '狗', '골든리트리버', '치와와', '불독', '푸들'],
+      'dog': ['puppy', 'dogs', '개', '강아지', '犬', '狗', 'retriever', 'chihuahua', 'bulldog', 'poodle'],
+      'puppy': ['dog', '강아지', '개', '子犬', '小狗'],
+      '犬': ['子犬', 'dog', 'puppy', '개', '강아지', '狗'],
+      '狗': ['小狗', 'dog', 'puppy', '개', '강아지', '犬'],
+
+      // 5. 고양이 / Cat / 猫
+      '고양이': ['cat', 'kitten', 'cats', '猫', 'ねこ', '猫咪', '야옹이'],
+      'cat': ['cats', 'kitten', '고양이', '猫', '猫咪'],
+      '猫': ['cat', 'kitten', '고양이', '猫咪'],
+      '猫咪': ['cat', '고양이', '猫'],
+
+      // 6. 농구 / Basketball / バスケ / 篮球
+      '농구': ['basketball', 'nba', '농구선수', '농구공', '골대', '드리블', '슬램덩크', 'バスケ', '篮球', '리브스', '팍스', '바그너', '존슨', '사보니스', '레이커스', '불스', '셀틱스', '워리어스', '오스틴', '프란츠', '디애런'],
+      'basketball': ['농구', 'nba', 'バスケ', '篮球', 'lakers', 'bulls', 'celtics', 'warriors', 'reaves', 'fox', 'wagner', 'johnson', 'curry', 'lebron'],
+      'バスケ': ['basketball', '농구', '篮球', 'nba', 'レイカーズ', 'ブルズ'],
+      '篮球': ['basketball', '농구', 'バスケ', 'nba', '湖人', '公牛', '勇士'],
+
+      // 7. 축구 / Soccer / Football / サッカー / 足球
+      '축구': ['축구선수', 'soccer', 'football', 'サッカー', '足球', '손흥민', '메시', '호날두', '야말', '음바페', '홀란드', '드리블', '슈팅', '유니폼'],
+      'soccer': ['football', '축구', 'サッカー', '足球', 'messi', 'ronaldo', 'yamal', 'son'],
+      'football': ['soccer', '축구', '미식축구', 'サッカー', '足球'],
+      'サッカー': ['soccer', 'football', '축구', '足球'],
+      '足球': ['soccer', 'football', '축구', 'サッカー'],
+
+      // 8. 기타 인기 캐릭터 및 동의어
+      '피카추': ['피카츄', 'pikachu'],
+      '피카츄': ['피카추', 'pikachu', '포켓몬'],
+      '포켓몬스터': ['포켓몬', 'pokemon', 'pocket monster'],
+      '포켓몬': ['포켓몬스터', 'pokemon'],
+      '티라노': ['티라노사우루스', 't-rex', 'tyrannosaurus'],
+      '스파이더맨': ['스파이더', 'spiderman', 'spider-man'],
+      '소방수': ['소방관', '소방차', 'firefighter'],
+      '불끄는': ['소방관', '소방차']
+    };
+
+    // 실시간 검색어 칩 클릭 시 즉시 검색 실행 함수
+    function applyQuickSearch(kw) {
+      const input = document.getElementById('searchInput');
+      if (input) {
+        input.value = kw;
+        handleSearch(kw);
+        scrollToGrid();
+      }
+    }
+
+    // 띄어쓰기 및 합성어 접미사(도안, 색칠공부, 塗り絵 등) 지능형 형태소 분리 함수
+    function extractSearchCore(rawQuery) {
+      if (!rawQuery) return { coreTokens: [], rawTokens: [] };
+      const rawTokens = rawQuery.toLowerCase().split(/\s+/).filter(Boolean);
+      const coreTokens = [];
+
+      rawTokens.forEach(tok => {
+        if (INTENT_TERMS.includes(tok)) return;
+        const stripped = tok.replace(/(색칠공부|색칠하기|색칠놀이|색칠|도안|그림|일러스트|선화|스케치|프린트|인쇄|무료도안|a4|출력|coloring|coloring page|page|sheets|塗り絵|ぬりえ|涂色|线稿)$/i, '').trim();
+        if (stripped && !INTENT_TERMS.includes(stripped)) {
+          coreTokens.push(stripped);
+        } else if (!INTENT_TERMS.includes(tok)) {
+          coreTokens.push(tok);
+        }
+      });
+
+      return {
+        coreTokens: coreTokens.length > 0 ? coreTokens : rawTokens,
+        rawTokens
+      };
+    }
+
+    // 사이트 노출용 검색 접미사(도안, 색칠공부, 색칠하기, 그림) 자연스러운 결합 함수
+    function formatExposedTitle(rawTitle, lang) {
+      if (!rawTitle) return '';
+      if (lang !== 'ko') return rawTitle;
+      let t = rawTitle.trim();
+      // 대표님 절대 수칙: 불필요한 '색칠하기', '색칠공부', '색칠놀이', '도안', '스케치' 중복 접미사를 배제하여
+      // 목록 카드에서 핵심 캐릭터/개체명이 잘림 없이 온전히 한눈에 보이도록 처리
+      t = t.replace(/\s*(색칠하기|색칠공부|색칠놀이|도안|스케치)\s*$/g, '').trim();
+      return t;
+    }
+
+    function computeSearchRelevance(item, query, lang) {
+      const title = (typeof item.title === 'object' ? (item.title[lang] || item.title.en) : item.title).toLowerCase();
+      const stripped = title.replace(categoryPrefixRegex, '');
+      const tags = (item.tags || []).join(' ').toLowerCase();
+
+      const qTokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+      const coreTokens = qTokens.filter(t => !INTENT_TERMS.includes(t));
+      const effectiveCore = coreTokens.length > 0 ? coreTokens.join(' ') : query;
+
+      let score = 0;
+      if (title === query || title === effectiveCore) score += 10000;
+      if (stripped === query || stripped === effectiveCore) score += 8000;
+      if (stripped.startsWith(query) || stripped.startsWith(effectiveCore)) score += 4000;
+      if (title.startsWith(query) || title.startsWith(effectiveCore)) score += 3000;
+
+      const words = title.split(/[\s,()_-]+/);
+      if (words.includes(effectiveCore)) score += 2000;
+      else if (title.includes(effectiveCore)) score += 800;
+
+      coreTokens.forEach(tok => {
+        if (title.includes(tok)) score += 600;
+        if (tags.includes(tok)) score += 300;
+      });
+
+      if (tags.includes(query) || tags.includes(effectiveCore)) score += 100;
+      return score;
+    }
+
+    function renderCards() {
+      const dict = i18n[currentLang];
+      const grid = document.getElementById('cardGrid');
+
+      let filtered = items.filter(item => {
+        if (item.reviewStatus === 'pending') return false;
+        if (currentTheme !== 'all') {
+          if (currentTheme === 'dots') {
+            const isDots = (item.tags || []).includes('dots') || ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('점잇기')) || ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('dot'));
+            if (!isDots) return false;
+          } else if (currentTheme === 'colornumber') {
+            const isColorNum = (item.theme === 'colornumber') ||
+                               ((item.tags || []).includes('colornumber')) ||
+                               ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('번호')) ||
+                               ((typeof item.title === 'object' ? item.title.ko : (item.title || '')).includes('숫자')) ||
+                               ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('number'));
+            if (!isColorNum) return false;
+          } else if (item.theme !== currentTheme) {
+            return false;
+          }
+        }
+        if (currentSearch) {
+          const tKo = (item.title && typeof item.title === 'object' ? (item.title.ko || '') : (item.title || '')).toLowerCase();
+          const tEn = (item.title && typeof item.title === 'object' ? (item.title.en || '') : '').toLowerCase();
+          const tJa = (item.title && typeof item.title === 'object' ? (item.title.ja || '') : '').toLowerCase();
+          const tZh = (item.title && typeof item.title === 'object' ? (item.title.zh || '') : '').toLowerCase();
+          const tagsText = (item.tags || []).join(' ').toLowerCase();
+          const idText = (item.id || '').toLowerCase();
+          
+          // 4개 국어 전체 타이틀 + 태그 + ID를 결합한 전역 검색 풀
+          const fullSearchScope = `${tKo} ${tEn} ${tJa} ${tZh} ${tagsText} ${idText} 도안 색칠공부 coloring 塗り絵 涂色`;
+          const normalizedScope = fullSearchScope.replace(/\s+/g, '');
+
+          const { coreTokens, rawTokens } = extractSearchCore(currentSearch);
+
+          let isMatch = false;
+          const tokensToMatch = coreTokens.length > 0 ? coreTokens : rawTokens;
+          isMatch = tokensToMatch.every(tok => {
+            const cleanTok = tok.replace(/\s+/g, '');
+            if (fullSearchScope.includes(tok) || normalizedScope.includes(cleanTok)) return true;
+            // 상위어 및 동의어 확장 검사
+            const expansions = SEARCH_TAXONOMY[tok] || SEARCH_TAXONOMY[cleanTok];
+            if (expansions && Array.isArray(expansions)) {
+              return expansions.some(exp => {
+                const cleanExp = exp.replace(/\s+/g, '');
+                return fullSearchScope.includes(exp) || normalizedScope.includes(cleanExp);
+              });
+            }
+            return false;
+          });
+          if (!isMatch) return false;
+        }
+        return true;
+      });
+
+      if (currentSearch) {
+        filtered.sort((a, b) => {
+          const scoreA = computeSearchRelevance(a, currentSearch, currentLang);
+          const scoreB = computeSearchRelevance(b, currentSearch, currentLang);
+          if (scoreA !== scoreB) return scoreB - scoreA;
+          return (b.downloads || 0) - (a.downloads || 0);
+        });
+      } else {
+        filtered.sort((a, b) => {
+          const dateA = a.batchDate || a.createdAt || '2000-01-01';
+          const dateB = b.batchDate || b.createdAt || '2000-01-01';
+          if (dateA !== dateB) return dateB.localeCompare(dateA);
+          return (b.id || '').localeCompare(a.id || '');
+        });
+      }
+
+      const totalItems = filtered.length;
+      document.getElementById('itemCount').textContent = totalItems.toLocaleString();
+
+      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+      const currentSheets = filtered.slice(startIndex, endIndex);
+
+      if (currentSheets.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-zinc-500">
+            <p class="text-base font-bold text-zinc-700">해당 조건에 일치하는 도안이 없습니다.</p>
+            <p class="text-xs sm:text-sm mt-1 text-zinc-500">다른 검색어나 카테고리 탭을 선택해 보세요.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-zinc-900 text-white rounded-xl text-xs sm:text-sm font-bold shadow-xs hover:bg-zinc-800 transition-colors">필터 초기화</button>
+          </div>
+        `;
+        renderPagination(0, 0, 0, 0);
+        return;
+      }
+
+      grid.innerHTML = currentSheets.map((item, idx) => {
+        const itemNumber = startIndex + idx + 1;
+        const itemTitle = typeof item.title === 'object' ? (item.title[currentLang] || item.title.en) : item.title;
+        const exposedTitle = formatExposedTitle(itemTitle, currentLang);
+        const themeText = dict[item.theme] || item.theme;
+
+        return `
+        <div onclick='openModalById("${item.id}")' class="group bg-white rounded-xl border border-zinc-200 hover:border-zinc-400 hover:shadow-md transition-all duration-200 flex flex-col cursor-pointer p-2">
+          <div class="relative aspect-[3/4] bg-zinc-50/80 rounded-lg flex items-center justify-center overflow-hidden border border-zinc-100">
+            <img 
+              src="${item.imageSrc}" 
+              data-rawsrc="${item.imageSrc}"
+              onerror="handleImgError(this)"
+              alt="${itemTitle}" 
+              loading="lazy" 
+              class="w-full h-full object-contain p-1 filter contrast-125 transition-transform duration-300 group-hover:scale-104" 
+            />
+            <!-- 호버 오버레이 (Pinterest 스타일 미니멀 바로가기) -->
+            <div class="absolute inset-0 bg-zinc-950/25 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-1.5 p-2">
+              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="py-2 px-3 bg-zinc-950 text-white font-bold text-xs rounded-full shadow hover:bg-zinc-800 transition-transform active:scale-95 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4 8.014 8.014 0 014-7.464 8.014 8.014 0 014-7.464 8.014 8.014 0 014 7.464 8.014 8.014 0 014 7.464 4 4 0 01-4 4H7z" />
+                </svg>
+                <span>${dict.quickColor}</span>
+              </button>
+              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="py-2 px-3 bg-white text-zinc-950 font-bold text-xs rounded-full shadow hover:bg-zinc-100 transition-transform active:scale-95 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5 text-zinc-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <span>${dict.quickPrint}</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="mt-2 flex flex-col gap-1.5">
+            <h3 class="font-bold text-[12.5px] sm:text-[13px] text-zinc-950 truncate leading-snug group-hover:text-zinc-700 transition-colors tracking-tight" title="${exposedTitle}">
+              ${exposedTitle}
+            </h3>
+            
+            <div class="grid grid-cols-2 gap-1.5 pt-0.5">
+              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="w-full py-1.5 px-2 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-lg transition-all shadow-2xs flex items-center justify-center gap-1">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4 8.014 8.014 0 014-7.464 8.014 8.014 0 014-7.464 8.014 8.014 0 014 7.464 8.014 8.014 0 014 7.464 4 4 0 01-4 4H7z" />
+                </svg>
+                <span>${dict.quickColor}</span>
+              </button>
+              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="w-full py-1.5 px-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-1 border border-zinc-200/80">
+                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-zinc-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <span>${dict.quickPrint}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        `;
+      }).join('');
+
+      renderPagination(totalItems, totalPages, startIndex, endIndex);
+    }
+
+    function renderPagination(totalItems, totalPages, startIndex, endIndex) {
+      const container = document.getElementById('paginationContainer');
+      const infoEl = document.getElementById('paginationInfo');
+      const controlsEl = document.getElementById('paginationControls');
+      if (!container || !infoEl || !controlsEl) return;
+
+      if (totalItems === 0 || totalPages <= 1) {
+        container.classList.add('hidden');
+        return;
+      }
+      container.classList.remove('hidden');
+
+      const dict = i18n[currentLang];
+      infoEl.innerHTML = `
+        <span class="font-bold text-zinc-900">${(startIndex + 1).toLocaleString()} - ${endIndex.toLocaleString()}</span>
+        / 총 <span class="font-bold text-zinc-900">${totalItems.toLocaleString()}</span>${dict.itemCountLabel}
+        (${dict.page} <span class="font-bold text-zinc-900">${currentPage}</span> / ${totalPages.toLocaleString()})
+      `;
+
+      let pages = [];
+      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+      const count = isDesktop ? 10 : 5;
+
+      let left = Math.max(1, currentPage - Math.floor(count / 2));
+      let right = left + count - 1;
+      if (right > totalPages) {
+        right = totalPages;
+        left = Math.max(1, right - count + 1);
+      }
+
+      if (left > 1) {
+        pages.push(1);
+        if (left > 2) pages.push('...');
+      }
+
+      for (let p = left; p <= right; p++) {
+        pages.push(p);
+      }
+
+      if (right < totalPages) {
+        if (right < totalPages - 1) pages.push('...');
+        pages.push(totalPages);
+      }
+
+      let btnHtml = '';
+      
+      if (currentPage > 1) {
+        btnHtml += `<button onclick="goToPage(1)" class="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 transition-colors">${dict.first}</button>`;
+        btnHtml += `<button onclick="goToPage(${currentPage - 1})" class="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 transition-colors">${dict.prev}</button>`;
+      }
+
+      pages.forEach(p => {
+        if (p === '...') {
+          btnHtml += `<span class="px-2 py-1 text-zinc-400 text-xs font-bold">...</span>`;
+        } else if (p === currentPage) {
+          btnHtml += `<button class="w-8 h-8 rounded-lg bg-zinc-950 text-white text-xs font-bold shadow-xs">${p}</button>`;
+        } else {
+          btnHtml += `<button onclick="goToPage(${p})" class="w-8 h-8 rounded-lg border border-zinc-200 text-xs font-medium text-zinc-700 hover:bg-zinc-100 transition-colors">${p}</button>`;
+        }
+      });
+
+      if (currentPage < totalPages) {
+        btnHtml += `<button onclick="goToPage(${currentPage + 1})" class="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 transition-colors">${dict.next}</button>`;
+        btnHtml += `<button onclick="goToPage(${totalPages})" class="px-3 py-1.5 rounded-lg border border-zinc-200 text-xs font-semibold text-zinc-600 hover:bg-zinc-100 transition-colors">${dict.last}</button>`;
+      }
+
+      controlsEl.innerHTML = btnHtml;
+    }
+
+    function openModalById(id) {
+      const item = items.find(i => i.id === id);
+      if (item) openModal(item);
+    }
+
+    function openColoringById(id) {
+      const item = items.find(i => i.id === id);
+      if (item) {
+        openModal(item);
+        enterColoringMode();
+      }
+    }
+
+    function openModal(item) {
+      selectedItem = item;
+      
+      const dict = i18n[currentLang];
+      const titleStr = typeof item.title === 'object' ? (item.title[currentLang] || item.title.en) : item.title;
+      const titleEl = document.getElementById('modalTitle');
+      if (titleEl) titleEl.textContent = formatExposedTitle(titleStr, currentLang);
+
+      const printContainer = document.getElementById('printContainer');
+      if (printContainer) printContainer.innerHTML = `<img src="${item.imageSrc}" data-rawsrc="${item.imageSrc}" onerror="handleImgError(this)" />`;
+
+      document.getElementById('modalBackdrop').classList.remove('hidden');
+
+      // [숫자별 색칠놀이(Color by Number) 전용 안내 가이드 배너 제어]
+      const isCBN = (item.theme === 'colornumber') ||
+                    ((item.tags || []).includes('colornumber')) ||
+                    ((typeof item.title === 'object' ? item.title.en : '').toLowerCase().includes('number')) ||
+                    ((typeof item.title === 'object' ? item.title.ko : '').includes('번호')) ||
+                    ((typeof item.title === 'object' ? item.title.ko : '').includes('숫자'));
+      const cbnBanner = document.getElementById('cbnGuideBanner');
+      const cbnText = document.getElementById('cbnGuideText');
+      if (cbnBanner && cbnText) {
+        if (isCBN) {
+          cbnBanner.classList.remove('hidden');
+          const cbnGuides = {
+            ko: '<strong>숫자별 색칠 가이드</strong>: 도안 좌측의 번호(1~10) 색상을 확인하고, 그림 속 동일한 숫자가 적힌 영역을 찾아 순서대로 예쁘게 색칠해 보세요!',
+            en: '<strong>Color by Number Guide</strong>: Check the color assigned to each number (1-10) on the left palette, find matching numbers on the sheet, and color them in!',
+            ja: '<strong>数字塗り絵ガイド</strong>: 左側の番号（1〜10）に対応する色を確認し、絵の中の同じ数字が書かれたエリアを見つけて順番に塗ってみましょう！',
+            zh: '<strong>数字填色指南</strong>: 对照图纸左侧的数字标号颜色，找到线稿中带有相同数字的区域按顺序涂色，轻松完成作品！'
+          };
+          cbnText.innerHTML = cbnGuides[currentLang] || cbnGuides.ko;
+        } else {
+          cbnBanner.classList.add('hidden');
+        }
+      }
+
+      setTool('brush');
+      renderPalette();
+      isColoringMode = true;
+      loadImgToCanvas();
+      updateBrushCursor();
+    }
+
+    function closeModal() {
+      document.getElementById('modalBackdrop').classList.add('hidden');
+      const cbnBanner = document.getElementById('cbnGuideBanner');
+      if (cbnBanner) cbnBanner.classList.add('hidden');
+      selectedItem = null;
+    }
+
+    function enterColoringMode() {}
+    function exitColoringMode() {}
+
+    const policyTexts = {
+      ko: {
+        navGeneral: '문의하기',
+        navAd: '문의하기',
+        bannerSideTitle: '스폰서 광고 영역',
+        bannerSideDesc: '160×600<br>구글 애드센스 및<br>직접 광고 스폰서',
+        bannerSideSub: '광고 제휴',
+        bannerSideBtn: '문의하기 →',
+        bannerBottomTitle: '스폰서 광고 제휴 영역',
+        bannerBottomDesc: '(구글 애드센스 반응형 728×90, 300×250 / 카카오 애드핏 및 직접 배너 연동 영역)',
+        bannerBottomBtn: '문의하기 →',
+        footerBtnGeneral: '문의하기',
+        footerBtnAd: '문의하기',
+        modalAdTitle: '스폰서 광고',
+        modalAdPopupDesc: '(구글 애드센스 300×250 / 카카오 애드핏 연동)',
+        partnership: {
+          title: "제휴 및 교육 단체 지원 문의",
+          body: `
+            <div class="space-y-3">
+              <p class="font-bold text-zinc-950 text-sm">교육기관, 학교, 비영리 아동 단체 협력 안내</p>
+              <p>ColorBob는 전 세계 유치원, 어린이집, 초등학교, 특수학급, 아동복지관 및 시니어 복지관에 20,000종 이상의 고화질 A4 도안을 무제한 무료로 제공하고 있습니다.</p>
+              <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200 space-y-1.5">
+                <p class="font-bold text-zinc-900">제휴 및 지원 분야:</p>
+                <ul class="list-disc pl-5 space-y-1 text-zinc-600">
+                  <li>초등학교, 유치원, 어린이집 미술 수업 교재 무료 공급 지원</li>
+                  <li>아동복지센터 및 실버 복지관 맞춤형 인지 발달 및 치매 예방 도안 지원</li>
+                  <li>비영리 아동 교육 프로그램 및 공공 문화 행사 지원</li>
+                </ul>
+              </div>
+              <p class="text-xs text-zinc-500">문의 사항이 있으신 경우 공식 이메일을 통해 언제든 연락해 주시기 바랍니다.<br>
+              <strong>공식 문의 이메일:</strong> partner@colorbob.com</p>
+            </div>
+          `
+        },
+        terms: {
+          title: "서비스 이용약관",
+          body: `
+            <div class="space-y-3">
+              <p class="font-bold text-zinc-950 text-sm">제1조 (목적 및 기본 원칙)</p>
+              <p>본 약관은 ColorBob(이하 "서비스")가 제공하는 온라인 색칠공부 도안 및 교육용 워크시트 인쇄, 다운로드, 웹 브라우저 컬러링 서비스의 이용 조건 및 절차를 규정합니다.</p>
+              <p class="font-bold text-zinc-950 text-sm">제2조 (무료 이용의 범위)</p>
+              <p>본 서비스의 모든 도안은 개인, 가정, 학교, 교육기관 및 비영리 복지 단체에서 비용 지불 없이 100% 무료로 인쇄하고 자유롭게 이용하실 수 있습니다. 단, 수록된 캐릭터 및 도안을 무단으로 상업적 출판, 대량 인쇄 판매, 영리 목적 상품에 이용하는 행위는 엄격히 금지됩니다.</p>
+              <p class="font-bold text-zinc-950 text-sm">제3조 (금지 행위)</p>
+              <p>이용자는 자동화된 비정상 크롤러 또는 악의적인 DDoS 공격 등을 통해 서비스 서버에 과도한 부하를 유발하는 행위를 하여서는 안 됩니다.</p>
+            </div>
+          `
+        },
+        privacy: {
+          title: "개인정보처리방침",
+          body: `
+            <div class="space-y-3">
+              <p class="font-bold text-zinc-950 text-sm">1. 무수집 및 100% 익명 운영 원칙</p>
+              <p>ColorBob는 이용자의 프라이버시를 절대적으로 존중하며, 본 웹사이트는 <strong>회원가입 절차를 일체 운영하지 않습니다.</strong> 따라서 성명, 주민등록번호, 연락처, 이메일 주소 등 어떠한 개인 식별 정보도 서버에 수집하거나 저장하지 않습니다.</p>
+              <p class="font-bold text-zinc-950 text-sm">2. 로컬 브라우저 처리</p>
+              <p>웹 색칠하기 기능에서 생성된 드로잉 및 채색 데이터는 오직 사용자의 웹 브라우저(Canvas 메모리) 내에서만 실시간 처리되며, 외부 서버로 전송되거나 저장되지 않으므로 개인정보 유출 위험이 원천적으로 없습니다.</p>
+              <p class="font-bold text-zinc-950 text-sm">3. 쿠키 및 방문 분석</p>
+              <p>사용자 언어 선택 상태를 유지하기 위한 로컬 설정 외에는 비인가 추적 도구를 사용하지 않습니다.</p>
+            </div>
+          `
+        },
+        license: {
+          title: "저작권 및 이용 라이선스 규정",
+          body: `
+            <div class="space-y-3">
+              <p class="font-bold text-zinc-950 text-sm">1. 비상업적 개인 및 교육 목적 이용 (Fair Use License)</p>
+              <p>ColorBob의 도안은 아동의 창의력 증진, 가정 내 홈스쿨링 색칠놀이, 학교 및 교육기관의 학습 지원을 위한 비상업적 무료 자료로 제공됩니다.</p>
+              <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200 space-y-1 text-zinc-700">
+                <p>✔ <strong>허용되는 이용:</strong> 가정 내 자유 인쇄 및 색칠놀이, 유치원/어린이집/학교 교육 수업 배포, 아동/실버 복지관 힐링 교재 활용, 개인 웹 드로잉 연습</p>
+                <p>✖ <strong>금지되는 이용:</strong> 상업용 도서 출판(컬러링북 등 영리 도서 인쇄 판매), 유료 소프트웨어 내 무단 탑재, 상업적 상품화 및 유료 재판매</p>
+                <p>✔ <strong>출처 표기 의무 없음:</strong> 가정이나 교육 현장에서 'ColorBob' 출처 표기 없이 깔끔하게 출력하여 자유롭게 활용하실 수 있습니다.</p>
+              </div>
+              <p class="text-xs text-zinc-500">본 사이트의 도안은 국제 퍼블릭 도메인(CC0) 및 비상업적 공공 라이선스를 바탕으로 구성되었으며, 원저작자를 알 수 없는 인터넷 공유 창작물은 비영리 교육·개인 목적으로만 제공됩니다. 권리자의 요청 시 즉시 수정 또는 삭제됩니다.</p>
+            </div>
+          `
+        }
+      },
+      en: {
+        navGeneral: 'Contact Us',
+        navAd: 'Contact Us',
+        bannerSideTitle: 'Sponsored Ad Area',
+        bannerSideDesc: '160×600<br>Google AdSense &<br>Direct Sponsor',
+        bannerSideSub: 'Ad Partnership',
+        bannerSideBtn: 'Contact Us →',
+        bannerBottomTitle: 'Sponsor & Advertising Partnership',
+        bannerBottomDesc: '(Google AdSense Responsive 728×90, 300×250 / Direct Banner Space)',
+        bannerBottomBtn: 'Contact Us →',
+        footerBtnGeneral: 'Contact Us',
+        footerBtnAd: 'Contact Us',
+        modalAdTitle: 'Sponsored Ad',
+        modalAdPopupDesc: '(Google AdSense 300×250 / Sponsor Ads)',
+        partnership: {
+          title: "Partnership & Education Support",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">Schools & Non-Profit Education</p><p>ColorBob provides 20,000+ high-resolution A4 coloring sheets freely for schools, teachers, and educational non-profits worldwide.</p><p class="text-xs text-zinc-500">Official Contact: partner@colorbob.com</p></div>`
+        },
+        terms: {
+          title: "Terms of Service",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">Personal & Educational Use</p><p>All coloring sheets are 100% free for educational, homeschooling, and personal enjoyment. Commercial resale or publishing is strictly prohibited.</p></div>`
+        },
+        privacy: {
+          title: "Privacy Policy",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">Zero Data Collection</p><p>We do not collect or store any personal data. No accounts required. All canvas actions run locally in your browser.</p></div>`
+        },
+        license: {
+          title: "Copyright & License Guide",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">Personal & Educational Fair Use</p><p>Coloring sheets are provided strictly for non-commercial personal, home schooling, and educational purposes. Commercial exploitation, sale of printed coloring books, and unauthorized merchandising are not permitted.</p></div>`
+        }
+      },
+      ja: {
+        navGeneral: 'お問い合わせ',
+        navAd: '広告掲載・提携',
+        bannerSideTitle: 'スポンサー広告枠',
+        bannerSideDesc: '160×600<br>Google AdSense・<br>公式スポンサー枠',
+        bannerSideSub: '広告掲載・提携',
+        bannerSideBtn: '広告のお問い合わせ →',
+        bannerBottomTitle: 'スポンサー広告・公式提携スペース',
+        bannerBottomDesc: '(Google AdSense レスポンシブ 728×90, 300×250 / 公式バナー広告連動)',
+        bannerBottomBtn: '広告掲載のお問い合わせ →',
+        footerBtnGeneral: '一般お問い合わせ',
+        footerBtnAd: '広告掲載・ビジネス提携',
+        modalAdTitle: 'スポンサー広告',
+        modalAdPopupDesc: '(Google AdSense 300×250 / スポンサー枠)',
+        partnership: {
+          title: "教育支援・お問い合わせ",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">教育機関・非営利団体支援</p><p>教育機関、幼稚園、学校、非営利団体向けに20,000点以上の高解像度A4塗り絵を完全無料で提供しています。<br>お問い合わせ: partner@colorbob.com</p></div>`
+        },
+        terms: {
+          title: "利用規約",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">個人・家庭・教育利用の範囲</p><p>当サイトの塗り絵は、個人利用、家庭学習、学校・教育現場で100%無料でご利用いただけます。商用出版や営利目的での無断転売は禁止されています。</p></div>`
+        },
+        privacy: {
+          title: "個人情報保護方針",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">個人情報ゼロ収集</p><p>会員登録は不要であり、個人情報は一切収集・保管しません。塗り絵データはすべてブラウザ内で安全に処理されます。</p></div>`
+        },
+        license: {
+          title: "著作権・利用規約",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">非営利・教育目的の利用規程</p><p>すべての図案は個人および教育目的で無料でお使いいただけます。キャラクター図案の商用販売や出版物への無断転載は固くお断りいたします。</p></div>`
+        }
+      },
+      zh: {
+        navGeneral: '常规咨询',
+        navAd: '广告投放合作',
+        bannerSideTitle: '赞助商广告位',
+        bannerSideDesc: '160×600<br>Google AdSense 及<br>官方赞助商广告',
+        bannerSideSub: '商务合作',
+        bannerSideBtn: '广告合作咨询 →',
+        bannerBottomTitle: '赞助商广告与商务合作',
+        bannerBottomDesc: '(Google AdSense 自适应 728×90, 300×250 / 官方定制横幅广告位)',
+        bannerBottomBtn: '广告合作咨询 →',
+        footerBtnGeneral: '常规咨询通道',
+        footerBtnAd: '广告与商务合作',
+        modalAdTitle: '赞助商广告',
+        modalAdPopupDesc: '(Google AdSense 300×250 / 赞助商广告)',
+        partnership: {
+          title: "教育机构与公益合作",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">学校与非营利机构支持</p><p>ColorBob为全球学校、幼儿园及公益机构免费提供超过20,000款高清A4涂色画。<br>联系邮箱: partner@colorbob.com</p></div>`
+        },
+        terms: {
+          title: "使用条款",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">个人与教育免费范围</p><p>本站所有涂色图纸均可100%免费用于家庭、个人及教育教学用途。严禁用于任何商业出版、印制转售等营利行为。</p></div>`
+        },
+        privacy: {
+          title: "隐私政策",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">零个人数据收集</p><p>本站无需注册，绝不收集或储存任何个人隐私数据。涂色画板的所有操作均在本地浏览器中运行。</p></div>`
+        },
+        license: {
+          title: "版权与使用许可说明",
+          body: `<div class="space-y-2"><p class="font-bold text-zinc-950 text-sm">非商业个人与教育许可</p><p>本站图纸仅供个人欣赏、家庭涂色与儿童益智教育使用。严禁进行商业化出版、售卖或未经授权的商用衍生开发。</p></div>`
+        }
+      }
+    };
+
+    function openPolicyModal(type) {
+      const lang = policyTexts[currentLang] ? currentLang : 'ko';
+      const data = policyTexts[lang][type] || policyTexts['ko'][type];
+      document.getElementById('policyModalTitle').textContent = data.title;
+      document.getElementById('policyModalBody').innerHTML = data.body;
+      document.getElementById('policyModalBackdrop').classList.remove('hidden');
+    }
+
+    function closePolicyModal() {
+      document.getElementById('policyModalBackdrop').classList.add('hidden');
+    }
+
+    // 추가 36색 정밀 팔레트 (무지개 버튼 클릭 시 즉시 열리는 팝업용)
+    const extendedPaletteColors = [
+      '#991B1B', '#DC2626', '#EF4444', '#F87171', '#FCA5A5', '#FECACA', '#BE123C', '#E11D48', '#FB7185',
+      '#9A3412', '#EA580C', '#F97316', '#FB923C', '#FDBA74', '#FED7AA', '#B45309', '#D97706', '#FBBF24',
+      '#854D0E', '#CA8A04', '#EAB308', '#FACC15', '#FEF08A', '#3F6212', '#65A30D', '#84CC16', '#BEF264',
+      '#166534', '#16A34A', '#22C55E', '#4ADE80', '#86EFAC', '#0F766E', '#14B8A6', '#2DD4BF', '#99F6E4',
+      '#1E40AF', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#0369A1', '#0284C7', '#38BDF8', '#BAE6FD',
+      '#5B21B6', '#7C3AED', '#8B5CF6', '#A78BFA', '#C4B5FD', '#86198F', '#C026D3', '#E879F9', '#F5D0FE'
+    ];
+
+    function renderPalette() {
+      const bar = document.getElementById('paletteBar');
+      if (!bar) return;
+      const isCustomSelected = !paletteColors.some(c => c.toLowerCase() === selectedColor.toLowerCase()) && currentTool === 'brush';
+      const swatchesHtml = paletteColors.map(c => {
+        const isSelected = selectedColor.toLowerCase() === c.toLowerCase() && currentTool === 'brush';
+        const borderCls = (c.toUpperCase() === '#FFFFFF') ? 'border-zinc-300' : 'border-black/15';
+        return `
+          <button type="button" onclick="pickColor('${c}')" style="background-color: ${c}" class="w-6 h-6 sm:w-6 sm:h-6 rounded-full border ${borderCls} hover:scale-110 active:scale-95 transition-transform shrink-0 cursor-pointer ${isSelected ? 'ring-2 ring-zinc-900 ring-offset-1 ring-offset-zinc-50 scale-110 shadow-sm' : 'opacity-95 hover:opacity-100'}" title="${c}"></button>
+        `;
+      }).join('');
+
+      // 무지개 색상 선택 버튼 (클릭 시 100% 확실하게 작동하는 커스텀 팝오버 호출)
+      const customPickerHtml = `
+        <button type="button" onclick="toggleCustomColorPopover(event)" class="relative w-6 h-6 sm:w-6 sm:h-6 rounded-full border border-zinc-300 flex items-center justify-center cursor-pointer shrink-0 hover:scale-110 active:scale-95 transition-transform shadow-xs ${isCustomSelected ? 'ring-2 ring-zinc-900 ring-offset-1 ring-offset-zinc-50 scale-110' : ''}" style="background: conic-gradient(#ef4444, #f59e0b, #eab308, #10b981, #3b82f6, #8b5cf6, #ec4899, #ef4444);" title="색상 더보기 (36색 + 직접 선택)">
+          <span class="w-2 h-2 rounded-full bg-white shadow-xs pointer-events-none"></span>
+        </button>
+      `;
+      bar.innerHTML = swatchesHtml + customPickerHtml;
+
+      const extGrid = document.getElementById('extendedPaletteGrid');
+      if (extGrid) {
+        extGrid.innerHTML = extendedPaletteColors.map(c => `
+          <button type="button" onclick="selectCustomColorFromPopover('${c}')" style="background-color: ${c}" class="w-6 h-6 rounded-full border border-black/15 hover:scale-115 active:scale-95 transition-transform cursor-pointer" title="${c}"></button>
+        `).join('');
+      }
+    }
+
+    function toggleCustomColorPopover(e) {
+      if (e) e.stopPropagation();
+      const pop = document.getElementById('customColorPopover');
+      if (!pop) return;
+      pop.classList.toggle('hidden');
+      const nativeInput = document.getElementById('nativeColorInput');
+      if (nativeInput) nativeInput.value = selectedColor;
+    }
+
+    function selectCustomColorFromPopover(c) {
+      pickColor(c);
+      const pop = document.getElementById('customColorPopover');
+      if (pop) pop.classList.add('hidden');
+    }
+
+    function selectCustomColorFromNative(c) {
+      pickColor(c);
+    }
+
+    function updateBrushCursor() {
+      const paintCanvas = document.getElementById('paintCanvas');
+      const canvasContainer = document.getElementById('canvasContainer');
+
+      const dot = document.getElementById('brushSizePreviewDot');
+      const effectiveBrushColor = getEffectiveBrushColor(selectedColor || '#EF4444', brushOpacity);
+      if (dot) {
+        const previewDiameter = Math.max(4, Math.min(24, Math.round(brushSize * 0.3 + 3)));
+        dot.style.width = previewDiameter + 'px';
+        dot.style.height = previewDiameter + 'px';
+        dot.style.backgroundColor = (currentTool === 'eraser') ? '#f4f4f5' : effectiveBrushColor;
+        dot.style.opacity = '1';
+        dot.style.borderRadius = '50%';
+        if (currentTool === 'eraser') {
+          dot.style.border = '1px dashed #52525b';
+        } else if (selectedColor.toUpperCase() === '#FFFFFF' || brushOpacity < 0.35) {
+          dot.style.border = '1px solid #d4d4d8';
+        } else {
+          dot.style.border = 'none';
+        }
+      }
+
+      if (!paintCanvas) return;
+
+      // OS 하드웨어 스프라이트 평면(<=32x32px) 직결 커서 (소프트웨어 커서 에뮬레이션 지연 0.00ms 원천 차단)
+      try {
+        const scaleX = (window._cachedScaleX && window._cachedScaleX > 0) ? window._cachedScaleX : 1;
+        const rawRadius = Math.round((brushSize / scaleX) * 0.36);
+        const displayRadius = Math.max(3, Math.min(14, rawRadius));
+        const size = 32;
+        const center = 16;
+        let svg = '';
+
+        if (currentTool === 'eraser') {
+          svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">`
+              + `<circle cx="16" cy="16" r="${displayRadius}" fill="rgba(255,255,255,0.65)" stroke="#27272a" stroke-width="1.5"/>`
+              + `<circle cx="16" cy="16" r="1.5" fill="#18181b"/>`
+              + `</svg>`;
+        } else {
+          const c = effectiveBrushColor;
+          svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">`
+              + `<circle cx="16" cy="16" r="${displayRadius}" fill="none" stroke="#ffffff" stroke-width="2.2"/>`
+              + `<circle cx="16" cy="16" r="${displayRadius}" fill="none" stroke="${c}" stroke-width="1.5"/>`
+              + `<circle cx="16" cy="16" r="2" fill="${c}"/>`
+              + `</svg>`;
+        }
+
+        const cursorUrl = `url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}") ${center} ${center}, crosshair`;
+        paintCanvas.style.cursor = cursorUrl;
+        if (canvasContainer) canvasContainer.style.cursor = cursorUrl;
+      } catch (_) {
+        paintCanvas.style.cursor = 'crosshair';
+      }
+    }
+
+    function setTool(tool) {
+      currentTool = tool;
+      const btnBrush = document.getElementById('btnToolBrush');
+      const btnEraser = document.getElementById('btnToolEraser');
+      if (btnBrush && btnEraser) {
+        if (tool === 'brush') {
+          btnBrush.className = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors bg-white text-zinc-950 shadow-xs cursor-pointer';
+          btnEraser.className = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors text-zinc-600 hover:text-zinc-950 cursor-pointer';
+        } else {
+          btnBrush.className = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors text-zinc-600 hover:text-zinc-950 cursor-pointer';
+          btnEraser.className = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md transition-colors bg-white text-zinc-950 shadow-xs cursor-pointer';
+        }
+      }
+      updateBrushCursor();
+      if (window._syncBrushStyle) window._syncBrushStyle();
+    }
+
+    function pickColor(c) {
+      selectedColor = c;
+      setTool('brush');
+      renderPalette();
+      updateBrushCursor();
+      if (window._syncBrushStyle) window._syncBrushStyle();
+    }
+
+    function changeBrushSize(v) {
+      brushSize = Number(v);
+      document.getElementById('brushSizeLabel').textContent = v + 'px';
+      updateBrushCursor();
+      if (window._syncBrushStyle) window._syncBrushStyle();
+    }
+
+    function changeBrushOpacity(v) {
+      brushOpacity = Number(v) / 100;
+      const el = document.getElementById('brushOpacityLabel');
+      if (el) el.textContent = v + '%';
+      updateBrushCursor();
+      if (window._syncBrushStyle) window._syncBrushStyle();
+    }
+
+    function hexToRgba(hex, alpha) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) c = c.split('').map(x => x + x).join('');
+      const num = parseInt(c, 16);
+      return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+    }
+
+    // 흰색 바탕(#FFFFFF)과 선택한 브러시 색상·투명도를 사전 블렌딩하여
+    // 1) 마우스 추적 속도(0.00ms globalAlpha=1.0 직결)를 100% 유지하면서
+    // 2) 세그먼트 겹침(원 자국/농도 뭉침) 없이 선택한 투명도(15%~100%) 색감이 정확히 표현되도록 계산
+    function getEffectiveBrushColor(hex, alpha) {
+      let c = (hex || '#EF4444').replace('#', '');
+      if (c.length === 3) c = c.split('').map(x => x + x).join('');
+      const num = parseInt(c, 16);
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      const a = Math.max(0.05, Math.min(1, (alpha !== undefined && alpha !== null) ? Number(alpha) : 1));
+      const outR = Math.round(r * a + 255 * (1 - a));
+      const outG = Math.round(g * a + 255 * (1 - a));
+      const outB = Math.round(b * a + 255 * (1 - a));
+      return `rgb(${outR}, ${outG}, ${outB})`;
+    }
+
+    // 초고속 직결 desynchronized 2D 캔버스 엔진 (0.00ms 실시간 직결 렌더링 & 무오염 CORS 선화 추출)
+    function loadImgToCanvas() {
+      if (!selectedItem) return;
+      const paintCanvas = document.getElementById('paintCanvas');
+      const overlayCanvas = document.getElementById('overlayCanvas');
+      if (!paintCanvas) return;
+
+      window._cleanLineArtImage = null;
+      window._isOverlayTransparent = false;
+
+      const paintCtx = paintCanvas.getContext('2d', { desynchronized: true, alpha: false, willReadFrequently: false }) || paintCanvas.getContext('2d', { desynchronized: true }) || paintCanvas.getContext('2d');
+      const img = new Image();
+
+      let cardImgSrc = null;
+      try {
+        const cardImg = document.querySelector(`[onclick*="${selectedItem.id}"] img`);
+        if (cardImg && cardImg.currentSrc) {
+          cardImgSrc = cardImg.currentSrc;
+        } else if (cardImg && cardImg.src) {
+          cardImgSrc = cardImg.src;
+        }
+      } catch (_) {}
+
+      const rawRel = selectedItem.imageSrc.replace(/^\/+/, '');
+      const cleanRel = rawRel.replace(/^public\//, '');
+      const isFileProto = (window.location.protocol === 'file:');
+      const candidateSources = [];
+
+      // 1순위: 로컬 file:// 실행 시 로컬 CORS 브릿지(127.0.0.1:18765)를 최우선 사용하여 캔버스 Taint 완벽 차단
+      // -> 이를 통해 투명 선화 추출(mix-blend-mode: normal)로 마우스 딜레이 0.00ms 달성 & 다운로드/인쇄 시 선화 100% 합성 보장
+      if (isFileProto) {
+        candidateSources.push({ url: 'http://127.0.0.1:18765/' + cleanRel, cors: true });
+      }
+      if (cardImgSrc) {
+        candidateSources.push({ url: cardImgSrc, cors: !cardImgSrc.startsWith('file:') });
+      }
+      candidateSources.push({ url: selectedItem.imageSrc, cors: !isFileProto });
+      if (!rawRel.startsWith('public/')) {
+        candidateSources.push({ url: 'public/' + rawRel, cors: !isFileProto });
+      }
+
+      let srcIdx = 0;
+      let loadedWithCors = false;
+      function tryLoadNext() {
+        if (srcIdx >= candidateSources.length) {
+          paintCanvas.width = 680;
+          paintCanvas.height = 960;
+          if (overlayCanvas) { overlayCanvas.width = 680; overlayCanvas.height = 960; }
+          paintCtx.fillStyle = '#ffffff';
+          paintCtx.fillRect(0, 0, 680, 960);
+          return;
+        }
+        const cand = candidateSources[srcIdx++];
+        loadedWithCors = !!cand.cors;
+        if (cand.cors) {
+          img.crossOrigin = 'anonymous';
+        } else {
+          img.removeAttribute('crossorigin');
+        }
+        img.src = cand.url;
+      }
+
+      img.onerror = () => {
+        tryLoadNext();
+      };
+
+      img.onload = () => {
+        originalImageObj = img;
+        if (loadedWithCors) {
+          window._cleanLineArtImage = img;
+        }
+        // 로컬 file:// 폴백 시에도 실제 파일 경로를 보존
+        window._activeLineArtSrc = cardImgSrc || selectedItem.imageSrc;
+
+        const rawW = img.naturalWidth || 800;
+        const rawH = img.naturalHeight || 1130;
+        // 채색 버퍼는 680px로 유지하여 0.00ms 마우스 직결 속도를 100% 보존하고,
+        // PC 화면 표시 크기는 대화면(83vh)으로 시원하게 확대 표시
+        const maxDim = 680;
+        const scale = Math.min(1, maxDim / Math.max(rawW, rawH));
+        const w = Math.round(rawW * scale);
+        const h = Math.round(rawH * scale);
+
+        paintCanvas.width = w;
+        paintCanvas.height = h;
+        
+        // [모바일 & PC 캔버스 종횡비 100% 완전 보존 엔진: 1픽셀도 찌그러짐 원천 차단]
+        paintCanvas.style.aspectRatio = `${rawW} / ${rawH}`;
+        paintCanvas.style.maxWidth = '100%';
+        paintCanvas.style.maxHeight = '100%';
+        paintCanvas.style.objectFit = 'contain';
+
+        const isMobileScreen = (window.innerWidth < 768);
+        if (isMobileScreen) {
+          // 모바일: 뷰포트 너비(375~430px) 및 상하 툴바 제외 가용 높이 내에서 비율 자동 피팅
+          if (rawH >= rawW) {
+            paintCanvas.style.height = 'min(70vh, calc(100vh - 145px))';
+            paintCanvas.style.width = 'auto';
+            paintCanvas.style.maxWidth = 'calc(100vw - 16px)';
+          } else {
+            paintCanvas.style.width = 'calc(100vw - 16px)';
+            paintCanvas.style.height = 'auto';
+            paintCanvas.style.maxHeight = 'min(70vh, calc(100vh - 145px))';
+          }
+        } else {
+          // 데스크톱: 대화면 시원한 뷰
+          if (rawH >= rawW) {
+            paintCanvas.style.height = 'min(82vh, calc(100vh - 136px))';
+            paintCanvas.style.width = 'auto';
+            paintCanvas.style.maxWidth = 'min(70vw, 1080px)';
+          } else {
+            paintCanvas.style.width = 'min(68vw, 1080px)';
+            paintCanvas.style.height = 'auto';
+            paintCanvas.style.maxHeight = 'min(82vh, calc(100vh - 136px))';
+          }
+        }
+
+        if (overlayCanvas) {
+          const overScale = Math.min(1, 960 / Math.max(rawW, rawH));
+          const ow = Math.round(rawW * overScale);
+          const oh = Math.round(rawH * overScale);
+          overlayCanvas.width = ow;
+          overlayCanvas.height = oh;
+          const overlayCtx = overlayCanvas.getContext('2d');
+          overlayCtx.clearRect(0, 0, ow, oh);
+
+          let transparentExtracted = false;
+          try {
+            const off = document.createElement('canvas');
+            off.width = ow;
+            off.height = oh;
+            const offCtx = off.getContext('2d');
+            offCtx.drawImage(img, 0, 0, ow, oh);
+            const imgData = offCtx.getImageData(0, 0, ow, oh);
+            const d = imgData.data;
+            for (let i = 0; i < d.length; i += 4) {
+              const r = d[i], g = d[i+1], b = d[i+2];
+              // 휘도 계산: 255(흰색) -> alpha 0(완전투명), 0(검은색) -> alpha 255(불투명)
+              const lum = (r * 299 + g * 587 + b * 114) / 1000;
+              d[i] = 16;
+              d[i+1] = 16;
+              d[i+2] = 20;
+              d[i+3] = lum > 245 ? 0 : (255 - lum);
+            }
+            overlayCtx.putImageData(imgData, 0, 0);
+            overlayCanvas.style.mixBlendMode = 'normal';
+            transparentExtracted = true;
+            window._isOverlayTransparent = true;
+          } catch (e) {
+            console.warn('Transparent extraction fallback:', e);
+          }
+
+          if (!transparentExtracted) {
+            overlayCtx.drawImage(img, 0, 0, ow, oh);
+            overlayCanvas.style.mixBlendMode = 'multiply';
+            window._isOverlayTransparent = false;
+            // 백그라운드로 CORS 브릿지 클린 이미지를 즉시 확보하여 투명 선화 및 다운로드/인쇄 병합 준비
+            ensureCleanLineArt().then((cleanImg) => {
+              if (cleanImg && overlayCanvas) {
+                try {
+                  const off2 = document.createElement('canvas');
+                  off2.width = ow;
+                  off2.height = oh;
+                  const offCtx2 = off2.getContext('2d');
+                  offCtx2.drawImage(cleanImg, 0, 0, ow, oh);
+                  const imgData2 = offCtx2.getImageData(0, 0, ow, oh);
+                  const d2 = imgData2.data;
+                  for (let i = 0; i < d2.length; i += 4) {
+                    const lum = (d2[i] * 299 + d2[i+1] * 587 + d2[i+2] * 114) / 1000;
+                    d2[i] = 16; d2[i+1] = 16; d2[i+2] = 20;
+                    d2[i+3] = lum > 245 ? 0 : (255 - lum);
+                  }
+                  overlayCtx.clearRect(0, 0, ow, oh);
+                  overlayCtx.putImageData(imgData2, 0, 0);
+                  overlayCanvas.style.mixBlendMode = 'normal';
+                  window._isOverlayTransparent = true;
+                } catch (_) {}
+              }
+            });
+          }
+        }
+
+        // 채색 캔버스는 순수 흰색 바탕으로 초기화
+        paintCtx.save();
+        paintCtx.globalCompositeOperation = 'source-over';
+        paintCtx.globalAlpha = 1.0;
+        paintCtx.fillStyle = '#ffffff';
+        paintCtx.fillRect(0, 0, w, h);
+        paintCtx.restore();
+
+        if (window._syncCanvasRect) window._syncCanvasRect();
+        if (window._syncBrushStyle) window._syncBrushStyle();
+      };
+
+      tryLoadNext();
+    }
+
+    function resetCanvasDrawing() {
+      const paintCanvas = document.getElementById('paintCanvas');
+      if (!paintCanvas) return;
+      const paintCtx = paintCanvas.getContext('2d', { desynchronized: true, alpha: false, willReadFrequently: false }) || paintCanvas.getContext('2d', { desynchronized: true }) || paintCanvas.getContext('2d');
+      paintCtx.save();
+      paintCtx.globalCompositeOperation = 'source-over';
+      paintCtx.globalAlpha = 1.0;
+      paintCtx.fillStyle = '#ffffff';
+      paintCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+      paintCtx.restore();
+      if (window._syncBrushStyle) window._syncBrushStyle();
+    }
+
+    // 초고속 0.00ms 직결 하드웨어 가속 드로잉 이벤트 (중복 리스너 제거 & GPU 직결)
+    function setupCanvasEvents() {
+      const canvasContainer = document.getElementById('canvasContainer');
+      const paintCanvas = document.getElementById('paintCanvas');
+      if (!canvasContainer || !paintCanvas) return;
+      const paintCtx = paintCanvas.getContext('2d', { desynchronized: true, alpha: false, willReadFrequently: false }) || paintCanvas.getContext('2d', { desynchronized: true }) || paintCanvas.getContext('2d');
+
+      let cachedRect = null;
+      let cachedScaleX = 1;
+      let cachedScaleY = 1;
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      function updateCachedRects() {
+        if (!paintCanvas) return;
+        cachedRect = paintCanvas.getBoundingClientRect();
+        if (cachedRect.width > 0 && cachedRect.height > 0) {
+          cachedScaleX = paintCanvas.width / cachedRect.width;
+          cachedScaleY = paintCanvas.height / cachedRect.height;
+          window._cachedScaleX = cachedScaleX;
+        }
+      }
+
+      function applyBrushStyle() {
+        const effectiveSize = Math.max(4, Math.round(brushSize * 0.65));
+        if (currentTool === 'brush') {
+          const effectiveColor = getEffectiveBrushColor(selectedColor, brushOpacity);
+          paintCtx.globalCompositeOperation = 'source-over';
+          paintCtx.globalAlpha = 1.0;
+          paintCtx.strokeStyle = effectiveColor;
+          paintCtx.fillStyle = effectiveColor;
+          paintCtx.lineWidth = effectiveSize;
+          paintCtx.lineCap = 'round';
+          paintCtx.lineJoin = 'round';
+        } else {
+          paintCtx.globalCompositeOperation = 'source-over';
+          paintCtx.globalAlpha = 1.0;
+          paintCtx.strokeStyle = '#ffffff';
+          paintCtx.fillStyle = '#ffffff';
+          paintCtx.lineWidth = effectiveSize;
+          paintCtx.lineCap = 'round';
+          paintCtx.lineJoin = 'round';
+        }
+      }
+
+      window._syncCanvasRect = () => {
+        updateCachedRects();
+        updateBrushCursor();
+      };
+      window._syncBrushStyle = () => {
+        applyBrushStyle();
+        updateBrushCursor();
+      };
+
+      function start(e) {
+        const pop = document.getElementById('customColorPopover');
+        if (pop && !pop.classList.contains('hidden')) pop.classList.add('hidden');
+
+        if (!cachedRect) updateCachedRects();
+        isDrawing = true;
+
+        lastX = (e.clientX - cachedRect.left) * cachedScaleX;
+        lastY = (e.clientY - cachedRect.top) * cachedScaleY;
+
+        applyBrushStyle();
+        paintCtx.beginPath();
+        paintCtx.moveTo(lastX, lastY);
+        paintCtx.lineTo(lastX + 0.01, lastY + 0.01);
+        paintCtx.stroke();
+      }
+
+      function stop() {
+        isDrawing = false;
+      }
+
+      function draw(e) {
+        if (!isDrawing) return;
+
+        // CoalescedEvents 지원: 마우스 고속 이동 시에도 단 1프레임 누락 없이 100% 직결 렌더링
+        const events = (typeof e.getCoalescedEvents === 'function' && e.getCoalescedEvents().length > 0)
+          ? e.getCoalescedEvents()
+          : [e];
+
+        paintCtx.beginPath();
+        paintCtx.moveTo(lastX, lastY);
+        let hasMoved = false;
+
+        for (let i = 0; i < events.length; i++) {
+          const ev = events[i];
+          const currX = (ev.clientX - cachedRect.left) * cachedScaleX;
+          const currY = (ev.clientY - cachedRect.top) * cachedScaleY;
+          if (currX === lastX && currY === lastY) continue;
+          paintCtx.lineTo(currX, currY);
+          lastX = currX;
+          lastY = currY;
+          hasMoved = true;
+        }
+        if (hasMoved) {
+          paintCtx.stroke();
+        }
+      }
+
+      canvasContainer.addEventListener('pointerdown', (e) => {
+        try { canvasContainer.setPointerCapture(e.pointerId); } catch (_) {}
+        updateCachedRects();
+        start(e);
+      }, { passive: true });
+      canvasContainer.addEventListener('pointermove', draw, { passive: true });
+      canvasContainer.addEventListener('pointerup', (e) => {
+        try { canvasContainer.releasePointerCapture(e.pointerId); } catch (_) {}
+        stop();
+      }, { passive: true });
+      canvasContainer.addEventListener('pointercancel', (e) => {
+        try { canvasContainer.releasePointerCapture(e.pointerId); } catch (_) {}
+        stop();
+      }, { passive: true });
+      canvasContainer.addEventListener('pointerenter', () => {
+        updateCachedRects();
+        updateBrushCursor();
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        updateCachedRects();
+        updateBrushCursor();
+      }, { passive: true });
+      window.addEventListener('pointerup', () => {
+        if (isDrawing) stop();
+      }, { passive: true });
+    }
+
+    // 채색 캔버스 + 선화 도안 원본 완벽 병합 추출 (다운로드 및 인쇄 시 색칠+도안 동시 출력 보장)
+    function getMergedCanvasDataUrl() {
+      const paintCanvas = document.getElementById('paintCanvas');
+      const overlayCanvas = document.getElementById('overlayCanvas');
+      if (!paintCanvas) return null;
+
+      // 1차 시도: 무오염 고화질 원본 도안(window._cleanLineArtImage)과 채색 캔버스를 고해상도로 병합
+      if (window._cleanLineArtImage) {
+        try {
+          const cleanImg = window._cleanLineArtImage;
+          const targetW = cleanImg.naturalWidth ? Math.min(1240, cleanImg.naturalWidth) : paintCanvas.width;
+          const targetH = cleanImg.naturalHeight ? Math.round(targetW * (cleanImg.naturalHeight / cleanImg.naturalWidth)) : paintCanvas.height;
+          const offscreen = document.createElement('canvas');
+          offscreen.width = targetW;
+          offscreen.height = targetH;
+          const ctx = offscreen.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, targetW, targetH);
+          ctx.drawImage(paintCanvas, 0, 0, targetW, targetH);
+          ctx.globalCompositeOperation = 'multiply';
+          ctx.drawImage(cleanImg, 0, 0, targetW, targetH);
+          return offscreen.toDataURL('image/png');
+        } catch (e1) {
+          console.warn('Clean line art merge fallback:', e1);
+        }
+      }
+
+      // 2차 시도: 현재 화면의 overlayCanvas(선화)와 paintCanvas(채색)를 1:1 병합
+      if (overlayCanvas) {
+        try {
+          const offscreen = document.createElement('canvas');
+          offscreen.width = overlayCanvas.width || paintCanvas.width;
+          offscreen.height = overlayCanvas.height || paintCanvas.height;
+          const ctx = offscreen.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, offscreen.width, offscreen.height);
+          ctx.drawImage(paintCanvas, 0, 0, offscreen.width, offscreen.height);
+          ctx.globalCompositeOperation = window._isOverlayTransparent ? 'source-over' : 'multiply';
+          ctx.drawImage(overlayCanvas, 0, 0, offscreen.width, offscreen.height);
+          return offscreen.toDataURL('image/png');
+        } catch (e2) {
+          console.warn('Overlay canvas merge tainted:', e2);
+        }
+      }
+
+      // 절대 선화가 빠진 paintCanvas 단독 이미지를 반환하지 않음 (null 반환하여 호출부에서 2중 레이어/CORS 복원 처리)
+      return null;
+    }
+
+    // 인쇄 & 다운로드
+    function quickPrintById(id) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      const printBox = document.getElementById('printContainer');
+      if (!printBox) return;
+
+      let cardSrc = null;
+      try {
+        const cardImg = document.querySelector(`[onclick*="${id}"] img`);
+        if (cardImg && cardImg.currentSrc) cardSrc = cardImg.currentSrc;
+        else if (cardImg && cardImg.src) cardSrc = cardImg.src;
+      } catch (_) {}
+
+      const targetSrc = cardSrc || item.imageSrc;
+      const img = new Image();
+      let printed = false;
+      function triggerPrint(src) {
+        if (printed) return;
+        printed = true;
+        printBox.innerHTML = `<img src="${src}" />`;
+        window.print();
+      }
+
+      if (img.complete && img.naturalWidth > 0) {
+        triggerPrint(targetSrc);
+        return;
+      }
+
+      img.onload = () => triggerPrint(targetSrc);
+      img.onerror = () => {
+        if (!targetSrc.includes('public/')) {
+          const fallbackSrc = 'public/' + item.imageSrc.replace(/^\/+/, '');
+          const fImg = new Image();
+          fImg.onload = () => triggerPrint(fallbackSrc);
+          fImg.onerror = () => triggerPrint(targetSrc);
+          fImg.src = fallbackSrc;
+        } else {
+          triggerPrint(targetSrc);
+        }
+      };
+      img.src = targetSrc;
+
+      setTimeout(() => { triggerPrint(targetSrc); }, 250);
+    }
+
+    async function printCurrentItem() {
+      if (!selectedItem) return;
+      const printBox = document.getElementById('printContainer');
+      if (!printBox) return;
+
+      const paintCanvas = document.getElementById('paintCanvas');
+      const lineSrc = window._activeLineArtSrc || selectedItem.imageSrc;
+
+      // 채색 모드일 때는 [채색 + 도안 선화]가 100% 함께 출력되도록 처리
+      if (isColoringMode && paintCanvas) {
+        let mergedDataUrl = getMergedCanvasDataUrl();
+        if (!mergedDataUrl) {
+          await ensureCleanLineArt();
+          mergedDataUrl = getMergedCanvasDataUrl();
+        }
+
+        if (mergedDataUrl) {
+          printBox.innerHTML = `
+            <div style="width:190mm; height:277mm; display:flex; align-items:center; justify-content:center; margin:0 auto; background:#ffffff;">
+              <img src="${mergedDataUrl}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+            </div>
+          `;
+          setTimeout(() => { window.print(); }, 80);
+          return;
+        }
+
+        // 만약 오프라인 file:// 환경에서 브릿지 없이 실행되어 캔버스 병합이 차단된 경우에도
+        // 채색 레이어(paintDataUrl) + 원본 도안(lineSrc) 2중 DOM 레이어 중첩으로 100% 도안과 색칠을 동시에 인쇄!
+        try {
+          const paintOnlyUrl = paintCanvas.toDataURL('image/png');
+          printBox.innerHTML = `
+            <div style="position:relative; width:190mm; height:277mm; margin:0 auto; background:#ffffff;">
+              <img src="${paintOnlyUrl}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;" />
+              <img src="${lineSrc}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply;" />
+            </div>
+          `;
+          setTimeout(() => { window.print(); }, 100);
+          return;
+        } catch (err) {
+          console.warn('Print stacked fallback error:', err);
+        }
+      }
+
+      printBox.innerHTML = `<img src="${lineSrc}" />`;
+      setTimeout(() => { window.print(); }, 80);
+    }
+
+    async function quickPdfById(id) {
+      const item = items.find(i => i.id === id);
+      if (item) downloadPdfFromImage(item.imageSrc, `${item.id}-a4.pdf`);
+    }
+
+    async function ensureCleanLineArt() {
+      if (window._cleanLineArtImage) return window._cleanLineArtImage;
+      if (!selectedItem) return null;
+      const rawRel = selectedItem.imageSrc.replace(/^\/+/, '').replace(/^public\//, '');
+      const bridgeUrl = (window.location.protocol === 'file:')
+        ? `http://127.0.0.1:18765/${rawRel}`
+        : (window._activeLineArtSrc || selectedItem.imageSrc);
+      try {
+        const r = await fetch(bridgeUrl, { mode: 'cors' });
+        if (!r.ok) return null;
+        const blob = await r.blob();
+        return await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const cleanImg = new Image();
+            cleanImg.onload = () => {
+              window._cleanLineArtImage = cleanImg;
+              resolve(cleanImg);
+            };
+            cleanImg.onerror = () => resolve(null);
+            cleanImg.src = reader.result;
+          };
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(blob);
+        });
+      } catch (_) {
+        return null;
+      }
+    }
+
+    async function downloadPdfCurrentItem() {
+      if (!selectedItem) return;
+      const fallbackSrc = window._activeLineArtSrc || selectedItem.imageSrc;
+      if (isColoringMode) {
+        let mergedUrl = getMergedCanvasDataUrl();
+        if (!mergedUrl) {
+          await ensureCleanLineArt();
+          mergedUrl = getMergedCanvasDataUrl();
+        }
+        if (mergedUrl) {
+          downloadPdfFromImage(mergedUrl, `${selectedItem.id}-colored.pdf`);
+          return;
+        }
+        // 병합 데이터 생성이 불가능한 오프라인 환경에서는 2중 레이어 인쇄(PDF로 저장)로 즉시 연결
+        printCurrentItem();
+      } else {
+        downloadPdfFromImage(fallbackSrc, `${selectedItem.id}-a4.pdf`);
+      }
+    }
+
+    async function downloadPdfFromImage(imgSrc, fileName) {
+      try {
+        if (!imgSrc) {
+          printCurrentItem();
+          return;
+        }
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        if (imgSrc.startsWith('data:')) {
+          pdf.addImage(imgSrc, 'PNG', 10, 10, 190, 277);
+          pdf.save(fileName);
+          return;
+        }
+
+        const img = new Image();
+        img.src = imgSrc;
+        img.onerror = () => {
+          if (!img.src.includes('public/')) {
+            img.src = 'public/' + imgSrc.replace(/^\/+/, '');
+          }
+        };
+
+        img.onload = () => {
+          try {
+            const ratio = (img.height || 1) / (img.width || 1);
+            let renderW = 190;
+            let renderH = renderW * ratio;
+            if (renderH > 277) {
+              renderH = 277;
+              renderW = renderH / ratio;
+            }
+            const posX = (210 - renderW) / 2;
+            const posY = (297 - renderH) / 2;
+
+            pdf.addImage(img, 'PNG', posX, posY, renderW, renderH);
+            pdf.save(fileName);
+          } catch (canvasErr) {
+            console.warn('Direct PDF addImage failed, using Print-to-PDF fallback:', canvasErr);
+            printCurrentItem();
+          }
+        };
+      } catch (e) {
+        console.error('jsPDF error:', e);
+        printCurrentItem();
+      }
+    }
+
+    function triggerBlobDownload(dataUrl, fileName) {
+      try {
+        const parts = dataUrl.split(',');
+        const mime = parts[0].match(/:(.*?);/)[1];
+        const bstr = atob(parts[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        const blob = new Blob([u8arr], { type: mime });
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+        return true;
+      } catch (e) {
+        console.warn('Blob conversion failed:', e);
+        return false;
+      }
+    }
+
+    async function downloadPngCurrentItem() {
+      if (!selectedItem) return;
+      const safeName = `${selectedItem.id || 'colorbob-sheet'}.png`;
+
+      // 1. 색칠 모드일 때: 색칠 내용 + 선화 합성본을 Blob으로 강제 파일 다운로드
+      if (isColoringMode) {
+        let mergedUrl = getMergedCanvasDataUrl();
+        if (!mergedUrl) {
+          await ensureCleanLineArt();
+          mergedUrl = getMergedCanvasDataUrl();
+        }
+        if (mergedUrl && mergedUrl.startsWith('data:')) {
+          if (triggerBlobDownload(mergedUrl, `${selectedItem.id}-colored.png`)) {
+            return;
+          }
+        }
+      }
+
+      // 2. 일반 다운로드/폴백: fetch -> Blob ObjectURL로 강제 파일 다운로드 (브라우저가 새 탭에 이미지만 띄우는 현상 원천 차단!)
+      const resolvedSrc = window._activeLineArtSrc || selectedItem.imageSrc;
+      try {
+        const resp = await fetch(resolvedSrc);
+        if (resp.ok) {
+          const blob = await resp.blob();
+          const blobUrl = URL.createObjectURL(new Blob([blob], { type: 'application/octet-stream' }));
+          const a = document.createElement('a');
+          a.href = blobUrl;
+          a.download = safeName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+          return;
+        }
+      } catch (e) {
+        console.warn('Blob fetch download fallback:', e);
+      }
+
+      // 3. 최후 오프라인/file:// 폴백: 이미지 객체를 캔버스에 그려 Blob 다운로드 시도
+      try {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = resolvedSrc; });
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth || 1240;
+        c.height = img.naturalHeight || 1754;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        const dUrl = c.toDataURL('image/png');
+        if (triggerBlobDownload(dUrl, safeName)) return;
+      } catch (e2) {}
+
+      const a = document.createElement('a');
+      a.href = resolvedSrc;
+      a.download = safeName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
