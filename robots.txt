@@ -59,3 +59,5 @@ Allow: /
 Disallow: /review_admin.html
 
 # AI guide: /llms.txt , /llms-full.txt
+
+Sitemap: https://www.colorbob.com/sitemap.xml
