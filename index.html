@@ -4218,30 +4218,75 @@
       }
     }
 
+    function dataUrlToBlob(dataUrl) {
+      const parts = dataUrl.split(',');
+      const mime = parts[0].match(/:(.*?);/)[1] || 'image/png';
+      const bstr = atob(parts[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr], { type: mime });
+    }
+
+    function downloadBlobAsFile(blob, fileName) {
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+    }
+
     function triggerBlobDownload(dataUrl, fileName) {
       try {
-        const parts = dataUrl.split(',');
-        const mime = parts[0].match(/:(.*?);/)[1];
-        const bstr = atob(parts[1]);
-        let n = bstr.length;
-        const u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        const blob = new Blob([u8arr], { type: mime });
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+        const blob = dataUrlToBlob(dataUrl);
+        downloadBlobAsFile(blob, fileName);
         return true;
       } catch (e) {
         console.warn('Blob conversion failed:', e);
         return false;
       }
+    }
+
+    function isMobileOrTabletDevice() {
+      return /iPad|iPhone|iPod|Android/i.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    async function saveBlobWithPhotosSupport(blob, fileName, notifySuccess) {
+      const pngBlob = blob.type === 'image/png' ? blob : new Blob([blob], { type: 'image/png' });
+
+      // 아이패드·아이폰·안드로이드 태블릿/모바일: 네이티브 공유 시트('이미지 저장' -> 사진첩 직결) 우선 실행
+      if (isMobileOrTabletDevice() && navigator.share && navigator.canShare) {
+        try {
+          const file = new File([pngBlob], fileName, { type: 'image/png' });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: (selectedItem && selectedItem.title && selectedItem.title.ko) || 'ColorBob'
+            });
+            notifySuccess('사진첩 또는 파일에 저장되었습니다!');
+            return true;
+          }
+        } catch (err) {
+          if (err && err.name === 'AbortError') {
+            // 사용자가 공유 창을 직접 닫은 경우: 버튼만 원복하고 추가 다운로드 안 함
+            const lbl = document.getElementById('btnModalPng');
+            if (lbl) lbl.textContent = (i18n[currentLang] && i18n[currentLang].downloadPng) || '저장하기';
+            return true;
+          }
+          console.warn('Web Share fallback to direct download:', err);
+        }
+      }
+
+      // PC 데스크톱 또는 공유 API 미지원 환경: 즉시 PNG 파일 다운로드
+      downloadBlobAsFile(pngBlob, fileName);
+      notifySuccess();
+      return true;
     }
 
     function showSaveToast(message) {
@@ -4279,15 +4324,15 @@
       const lbl = document.getElementById('btnModalPng');
       if (lbl) lbl.textContent = currentLang === 'ko' ? '저장 중...' : 'Saving...';
 
-      const notifySuccess = () => {
+      const notifySuccess = (customMsg) => {
         flashSaveBtnDone();
-        const msg = currentLang === 'ko'
-          ? '이미지가 저장되었습니다! (기기 파일 앱·다운로드 목록을 확인하세요)'
-          : 'Image saved! Check your browser Downloads or Files app.';
+        const msg = customMsg || (currentLang === 'ko'
+          ? '이미지가 저장되었습니다!'
+          : 'Image saved!');
         showSaveToast(msg);
       };
 
-      // 1. 색칠 모드일 때: 색칠 내용 + 선화 합성본을 Blob으로 강제 파일 다운로드
+      // 1. 색칠 모드일 때: 메모리에 있는 색칠 + 선화 합성본 즉시 추출 (사용자 제스처 유지)
       if (isColoringMode) {
         let mergedUrl = getMergedCanvasDataUrl();
         if (!mergedUrl) {
@@ -4295,52 +4340,45 @@
           mergedUrl = getMergedCanvasDataUrl();
         }
         if (mergedUrl && mergedUrl.startsWith('data:')) {
-          if (triggerBlobDownload(mergedUrl, `${selectedItem.id}-colored.png`)) {
-            notifySuccess();
-            return;
-          }
+          const blob = dataUrlToBlob(mergedUrl);
+          await saveBlobWithPhotosSupport(blob, `${selectedItem.id}-colored.png`, notifySuccess);
+          return;
         }
       }
 
-      // 2. 일반 다운로드/폴백: fetch -> Blob ObjectURL로 강제 파일 다운로드 (브라우저가 새 탭에 이미지만 띄우는 현상 원천 차단!)
+      // 2. 비색칠(원본 도안) 모드: 메모리에 로드된 클린 이미지로 동기 PNG 생성 (iPad Share 사용자 제스처 100% 보존)
+      const memImg = window._cleanLineArtImage || originalImageObj;
+      if (memImg && memImg.complete && memImg.naturalWidth > 0) {
+        try {
+          const c = document.createElement('canvas');
+          c.width = memImg.naturalWidth;
+          c.height = memImg.naturalHeight;
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, c.width, c.height);
+          ctx.drawImage(memImg, 0, 0, c.width, c.height);
+          const dUrl = c.toDataURL('image/png');
+          const blob = dataUrlToBlob(dUrl);
+          await saveBlobWithPhotosSupport(blob, safeName, notifySuccess);
+          return;
+        } catch (eMem) {
+          console.warn('Memory canvas PNG export fallback:', eMem);
+        }
+      }
+
+      // 3. fetch -> image/png Blob 다운로드/공유 폴백
       const resolvedSrc = window._activeLineArtSrc || selectedItem.imageSrc;
       try {
         const resp = await fetch(resolvedSrc);
         if (resp.ok) {
-          const blob = await resp.blob();
-          const blobUrl = URL.createObjectURL(new Blob([blob], { type: 'application/octet-stream' }));
-          const a = document.createElement('a');
-          a.href = blobUrl;
-          a.download = safeName;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
-          notifySuccess();
+          const rawBlob = await resp.blob();
+          const pngBlob = new Blob([rawBlob], { type: 'image/png' });
+          await saveBlobWithPhotosSupport(pngBlob, safeName, notifySuccess);
           return;
         }
       } catch (e) {
         console.warn('Blob fetch download fallback:', e);
       }
-
-      // 3. 최후 오프라인/file:// 폴백: 이미지 객체를 캔버스에 그려 Blob 다운로드 시도
-      try {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = resolvedSrc; });
-        const c = document.createElement('canvas');
-        c.width = img.naturalWidth || 1240;
-        c.height = img.naturalHeight || 1754;
-        const ctx = c.getContext('2d');
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, 0, c.width, c.height);
-        ctx.drawImage(img, 0, 0, c.width, c.height);
-        const dUrl = c.toDataURL('image/png');
-        if (triggerBlobDownload(dUrl, safeName)) {
-          notifySuccess();
-          return;
-        }
-      } catch (e2) {}
 
       const a = document.createElement('a');
       a.href = resolvedSrc;
