@@ -648,8 +648,8 @@
   <!-- ========================================== -->
   <!-- 5. 고화질 뷰어 & 인쇄/다운로드/대화면 색칠 모달 -->
   <!-- ========================================== -->
-  <div id="modalBackdrop" class="fixed inset-0 z-50 bg-zinc-950/80 flex items-center justify-center p-0 sm:p-3 hidden no-print">
-    <div id="modalCard" class="relative w-full max-w-full h-full max-h-full sm:max-w-[98vw] sm:h-[96vh] bg-white border border-zinc-200 rounded-none sm:rounded-2xl shadow-xl overflow-hidden flex flex-col select-none">
+  <div id="modalBackdrop" class="fixed inset-0 z-50 bg-zinc-950/80 flex items-center justify-center p-0 sm:p-3 hidden no-print" style="height: 100dvh;">
+    <div id="modalCard" class="relative w-full max-w-full h-full max-h-full sm:max-w-[98vw] sm:h-[96dvh] bg-white border border-zinc-200 rounded-none sm:rounded-2xl shadow-xl overflow-hidden flex flex-col select-none">
       
       <!-- [최우측 상단 닫기 X 버튼] 어떤 화면에서도 맨 오른쪽 맨 위에 항상 1순위 고정 -->
       <button onclick="closeModal()" class="absolute top-2.5 right-2.5 sm:top-3 sm:right-4 z-50 w-8 h-8 sm:w-9 sm:h-9 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 hover:text-zinc-950 rounded-xl flex items-center justify-center transition-transform active:scale-90 border border-zinc-200 shadow-xs cursor-pointer" title="닫기 (ESC)">
@@ -806,22 +806,22 @@
 
       </div>
 
-      <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립 (숨기기/펼치기 지원 & 숨김 시 캔버스 최대 확장)] -->
-      <div id="modalRelatedSection" class="hidden md:block px-3 sm:px-5 py-2 bg-white border-t border-zinc-200 shrink-0 transition-all duration-200">
-        <div class="relative flex items-center justify-between mb-2">
+      <!-- [모달 하단: 국가별 맞춤 추천 도안 스트립 (모바일/아이폰 포함 전 기기 지원 & 숨김 시 캔버스 최대 확장)] -->
+      <div id="modalRelatedSection" class="px-2.5 sm:px-5 py-1.5 sm:py-2 bg-white border-t border-zinc-200 shrink-0 transition-all duration-200">
+        <div class="relative flex items-center justify-between mb-1.5 sm:mb-2 gap-1">
           <!-- 좌측 타이틀 -->
           <div class="flex items-center gap-1.5 shrink-0">
-            <span id="modalRelatedTitle" class="text-xs sm:text-sm font-bold text-zinc-950">추천 도안</span>
+            <span id="modalRelatedTitle" class="text-[11px] sm:text-sm font-bold text-zinc-950 whitespace-nowrap">추천 도안</span>
             <span id="modalRelatedSub" class="text-[11px] text-zinc-400 hidden lg:inline">· 클릭 시 바로 색칠하기</span>
           </div>
 
           <!-- 중앙: 가로로 넉넉하게 긴 와이드 토글 버튼 (화살표시 중앙 위치, 가로로 긴 v) -->
-          <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+          <div class="sm:absolute sm:left-1/2 sm:-translate-x-1/2 flex items-center justify-center">
             <button type="button" id="btnToggleRelated" onclick="toggleModalRecommendations()" 
-                    class="inline-flex items-center justify-center gap-3 px-7 py-1.5 rounded-full text-xs font-bold text-zinc-700 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200/90 border border-zinc-300/80 shadow-xs transition-all cursor-pointer min-w-[200px]" 
+                    class="inline-flex items-center justify-center gap-1.5 sm:gap-3 px-3.5 sm:px-7 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-zinc-700 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200/90 border border-zinc-300/80 shadow-xs transition-all cursor-pointer min-w-[130px] sm:min-w-[200px] whitespace-nowrap" 
                     title="추천 도안 접기/펼치기">
               <span id="toggleRelatedText">추천 도안 숨기기</span>
-              <svg id="toggleRelatedIcon" class="w-7 h-2 transition-transform duration-200 text-zinc-600 shrink-0" viewBox="0 0 28 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg id="toggleRelatedIcon" class="w-5 h-1.5 sm:w-7 sm:h-2 transition-transform duration-200 text-zinc-600 shrink-0" viewBox="0 0 28 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 1.5 L14 6.5 L26 1.5" />
               </svg>
             </button>
@@ -829,12 +829,12 @@
 
           <!-- 우측 다른 도안 새로고침 -->
           <div class="flex items-center shrink-0">
-            <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5">
-              <span id="modalRelatedRefresh">다른 도안 보기 ↻</span>
+            <button type="button" onclick="refreshModalRecommendations()" class="text-[11px] text-zinc-500 hover:text-zinc-950 font-medium cursor-pointer flex items-center gap-0.5 whitespace-nowrap">
+              <span id="modalRelatedRefresh">다른 도안 ↻</span>
             </button>
           </div>
         </div>
-        <div id="modalRelatedGrid" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1 transition-all duration-200">
+        <div id="modalRelatedGrid" class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar py-1 transition-all duration-200" style="touch-action: pan-x; -webkit-overflow-scrolling: touch;">
           <!-- JS로 동적 렌더링 -->
         </div>
       </div>
@@ -2959,16 +2959,16 @@
               decoding="async"
               class="w-full h-full object-contain p-1 filter contrast-125 transition-transform duration-300 group-hover:scale-104" 
             />
-            <!-- 호버 오버레이 (Pinterest 스타일 미니멀 바로가기) -->
-            <div class="absolute inset-0 bg-zinc-950/25 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-1.5 p-2">
-              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="py-2 px-3 bg-zinc-950 text-white font-bold text-xs rounded-full shadow hover:bg-zinc-800 transition-transform active:scale-95 flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <!-- 호버 오버레이 (데스크톱 전용 미니멀 바로가기 - 모바일 터치 시 줄바꿈/겹침 방지) -->
+            <div class="hidden sm:flex absolute inset-0 bg-zinc-950/25 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center justify-center gap-1.5 p-2">
+              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="py-1.5 px-3 bg-zinc-950 text-white font-bold text-xs rounded-full shadow hover:bg-zinc-800 transition-transform active:scale-95 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <svg class="w-3.5 h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4 8.014 8.014 0 014-7.464 8.014 8.014 0 014-7.464 8.014 8.014 0 014 7.464 8.014 8.014 0 014 7.464 4 4 0 01-4 4H7z" />
                 </svg>
                 <span>${dict.quickColor}</span>
               </button>
-              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="py-2 px-3 bg-white text-zinc-950 font-bold text-xs rounded-full shadow hover:bg-zinc-100 transition-transform active:scale-95 flex items-center gap-1">
-                <svg class="w-3.5 h-3.5 text-zinc-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="py-1.5 px-3 bg-white text-zinc-950 font-bold text-xs rounded-full shadow hover:bg-zinc-100 transition-transform active:scale-95 flex items-center gap-1 whitespace-nowrap shrink-0">
+                <svg class="w-3.5 h-3.5 text-zinc-950 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
                 <span>${dict.quickPrint}</span>
@@ -2982,14 +2982,14 @@
             </h3>
             
             <div class="grid grid-cols-2 gap-1 sm:gap-1.5 pt-0.5">
-              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="w-full py-1 sm:py-1.5 px-1 sm:px-2 bg-zinc-950 hover:bg-zinc-800 text-white text-[10px] sm:text-xs font-bold rounded-lg transition-all shadow-2xs flex items-center justify-center gap-0.5 sm:gap-1 truncate">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <button onclick="event.stopPropagation(); openColoringById('${item.id}')" class="w-full py-1.5 px-1 sm:px-2 bg-zinc-950 hover:bg-zinc-800 text-white text-[10px] sm:text-xs font-bold rounded-lg transition-all shadow-2xs flex items-center justify-center gap-0.5 sm:gap-1 whitespace-nowrap overflow-hidden">
+                <svg class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4 8.014 8.014 0 014-7.464 8.014 8.014 0 014-7.464 8.014 8.014 0 014 7.464 8.014 8.014 0 014 7.464 4 4 0 01-4 4H7z" />
                 </svg>
                 <span class="truncate">${dict.quickColor}</span>
               </button>
-              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="w-full py-1 sm:py-1.5 px-1 sm:px-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] sm:text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-0.5 sm:gap-1 border border-zinc-200/80 truncate">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-zinc-700 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <button onclick="event.stopPropagation(); quickPrintById('${item.id}')" class="w-full py-1.5 px-1 sm:px-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] sm:text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-0.5 sm:gap-1 border border-zinc-200/80 whitespace-nowrap overflow-hidden">
+                <svg class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-zinc-700 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                 </svg>
                 <span class="truncate">${dict.quickPrint}</span>
