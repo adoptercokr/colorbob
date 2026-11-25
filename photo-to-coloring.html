@@ -931,27 +931,94 @@
       }, 120);
     }
 
-    function downloadPng() {
+    function isMobileOrTabletDevice() {
+      return /iPad|iPhone|iPod|Android/i.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    function showSaveToast(message) {
+      let toast = document.getElementById('cbSaveToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cbSaveToast';
+        toast.className = 'fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 z-[120] px-4 py-2.5 rounded-2xl bg-zinc-950/95 text-white text-xs sm:text-sm font-bold shadow-xl border border-zinc-700/60 flex items-center gap-2 transition-all duration-300 pointer-events-none whitespace-nowrap max-w-[92vw] truncate';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="truncate">${message}</span>`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, 0)';
+      clearTimeout(window._cbSaveToastTimer);
+      window._cbSaveToastTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -8px)';
+      }, 1500);
+    }
+
+    function flashSaveBtnDone() {
+      const btn = document.getElementById('btnDownload');
+      if (!btn) return;
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = `<svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>✓ 저장 완료</span>`;
+      clearTimeout(window._cbSaveBtnTimer);
+      window._cbSaveBtnTimer = setTimeout(() => {
+        btn.innerHTML = origHtml;
+      }, 1200);
+    }
+
+    async function downloadPng() {
       const outC = document.getElementById('outCanvas');
-      if (outC.toBlob) {
-        outC.toBlob((blob) => {
-          if (!blob) return;
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.download = 'colorbob-photo-coloring-page.png';
-          a.href = url;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(url), 5000);
-        }, 'image/png');
-      } else {
+      if (!outC) return;
+      const fileName = 'colorbob-photo-coloring-page.png';
+
+      const saveBlob = async (blob) => {
+        if (!blob) return;
+        const pngBlob = blob.type === 'image/png' ? blob : new Blob([blob], { type: 'image/png' });
+
+        // 아이패드·아이폰·안드로이드 태블릿/모바일: 네이티브 공유 시트('이미지 저장' -> 사진첩 직결)
+        if (isMobileOrTabletDevice() && navigator.share && navigator.canShare) {
+          try {
+            const file = new File([pngBlob], fileName, { type: 'image/png' });
+            if (navigator.canShare({ files: [file] })) {
+              await navigator.share({
+                files: [file],
+                title: 'ColorBob 사진 도안'
+              });
+              flashSaveBtnDone();
+              showSaveToast('사진첩 또는 파일에 저장되었습니다!');
+              return;
+            }
+          } catch (err) {
+            if (err && err.name === 'AbortError') return;
+            console.warn('Web Share fallback:', err);
+          }
+        }
+
+        // PC 데스크톱 또는 공유 미지원 환경
+        const url = URL.createObjectURL(pngBlob);
         const a = document.createElement('a');
-        a.download = 'colorbob-photo-coloring-page.png';
-        a.href = outC.toDataURL('image/png');
+        a.download = fileName;
+        a.href = url;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        flashSaveBtnDone();
+        showSaveToast('이미지가 저장되었습니다!');
+      };
+
+      if (outC.toBlob) {
+        outC.toBlob(saveBlob, 'image/png');
+      } else {
+        const dataUrl = outC.toDataURL('image/png');
+        const parts = dataUrl.split(',');
+        const bstr = atob(parts[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        const blob = new Blob([u8arr], { type: 'image/png' });
+        await saveBlob(blob);
       }
     }
 
