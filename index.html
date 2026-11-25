@@ -4244,9 +4244,48 @@
       }
     }
 
+    function showSaveToast(message) {
+      let toast = document.getElementById('cbSaveToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cbSaveToast';
+        toast.className = 'fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 z-[120] px-4 py-2.5 rounded-2xl bg-zinc-950/95 text-white text-xs sm:text-sm font-bold shadow-xl border border-zinc-700/60 flex items-center gap-2 transition-all duration-300 pointer-events-none whitespace-nowrap max-w-[92vw] truncate';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="truncate">${message}</span>`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, 0)';
+      clearTimeout(window._cbSaveToastTimer);
+      window._cbSaveToastTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -8px)';
+      }, 3500);
+    }
+
+    function flashSaveBtnDone() {
+      const lbl = document.getElementById('btnModalPng');
+      if (!lbl) return;
+      const orig = (i18n[currentLang] && i18n[currentLang].downloadPng) || '저장하기';
+      lbl.textContent = currentLang === 'ko' ? '✓ 저장 완료' : '✓ Saved';
+      clearTimeout(window._cbSaveBtnTimer);
+      window._cbSaveBtnTimer = setTimeout(() => {
+        lbl.textContent = orig;
+      }, 2400);
+    }
+
     async function downloadPngCurrentItem() {
       if (!selectedItem) return;
       const safeName = `${selectedItem.id || 'colorbob-sheet'}.png`;
+      const lbl = document.getElementById('btnModalPng');
+      if (lbl) lbl.textContent = currentLang === 'ko' ? '저장 중...' : 'Saving...';
+
+      const notifySuccess = () => {
+        flashSaveBtnDone();
+        const msg = currentLang === 'ko'
+          ? '이미지가 저장되었습니다! (기기 파일 앱·다운로드 목록을 확인하세요)'
+          : 'Image saved! Check your browser Downloads or Files app.';
+        showSaveToast(msg);
+      };
 
       // 1. 색칠 모드일 때: 색칠 내용 + 선화 합성본을 Blob으로 강제 파일 다운로드
       if (isColoringMode) {
@@ -4257,6 +4296,7 @@
         }
         if (mergedUrl && mergedUrl.startsWith('data:')) {
           if (triggerBlobDownload(mergedUrl, `${selectedItem.id}-colored.png`)) {
+            notifySuccess();
             return;
           }
         }
@@ -4276,6 +4316,7 @@
           a.click();
           document.body.removeChild(a);
           setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+          notifySuccess();
           return;
         }
       } catch (e) {
@@ -4295,7 +4336,10 @@
         ctx.fillRect(0, 0, c.width, c.height);
         ctx.drawImage(img, 0, 0, c.width, c.height);
         const dUrl = c.toDataURL('image/png');
-        if (triggerBlobDownload(dUrl, safeName)) return;
+        if (triggerBlobDownload(dUrl, safeName)) {
+          notifySuccess();
+          return;
+        }
       } catch (e2) {}
 
       const a = document.createElement('a');
@@ -4304,6 +4348,7 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      notifySuccess();
     }
 
     window.addEventListener('DOMContentLoaded', init);
