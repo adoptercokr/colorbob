@@ -4259,7 +4259,7 @@
       window._cbSaveToastTimer = setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translate(-50%, -8px)';
-      }, 3500);
+      }, 1500);
     }
 
     function flashSaveBtnDone() {
@@ -4270,7 +4270,7 @@
       clearTimeout(window._cbSaveBtnTimer);
       window._cbSaveBtnTimer = setTimeout(() => {
         lbl.textContent = orig;
-      }, 2400);
+      }, 1200);
     }
 
     async function downloadPngCurrentItem() {
