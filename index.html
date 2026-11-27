@@ -2870,7 +2870,7 @@
             const tagsText = (item.tags || []).join(' ').toLowerCase();
             const idText = (item.id || '').toLowerCase();
             
-            const fullSearchScope = `${tKo} ${tEn} ${tJa} ${tZh} ${tagsText} ${idText} 도안 색칠공부 coloring 塗り絵 涂色`;
+            const fullSearchScope = `${tKo} ${tEn} ${tJa} ${tZh} ${tagsText}`;
             const normalizedScope = fullSearchScope.replace(/\s+/g, '');
 
             const isMatch = searchTokens.every(tok => {
