@@ -979,6 +979,7 @@
           try {
             const file = new File([pngBlob], fileName, { type: 'image/png' });
             if (navigator.canShare({ files: [file] })) {
+              showSaveToast('공유 창에서 [이미지 저장]을 누르면 사진첩에 담깁니다!');
               await navigator.share({
                 files: [file],
                 title: 'ColorBob 사진 도안'
