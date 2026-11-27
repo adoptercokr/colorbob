@@ -1,604 +1,603 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0">
   <channel>
-    <title><![CDATA[ColorBob - 무료 색칠공부 & 교육 도안 아카이브]]></title>
-    <link>https://www.colorbob.com/</link>
-    <description><![CDATA[62,000개 이상의 초고화질 무료 색칠공부 도안, 워크시트, 사진 도안 변환 및 온라인 브라우저 색칠하기 100% 무료 제공]]></description>
-    <language>ko</language>
-    <copyright><![CDATA[Copyright 2026 ColorBob. All rights reserved.]]></copyright>
+    <title>ColorBob (컬러밥)</title>
+    <link>https://www.colorbob.com</link>
+    <description>무료 색칠공부 및 교육 도안 라이브러리</description>
+    <language>ko-KR</language>
+    <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
     <lastBuildDate>Fri, 27 Nov 2026 00:00:00 +0900</lastBuildDate>
-    <atom:link href="https://www.colorbob.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title><![CDATA[ColorBob - 62,000+ 무료 색칠공부 & 교육 도안 라이브러리]]></title>
+      <title>ColorBob - 62,000+ 무료 색칠공부 및 교육 도안 라이브러리</title>
       <link>https://www.colorbob.com/</link>
-      <guid isPermaLink="true">https://www.colorbob.com/</guid>
-      <description><![CDATA[62,000개 이상의 초고화질 무료 색칠공부, 도안, 스케치, 드로잉을 A4로 바로 인쇄하거나 브라우저에서 직접 색칠해 보세요.]]></description>
-      <category><![CDATA[전체 도안]]></category>
+      <guid>https://www.colorbob.com/</guid>
+      <description>62,000개 이상의 초고화질 무료 색칠공부, 도안, 스케치, 드로잉을 A4로 바로 인쇄하거나 브라우저에서 직접 색칠해 보세요.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>전체 도안</category>
     </item>
     <item>
-      <title><![CDATA[무료 사진 도안 변환기 | ColorBob]]></title>
+      <title>무료 사진 도안 변환기 | ColorBob</title>
       <link>https://www.colorbob.com/photo-to-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/photo-to-coloring.html</guid>
-      <description><![CDATA[내 스마트폰 속 사진을 AI 윤곽선 추출 기술로 1초 만에 깔끔한 A4 흑백 색칠공부 도안으로 무료 변환하세요.]]></description>
-      <category><![CDATA[사진 도안 변환]]></category>
+      <guid>https://www.colorbob.com/photo-to-coloring.html</guid>
+      <description>내 스마트폰 속 사진을 AI 윤곽선 추출 기술로 1초 만에 깔끔한 A4 흑백 색칠공부 도안으로 무료 변환하세요.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>사진 도안 변환</category>
     </item>
     <item>
-      <title><![CDATA[공룡 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>공룡 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/dinosaur-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/dinosaur-coloring.html</guid>
-      <description><![CDATA[아이들이 가장 좋아하는 공룡 색칠공부 도안을 무료 A4 인쇄 및 온라인 색칠하기로 만나보세요. 권장 연령: 유아~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Dinosaur]]></category>
+      <guid>https://www.colorbob.com/pages/dinosaur-coloring.html</guid>
+      <description>아이들이 가장 좋아하는 공룡 색칠공부 도안을 무료 A4 인쇄 및 온라인 색칠하기로 만나보세요. 권장 연령: 유아~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Dinosaur</category>
     </item>
     <item>
-      <title><![CDATA[티라노사우루스 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>티라노사우루스 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/tyrannosaurus-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/tyrannosaurus-coloring.html</guid>
-      <description><![CDATA[강력한 육식 공룡 티라노사우루스(T-Rex) 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[T-Rex Dinosaur]]></category>
+      <guid>https://www.colorbob.com/pages/tyrannosaurus-coloring.html</guid>
+      <description>강력한 육식 공룡 티라노사우루스(T-Rex) 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>T-Rex Dinosaur</category>
     </item>
     <item>
-      <title><![CDATA[트리케라톱스 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>트리케라톱스 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/triceratops-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/triceratops-coloring.html</guid>
-      <description><![CDATA[세 개의 뿔이 멋진 초식 공룡 트리케라톱스 무료 색칠 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Triceratops]]></category>
+      <guid>https://www.colorbob.com/pages/triceratops-coloring.html</guid>
+      <description>세 개의 뿔이 멋진 초식 공룡 트리케라톱스 무료 색칠 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Triceratops</category>
     </item>
     <item>
-      <title><![CDATA[강아지 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>강아지 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/puppy-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/puppy-coloring.html</guid>
-      <description><![CDATA[귀여운 강아지와 반려견 색칠공부 도안을 고화질 A4 프린트로 무료 제공합니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Puppy & Dog]]></category>
+      <guid>https://www.colorbob.com/pages/puppy-coloring.html</guid>
+      <description>귀여운 강아지와 반려견 색칠공부 도안을 고화질 A4 프린트로 무료 제공합니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Puppy and Dog</category>
     </item>
     <item>
-      <title><![CDATA[고양이 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>고양이 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/cat-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/cat-coloring.html</guid>
-      <description><![CDATA[사랑스러운 아기 고양이와 야옹이 색칠공부 무료 도안 모음입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Cat & Kitten]]></category>
+      <guid>https://www.colorbob.com/pages/cat-coloring.html</guid>
+      <description>사랑스러운 아기 고양이와 야옹이 색칠공부 무료 도안 모음입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Cat and Kitten</category>
     </item>
     <item>
-      <title><![CDATA[토끼 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>토끼 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/rabbit-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/rabbit-coloring.html</guid>
-      <description><![CDATA[긴 귀가 매력적인 토끼 색칠공부 도안을 무료로 인쇄하거나 색칠해 보세요. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Rabbit & Bunny]]></category>
+      <guid>https://www.colorbob.com/pages/rabbit-coloring.html</guid>
+      <description>긴 귀가 매력적인 토끼 색칠공부 도안을 무료로 인쇄하거나 색칠해 보세요. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Rabbit and Bunny</category>
     </item>
     <item>
-      <title><![CDATA[사자 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>사자 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/lion-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/lion-coloring.html</guid>
-      <description><![CDATA[백수의 왕 사자 얼굴과 초원 사자 색칠공부 무료 A4 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Lion]]></category>
+      <guid>https://www.colorbob.com/pages/lion-coloring.html</guid>
+      <description>백수의 왕 사자 얼굴과 초원 사자 색칠공부 무료 A4 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Lion</category>
     </item>
     <item>
-      <title><![CDATA[호랑이 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>호랑이 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/tiger-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/tiger-coloring.html</guid>
-      <description><![CDATA[용맹한 호랑이와 귀여운 아기 호랑이 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Tiger]]></category>
+      <guid>https://www.colorbob.com/pages/tiger-coloring.html</guid>
+      <description>용맹한 호랑이와 귀여운 아기 호랑이 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Tiger</category>
     </item>
     <item>
-      <title><![CDATA[코끼리 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>코끼리 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/elephant-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/elephant-coloring.html</guid>
-      <description><![CDATA[긴 코와 큰 귀를 가진 코끼리 색칠공부 무료 프린트 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Elephant]]></category>
+      <guid>https://www.colorbob.com/pages/elephant-coloring.html</guid>
+      <description>긴 코와 큰 귀를 가진 코끼리 색칠공부 무료 프린트 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Elephant</category>
     </item>
     <item>
-      <title><![CDATA[기린 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>기린 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/giraffe-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/giraffe-coloring.html</guid>
-      <description><![CDATA[목이 긴 초원 친구 기린 색칠공부 도안을 무료로 다운로드하세요. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Giraffe]]></category>
+      <guid>https://www.colorbob.com/pages/giraffe-coloring.html</guid>
+      <description>목이 긴 초원 친구 기린 색칠공부 도안을 무료로 다운로드하세요. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Giraffe</category>
     </item>
     <item>
-      <title><![CDATA[판다 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>판다 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/panda-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/panda-coloring.html</guid>
-      <description><![CDATA[대나무를 먹는 귀여운 자이언트 판다 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Panda]]></category>
+      <guid>https://www.colorbob.com/pages/panda-coloring.html</guid>
+      <description>대나무를 먹는 귀여운 자이언트 판다 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Panda</category>
     </item>
     <item>
-      <title><![CDATA[상어 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>상어 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/shark-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/shark-coloring.html</guid>
-      <description><![CDATA[바다의 포식자 백상아리와 아기 상어 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Shark]]></category>
+      <guid>https://www.colorbob.com/pages/shark-coloring.html</guid>
+      <description>바다의 포식자 백상아리와 아기 상어 색칠공부 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Shark</category>
     </item>
     <item>
-      <title><![CDATA[돌고래 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>돌고래 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/dolphin-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/dolphin-coloring.html</guid>
-      <description><![CDATA[파도를 헤엄치는 똑똑한 돌고래 색칠공부 무료 A4 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Dolphin]]></category>
+      <guid>https://www.colorbob.com/pages/dolphin-coloring.html</guid>
+      <description>파도를 헤엄치는 똑똑한 돌고래 색칠공부 무료 A4 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Dolphin</category>
     </item>
     <item>
-      <title><![CDATA[고래 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>고래 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/whale-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/whale-coloring.html</guid>
-      <description><![CDATA[거대한 흰수염고래와 혹등고래 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Whale]]></category>
+      <guid>https://www.colorbob.com/pages/whale-coloring.html</guid>
+      <description>거대한 흰수염고래와 혹등고래 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Whale</category>
     </item>
     <item>
-      <title><![CDATA[나비 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>나비 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/butterfly-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/butterfly-coloring.html</guid>
-      <description><![CDATA[화려한 날개 무늬를 자유롭게 꾸밀 수 있는 나비 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Butterfly]]></category>
+      <guid>https://www.colorbob.com/pages/butterfly-coloring.html</guid>
+      <description>화려한 날개 무늬를 자유롭게 꾸밀 수 있는 나비 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Butterfly</category>
     </item>
     <item>
-      <title><![CDATA[개구리 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>개구리 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/frog-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/frog-coloring.html</guid>
-      <description><![CDATA[연못 위 폴짝 뛰어오르는 개구리 색칠공부 무료 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Frog]]></category>
+      <guid>https://www.colorbob.com/pages/frog-coloring.html</guid>
+      <description>연못 위 폴짝 뛰어오르는 개구리 색칠공부 무료 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Frog</category>
     </item>
     <item>
-      <title><![CDATA[부엉이 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>부엉이 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/owl-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/owl-coloring.html</guid>
-      <description><![CDATA[지혜의 상징 부엉이와 올빼미 색칠공부 도안 모음입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Owl & Bird]]></category>
+      <guid>https://www.colorbob.com/pages/owl-coloring.html</guid>
+      <description>지혜의 상징 부엉이와 올빼미 색칠공부 도안 모음입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Owl and Bird</category>
     </item>
     <item>
-      <title><![CDATA[펭귄 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>펭귄 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/penguin-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/penguin-coloring.html</guid>
-      <description><![CDATA[뒤뚱뒤뚱 귀여운 황제펭귄과 아기 펭귄 색칠공부 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Penguin]]></category>
+      <guid>https://www.colorbob.com/pages/penguin-coloring.html</guid>
+      <description>뒤뚱뒤뚱 귀여운 황제펭귄과 아기 펭귄 색칠공부 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Penguin</category>
     </item>
     <item>
-      <title><![CDATA[여우 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>여우 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/fox-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/fox-coloring.html</guid>
-      <description><![CDATA[복슬복슬한 꼬리의 숲속 여우 색칠공부 무료 A4 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Fox]]></category>
+      <guid>https://www.colorbob.com/pages/fox-coloring.html</guid>
+      <description>복슬복슬한 꼬리의 숲속 여우 색칠공부 무료 A4 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Fox</category>
     </item>
     <item>
-      <title><![CDATA[늑대 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>늑대 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/wolf-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/wolf-coloring.html</guid>
-      <description><![CDATA[야생의 카리스마 넘치는 늑대 색칠공부 무료 도안 모음입니다. 권장 연령: 초등학생~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Wolf]]></category>
+      <guid>https://www.colorbob.com/pages/wolf-coloring.html</guid>
+      <description>야생의 카리스마 넘치는 늑대 색칠공부 무료 도안 모음입니다. 권장 연령: 초등학생~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Wolf</category>
     </item>
     <item>
-      <title><![CDATA[곰 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>곰 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/bear-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/bear-coloring.html</guid>
-      <description><![CDATA[포근한 반달곰, 북극곰, 테디베어 색칠공부 도안 모음입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Bear]]></category>
+      <guid>https://www.colorbob.com/pages/bear-coloring.html</guid>
+      <description>포근한 반달곰, 북극곰, 테디베어 색칠공부 도안 모음입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Bear</category>
     </item>
     <item>
-      <title><![CDATA[바다생물 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>바다생물 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/sea-animals-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/sea-animals-coloring.html</guid>
-      <description><![CDATA[물고기, 해마, 거북이, 문어 등 다양한 바다생물 색칠공부 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Ocean & Sea Animals]]></category>
+      <guid>https://www.colorbob.com/pages/sea-animals-coloring.html</guid>
+      <description>물고기, 해마, 거북이, 문어 등 다양한 바다생물 색칠공부 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Ocean and Sea Animals</category>
     </item>
     <item>
-      <title><![CDATA[곤충 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>곤충 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/insect-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/insect-coloring.html</guid>
-      <description><![CDATA[무당벌레, 꿀벌, 사슴벌레 등 자연 학습용 곤충 색칠공부 도안입니다. 권장 연령: 유치원~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Insects & Bugs]]></category>
+      <guid>https://www.colorbob.com/pages/insect-coloring.html</guid>
+      <description>무당벌레, 꿀벌, 사슴벌레 등 자연 학습용 곤충 색칠공부 도안입니다. 권장 연령: 유치원~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Insects and Bugs</category>
     </item>
     <item>
-      <title><![CDATA[포켓몬 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>포켓몬 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/pokemon-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/pokemon-coloring.html</guid>
-      <description><![CDATA[피카츄와 인기 포켓몬 친구들의 색칠공부 도안을 무료 A4로 인쇄하세요. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Pokemon]]></category>
+      <guid>https://www.colorbob.com/pages/pokemon-coloring.html</guid>
+      <description>피카츄와 인기 포켓몬 친구들의 색칠공부 도안을 무료 A4로 인쇄하세요. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Pokemon</category>
     </item>
     <item>
-      <title><![CDATA[피카츄 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>피카츄 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/pikachu-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/pikachu-coloring.html</guid>
-      <description><![CDATA[노란 전기 포켓몬 피카츄 색칠공부 무료 프린트 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Pikachu]]></category>
+      <guid>https://www.colorbob.com/pages/pikachu-coloring.html</guid>
+      <description>노란 전기 포켓몬 피카츄 색칠공부 무료 프린트 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Pikachu</category>
     </item>
     <item>
-      <title><![CDATA[산리오 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>산리오 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/sanrio-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/sanrio-coloring.html</guid>
-      <description><![CDATA[시나모롤, 쿠로미, 마이멜로디 등 인기 산리오 캐릭터 색칠공부 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Sanrio Characters]]></category>
+      <guid>https://www.colorbob.com/pages/sanrio-coloring.html</guid>
+      <description>시나모롤, 쿠로미, 마이멜로디 등 인기 산리오 캐릭터 색칠공부 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Sanrio Characters</category>
     </item>
     <item>
-      <title><![CDATA[시나모롤 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>시나모롤 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/cinnamoroll-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/cinnamoroll-coloring.html</guid>
-      <description><![CDATA[하얀 강아지 캐릭터 시나모롤 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Cinnamoroll]]></category>
+      <guid>https://www.colorbob.com/pages/cinnamoroll-coloring.html</guid>
+      <description>하얀 강아지 캐릭터 시나모롤 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Cinnamoroll</category>
     </item>
     <item>
-      <title><![CDATA[슈퍼 마리오 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>슈퍼 마리오 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/mario-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/mario-coloring.html</guid>
-      <description><![CDATA[마리오와 버섯 왕국 친구들의 색칠공부 도안을 무료로 색칠해 보세요. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Super Mario]]></category>
+      <guid>https://www.colorbob.com/pages/mario-coloring.html</guid>
+      <description>마리오와 버섯 왕국 친구들의 색칠공부 도안을 무료로 색칠해 보세요. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Super Mario</category>
     </item>
     <item>
-      <title><![CDATA[마인크래프트 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>마인크래프트 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/minecraft-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/minecraft-coloring.html</guid>
-      <description><![CDATA[네모난 블록 세상 마인크래프트 스티브와 크리퍼 색칠공부 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Minecraft]]></category>
+      <guid>https://www.colorbob.com/pages/minecraft-coloring.html</guid>
+      <description>네모난 블록 세상 마인크래프트 스티브와 크리퍼 색칠공부 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Minecraft</category>
     </item>
     <item>
-      <title><![CDATA[로블록스 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>로블록스 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/roblox-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/roblox-coloring.html</guid>
-      <description><![CDATA[아이들이 열광하는 로블록스 캐릭터 색칠공부 무료 인쇄 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Roblox]]></category>
+      <guid>https://www.colorbob.com/pages/roblox-coloring.html</guid>
+      <description>아이들이 열광하는 로블록스 캐릭터 색칠공부 무료 인쇄 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Roblox</category>
     </item>
     <item>
-      <title><![CDATA[스파이더맨 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>스파이더맨 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/spiderman-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/spiderman-coloring.html</guid>
-      <description><![CDATA[거미줄을 타고 날아다니는 히어로 스파이더맨 색칠공부 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Spider-Man]]></category>
+      <guid>https://www.colorbob.com/pages/spiderman-coloring.html</guid>
+      <description>거미줄을 타고 날아다니는 히어로 스파이더맨 색칠공부 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Spider-Man</category>
     </item>
     <item>
-      <title><![CDATA[아이언맨 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>아이언맨 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/ironman-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/ironman-coloring.html</guid>
-      <description><![CDATA[어벤져스 슈퍼히어로 아이언맨 색칠공부 무료 A4 프린트 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Iron Man]]></category>
+      <guid>https://www.colorbob.com/pages/ironman-coloring.html</guid>
+      <description>어벤져스 슈퍼히어로 아이언맨 색칠공부 무료 A4 프린트 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Iron Man</category>
     </item>
     <item>
-      <title><![CDATA[유니콘 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>유니콘 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/unicorn-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/unicorn-coloring.html</guid>
-      <description><![CDATA[무지개 갈기와 뿔을 가진 환상적인 유니콘 색칠공부 도안 모음입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Unicorn]]></category>
+      <guid>https://www.colorbob.com/pages/unicorn-coloring.html</guid>
+      <description>무지개 갈기와 뿔을 가진 환상적인 유니콘 색칠공부 도안 모음입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Unicorn</category>
     </item>
     <item>
-      <title><![CDATA[드래곤 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>드래곤 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/dragon-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/dragon-coloring.html</guid>
-      <description><![CDATA[하늘을 나는 전설 속 드래곤과 아기 용 색칠공부 무료 도안입니다. 권장 연령: 6세~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Dragon]]></category>
+      <guid>https://www.colorbob.com/pages/dragon-coloring.html</guid>
+      <description>하늘을 나는 전설 속 드래곤과 아기 용 색칠공부 무료 도안입니다. 권장 연령: 6세~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Dragon</category>
     </item>
     <item>
-      <title><![CDATA[공주 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>공주 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/princess-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/princess-coloring.html</guid>
-      <description><![CDATA[아름다운 드레스를 입은 동화 속 공주님 색칠공부 도안 모음입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Princess]]></category>
+      <guid>https://www.colorbob.com/pages/princess-coloring.html</guid>
+      <description>아름다운 드레스를 입은 동화 속 공주님 색칠공부 도안 모음입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Princess</category>
     </item>
     <item>
-      <title><![CDATA[디즈니 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>디즈니 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/disney-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/disney-coloring.html</guid>
-      <description><![CDATA[디즈니와 픽사 애니메이션 주인공들의 무료 색칠공부 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Disney]]></category>
+      <guid>https://www.colorbob.com/pages/disney-coloring.html</guid>
+      <description>디즈니와 픽사 애니메이션 주인공들의 무료 색칠공부 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Disney</category>
     </item>
     <item>
-      <title><![CDATA[스티치 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>스티치 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/stitch-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/stitch-coloring.html</guid>
-      <description><![CDATA[장난꾸러기 외계인 강아지 스티치 색칠공부 무료 A4 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Stitch]]></category>
+      <guid>https://www.colorbob.com/pages/stitch-coloring.html</guid>
+      <description>장난꾸러기 외계인 강아지 스티치 색칠공부 무료 A4 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Stitch</category>
     </item>
     <item>
-      <title><![CDATA[브롤스타즈 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>브롤스타즈 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/brawlstars-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/brawlstars-coloring.html</guid>
-      <description><![CDATA[인기 모바일 게임 브롤스타즈 브롤러 색칠공부 무료 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Brawl Stars]]></category>
+      <guid>https://www.colorbob.com/pages/brawlstars-coloring.html</guid>
+      <description>인기 모바일 게임 브롤스타즈 브롤러 색칠공부 무료 도안입니다. 권장 연령: 초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Brawl Stars</category>
     </item>
     <item>
-      <title><![CDATA[인어공주 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>인어공주 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/mermaid-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/mermaid-coloring.html</guid>
-      <description><![CDATA[바닷속 신비로운 인어공주 색칠공부 도안 무료 인쇄 페이지입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Mermaid]]></category>
+      <guid>https://www.colorbob.com/pages/mermaid-coloring.html</guid>
+      <description>바닷속 신비로운 인어공주 색칠공부 도안 무료 인쇄 페이지입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Mermaid</category>
     </item>
     <item>
-      <title><![CDATA[자동차 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>자동차 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/car-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/car-coloring.html</guid>
-      <description><![CDATA[멋진 스포츠카와 다양한 자동차 색칠공부 도안을 무료로 프린트하세요. 권장 연령: 3세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Car & Vehicle]]></category>
+      <guid>https://www.colorbob.com/pages/car-coloring.html</guid>
+      <description>멋진 스포츠카와 다양한 자동차 색칠공부 도안을 무료로 프린트하세요. 권장 연령: 3세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Car and Vehicle</category>
     </item>
     <item>
-      <title><![CDATA[소방차 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>소방차 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/firetruck-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/firetruck-coloring.html</guid>
-      <description><![CDATA[불을 끄러 출동하는 빨간 소방차 색칠공부 무료 A4 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Fire Truck]]></category>
+      <guid>https://www.colorbob.com/pages/firetruck-coloring.html</guid>
+      <description>불을 끄러 출동하는 빨간 소방차 색칠공부 무료 A4 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Fire Truck</category>
     </item>
     <item>
-      <title><![CDATA[경찰차 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>경찰차 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/police-car-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/police-car-coloring.html</guid>
-      <description><![CDATA[사이렌을 울리며 달리는 멋진 경찰차 색칠공부 무료 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Police Car]]></category>
+      <guid>https://www.colorbob.com/pages/police-car-coloring.html</guid>
+      <description>사이렌을 울리며 달리는 멋진 경찰차 색칠공부 무료 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Police Car</category>
     </item>
     <item>
-      <title><![CDATA[비행기 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>비행기 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/airplane-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/airplane-coloring.html</guid>
-      <description><![CDATA[하늘을 날아오르는 여객기와 전투기 비행기 색칠공부 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Airplane]]></category>
+      <guid>https://www.colorbob.com/pages/airplane-coloring.html</guid>
+      <description>하늘을 날아오르는 여객기와 전투기 비행기 색칠공부 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Airplane</category>
     </item>
     <item>
-      <title><![CDATA[기차 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>기차 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/train-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/train-coloring.html</guid>
-      <description><![CDATA[칙칙폭폭 증기기관차와 고속열차 기차 색칠공부 무료 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Train & Locomotive]]></category>
+      <guid>https://www.colorbob.com/pages/train-coloring.html</guid>
+      <description>칙칙폭폭 증기기관차와 고속열차 기차 색칠공부 무료 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Train and Locomotive</category>
     </item>
     <item>
-      <title><![CDATA[배·잠수함 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>배·잠수함 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/ship-submarine-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/ship-submarine-coloring.html</guid>
-      <description><![CDATA[바다를 항해하는 돛단배, 여객선, 잠수함 색칠공부 무료 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Ship & Submarine]]></category>
+      <guid>https://www.colorbob.com/pages/ship-submarine-coloring.html</guid>
+      <description>바다를 항해하는 돛단배, 여객선, 잠수함 색칠공부 무료 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Ship and Submarine</category>
     </item>
     <item>
-      <title><![CDATA[로봇 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>로봇 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/robot-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/robot-coloring.html</guid>
-      <description><![CDATA[미래에서 온 멋진 변신 로봇 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Robot]]></category>
+      <guid>https://www.colorbob.com/pages/robot-coloring.html</guid>
+      <description>미래에서 온 멋진 변신 로봇 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Robot</category>
     </item>
     <item>
-      <title><![CDATA[우주·로켓 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>우주·로켓 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/space-rocket-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/space-rocket-coloring.html</guid>
-      <description><![CDATA[우주로 날아가는 로켓과 행성, 우주선 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Space & Rocket]]></category>
+      <guid>https://www.colorbob.com/pages/space-rocket-coloring.html</guid>
+      <description>우주로 날아가는 로켓과 행성, 우주선 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Space and Rocket</category>
     </item>
     <item>
-      <title><![CDATA[과일 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>과일 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/fruit-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/fruit-coloring.html</guid>
-      <description><![CDATA[사과, 딸기, 바나나, 수박 등 알록달록 과일 색칠공부 도안입니다. 권장 연령: 2세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Fruits]]></category>
+      <guid>https://www.colorbob.com/pages/fruit-coloring.html</guid>
+      <description>사과, 딸기, 바나나, 수박 등 알록달록 과일 색칠공부 도안입니다. 권장 연령: 2세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Fruits</category>
     </item>
     <item>
-      <title><![CDATA[케이크·디저트 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>케이크·디저트 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/cake-dessert-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/cake-dessert-coloring.html</guid>
-      <description><![CDATA[달콤한 생일 케이크와 아이스크림 디저트 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Cake & Dessert]]></category>
+      <guid>https://www.colorbob.com/pages/cake-dessert-coloring.html</guid>
+      <description>달콤한 생일 케이크와 아이스크림 디저트 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Cake and Dessert</category>
     </item>
     <item>
-      <title><![CDATA[꽃 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>꽃 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/flower-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/flower-coloring.html</guid>
-      <description><![CDATA[장미, 해바라기, 튤립, 꽃다발 등 아름다운 꽃 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Flowers]]></category>
+      <guid>https://www.colorbob.com/pages/flower-coloring.html</guid>
+      <description>장미, 해바라기, 튤립, 꽃다발 등 아름다운 꽃 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Flowers</category>
     </item>
     <item>
-      <title><![CDATA[성·집 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>성·집 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/castle-house-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/castle-house-coloring.html</guid>
-      <description><![CDATA[동화 속 마법의 성(Castle)과 아늑한 집 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Castle & House]]></category>
+      <guid>https://www.colorbob.com/pages/castle-house-coloring.html</guid>
+      <description>동화 속 마법의 성(Castle)과 아늑한 집 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Castle and House</category>
     </item>
     <item>
-      <title><![CDATA[숫자 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>숫자 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/color-by-number.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/color-by-number.html</guid>
-      <description><![CDATA[번호에 맞춰 색을 칠하며 숫자를 익히는 숫자 색칠공부 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Color by Number]]></category>
+      <guid>https://www.colorbob.com/pages/color-by-number.html</guid>
+      <description>번호에 맞춰 색을 칠하며 숫자를 익히는 숫자 색칠공부 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Color by Number</category>
     </item>
     <item>
-      <title><![CDATA[알파벳 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>알파벳 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/alphabet-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/alphabet-coloring.html</guid>
-      <description><![CDATA[영어 알파벳 A부터 Z까지 재미있게 배우는 알파벳 색칠공부 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Alphabet A-Z]]></category>
+      <guid>https://www.colorbob.com/pages/alphabet-coloring.html</guid>
+      <description>영어 알파벳 A부터 Z까지 재미있게 배우는 알파벳 색칠공부 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Alphabet A-Z</category>
     </item>
     <item>
-      <title><![CDATA[한글 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>한글 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/korean-alphabet-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/korean-alphabet-coloring.html</guid>
-      <description><![CDATA[한글 자음과 모음을 색칠하며 익히는 유아 한글 교육 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Hangul Korean]]></category>
+      <guid>https://www.colorbob.com/pages/korean-alphabet-coloring.html</guid>
+      <description>한글 자음과 모음을 색칠하며 익히는 유아 한글 교육 도안입니다. 권장 연령: 3세~유치원. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Hangul Korean</category>
     </item>
     <item>
-      <title><![CDATA[미로 찾기 프린트 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>미로 찾기 프린트 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/maze-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/maze-coloring.html</guid>
-      <description><![CDATA[집중력과 문제해결력을 키우는 유아·어린이 무료 미로 찾기 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Maze Puzzles]]></category>
+      <guid>https://www.colorbob.com/pages/maze-coloring.html</guid>
+      <description>집중력과 문제해결력을 키우는 유아·어린이 무료 미로 찾기 도안입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Maze Puzzles</category>
     </item>
     <item>
-      <title><![CDATA[스도쿠 프린트 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>스도쿠 프린트 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/sudoku-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/sudoku-coloring.html</guid>
-      <description><![CDATA[두뇌 트레이닝에 좋은 무료 A4 스도쿠 퍼즐 인쇄 도안입니다. 권장 연령: 초등학생~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Sudoku Puzzles]]></category>
+      <guid>https://www.colorbob.com/pages/sudoku-coloring.html</guid>
+      <description>두뇌 트레이닝에 좋은 무료 A4 스도쿠 퍼즐 인쇄 도안입니다. 권장 연령: 초등학생~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Sudoku Puzzles</category>
     </item>
     <item>
-      <title><![CDATA[만다라 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>만다라 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/mandala-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/mandala-coloring.html</guid>
-      <description><![CDATA[마음의 안정과 스트레스 해소에 좋은 성인용 만다라 컬러링 도안입니다. 권장 연령: 초등 고학년~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Mandala for Adults]]></category>
+      <guid>https://www.colorbob.com/pages/mandala-coloring.html</guid>
+      <description>마음의 안정과 스트레스 해소에 좋은 성인용 만다라 컬러링 도안입니다. 권장 연령: 초등 고학년~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Mandala for Adults</category>
     </item>
     <item>
-      <title><![CDATA[꽃 만다라 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>꽃 만다라 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/flower-mandala-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/flower-mandala-coloring.html</guid>
-      <description><![CDATA[섬세한 꽃잎이 대칭을 이루는 꽃 만다라 무료 컬러링 도안입니다. 권장 연령: 성인·시니어. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Floral Mandala]]></category>
+      <guid>https://www.colorbob.com/pages/flower-mandala-coloring.html</guid>
+      <description>섬세한 꽃잎이 대칭을 이루는 꽃 만다라 무료 컬러링 도안입니다. 권장 연령: 성인·시니어. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Floral Mandala</category>
     </item>
     <item>
-      <title><![CDATA[한국 전통 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>한국 전통 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/korean-tradition-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/korean-tradition-coloring.html</guid>
-      <description><![CDATA[한복, 경복궁, 민화, 청화백자 등 한국 전통 문화 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Korean Tradition]]></category>
+      <guid>https://www.colorbob.com/pages/korean-tradition-coloring.html</guid>
+      <description>한복, 경복궁, 민화, 청화백자 등 한국 전통 문화 색칠공부 도안입니다. 권장 연령: 유치원~성인. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Korean Tradition</category>
     </item>
     <item>
-      <title><![CDATA[크리스마스 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>크리스마스 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/christmas-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/christmas-coloring.html</guid>
-      <description><![CDATA[크리스마스 트리와 장식, 겨울 축제 색칠공부 무료 A4 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Christmas]]></category>
+      <guid>https://www.colorbob.com/pages/christmas-coloring.html</guid>
+      <description>크리스마스 트리와 장식, 겨울 축제 색칠공부 무료 A4 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Christmas</category>
     </item>
     <item>
-      <title><![CDATA[산타클로스 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>산타클로스 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/santa-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/santa-coloring.html</guid>
-      <description><![CDATA[선물을 나눠주는 산타 할아버지와 눈사람 색칠공부 무료 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Santa Claus]]></category>
+      <guid>https://www.colorbob.com/pages/santa-coloring.html</guid>
+      <description>선물을 나눠주는 산타 할아버지와 눈사람 색칠공부 무료 도안입니다. 권장 연령: 3세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Santa Claus</category>
     </item>
     <item>
-      <title><![CDATA[할로윈 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>할로윈 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/halloween-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/halloween-coloring.html</guid>
-      <description><![CDATA[호박등(잭오랜턴), 꼬마 유령, 마녀 등 할로윈 데이 색칠공부 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Halloween]]></category>
+      <guid>https://www.colorbob.com/pages/halloween-coloring.html</guid>
+      <description>호박등(잭오랜턴), 꼬마 유령, 마녀 등 할로윈 데이 색칠공부 도안입니다. 권장 연령: 유치원~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Halloween</category>
     </item>
     <item>
-      <title><![CDATA[부활절 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>부활절 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/easter-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/easter-coloring.html</guid>
-      <description><![CDATA[예쁜 무늬의 부활절 달걀과 봄 토끼 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Easter]]></category>
+      <guid>https://www.colorbob.com/pages/easter-coloring.html</guid>
+      <description>예쁜 무늬의 부활절 달걀과 봄 토끼 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Easter</category>
     </item>
     <item>
-      <title><![CDATA[생일 축하 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>생일 축하 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/birthday-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/birthday-coloring.html</guid>
-      <description><![CDATA[생일 파티 카드와 축하 풍선, 케이크 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Happy Birthday]]></category>
+      <guid>https://www.colorbob.com/pages/birthday-coloring.html</guid>
+      <description>생일 파티 카드와 축하 풍선, 케이크 색칠공부 무료 도안입니다. 권장 연령: 전 연령. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Happy Birthday</category>
     </item>
     <item>
-      <title><![CDATA[축구 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>축구 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/soccer-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/soccer-coloring.html</guid>
-      <description><![CDATA[역동적인 슛을 날리는 축구 선수와 축구공 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Soccer & Football]]></category>
+      <guid>https://www.colorbob.com/pages/soccer-coloring.html</guid>
+      <description>역동적인 슛을 날리는 축구 선수와 축구공 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Soccer and Football</category>
     </item>
     <item>
-      <title><![CDATA[야구 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>야구 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/baseball-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/baseball-coloring.html</guid>
-      <description><![CDATA[배트를 휘두르는 타자와 투수 야구 색칠공부 무료 A4 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Baseball]]></category>
+      <guid>https://www.colorbob.com/pages/baseball-coloring.html</guid>
+      <description>배트를 휘두르는 타자와 투수 야구 색칠공부 무료 A4 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Baseball</category>
     </item>
     <item>
-      <title><![CDATA[농구 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>농구 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/basketball-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/basketball-coloring.html</guid>
-      <description><![CDATA[멋진 덩크슛과 드리블을 하는 농구 선수 색칠공부 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Basketball]]></category>
+      <guid>https://www.colorbob.com/pages/basketball-coloring.html</guid>
+      <description>멋진 덩크슛과 드리블을 하는 농구 선수 색칠공부 도안입니다. 권장 연령: 6세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Basketball</category>
     </item>
     <item>
-      <title><![CDATA[우주비행사 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>우주비행사 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/astronaut-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/astronaut-coloring.html</guid>
-      <description><![CDATA[우주복을 입고 달을 탐험하는 우주비행사 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Astronaut]]></category>
+      <guid>https://www.colorbob.com/pages/astronaut-coloring.html</guid>
+      <description>우주복을 입고 달을 탐험하는 우주비행사 색칠공부 무료 도안입니다. 권장 연령: 5세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Astronaut</category>
     </item>
     <item>
-      <title><![CDATA[소방관 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>소방관 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/firefighter-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/firefighter-coloring.html</guid>
-      <description><![CDATA[우리를 지켜주는 용감한 소방관 아저씨 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Firefighter]]></category>
+      <guid>https://www.colorbob.com/pages/firefighter-coloring.html</guid>
+      <description>우리를 지켜주는 용감한 소방관 아저씨 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Firefighter</category>
     </item>
     <item>
-      <title><![CDATA[경찰관 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>경찰관 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/police-officer-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/police-officer-coloring.html</guid>
-      <description><![CDATA[교통을 정리하고 마을을 지키는 경찰관 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Police Officer]]></category>
+      <guid>https://www.colorbob.com/pages/police-officer-coloring.html</guid>
+      <description>교통을 정리하고 마을을 지키는 경찰관 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Police Officer</category>
     </item>
     <item>
-      <title><![CDATA[의사·간호사 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>의사·간호사 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/doctor-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/doctor-coloring.html</guid>
-      <description><![CDATA[청진기를 든 친절한 의사 선생님과 병원 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Doctor & Hospital]]></category>
+      <guid>https://www.colorbob.com/pages/doctor-coloring.html</guid>
+      <description>청진기를 든 친절한 의사 선생님과 병원 색칠공부 무료 도안입니다. 권장 연령: 4세~초등 저학년. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Doctor and Hospital</category>
     </item>
     <item>
-      <title><![CDATA[발레리나 색칠공부 무료 도안 A4 프린트 & 온라인 색칠하기 | ColorBob]]></title>
+      <title>발레리나 색칠공부 무료 도안 A4 프린트 및 온라인 색칠하기 | ColorBob</title>
       <link>https://www.colorbob.com/pages/ballerina-coloring.html</link>
-      <guid isPermaLink="true">https://www.colorbob.com/pages/ballerina-coloring.html</guid>
-      <description><![CDATA[우아하게 춤추는 발레리나 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.]]></description>
-      <category><![CDATA[Ballerina]]></category>
+      <guid>https://www.colorbob.com/pages/ballerina-coloring.html</guid>
+      <description>우아하게 춤추는 발레리나 색칠공부 무료 A4 도안 모음입니다. 권장 연령: 4세~초등학생. 고화질 A4 무료 인쇄, PDF 저장 및 온라인 색칠하기 제공.</description>
       <pubDate>Fri, 27 Nov 2026 00:00:00 +0900</pubDate>
+      <category>Ballerina</category>
     </item>
   </channel>
 </rss>
